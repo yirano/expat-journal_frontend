@@ -16,6 +16,8 @@ Curate your adventures with the world.
 - styled-components
 - redux-thunk
 - jest
+- material-ui
+- yup
 
 
 ## Development Team 
