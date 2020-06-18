@@ -23,7 +23,8 @@ function App() {
       </Navbar>
 
       <Switch>
-        <Route exact path="/" component={Login} />
+        {/* Photos component will act as both Public/Private. Private has edit options & etc */}
+        <Route exact path="/login" component={Login} />
         <Route path="/signup" component={SignUp} />
         <Route path="/posts" component={Posts} />
 
