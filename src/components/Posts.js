@@ -4,20 +4,20 @@ import {
   CardTitle, Button
 } from 'reactstrap'
 
-const Posts = () => {
+const Posts = (props) => {
   return (
     <div className="posts">
       <Card>
-        <CardImg top width="100%" src="" alt="" />
+        <CardImg src="https://unsplash.com/photos/yC-Yzbqy7PY" alt="" />
         <CardBody>
-          <CardTitle>Title</CardTitle>
-          <CardText>Some text </CardText>
+          <CardTitle>Alejandro Escamilla</CardTitle>
+          <CardText>https://unsplash.com/photos/yC-Yzbqy7PY</CardText>
           <Button>Button</Button>
         </CardBody>
       </Card>
     </div>
   )
 }
-
+console.log(CardImg);
 
 export default Posts
