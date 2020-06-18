@@ -1,19 +1,14 @@
 import React, { useEffect } from "react"
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
-import styled from 'styled-components'
+// import styled from 'styled-components'
 import {
   Card, CardImg, CardText, CardBody,
-  CardTitle, Button
+  CardTitle
 } from 'reactstrap'
 import { loadPosts } from '../Action/action'
-import Photo from './Photo'
-
-const StyledCard = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-`
+import PhotoCard from './PhotoCard'
+// import Photo from './Photo'
 
 const Photos = ({ images, loadPosts }) => {
 
@@ -22,22 +17,12 @@ const Photos = ({ images, loadPosts }) => {
   })
 
   return (
-    <Card style={{width:"30%", height:"30%"}}>
-      {images.map((image) => (
-        <Link to={`/photos/${image.id}`}>
-          <CardImg src={image.download_url} alt=""  />
-      <CardBody>
-        <CardTitle>Title:{image.author}</CardTitle>
-        <CardText>Description:{image.url}</CardText>
-        </CardBody>
-        </Link>
-      ))}
-    </Card>
+    <>
+      {images.map((image) => (<PhotoCard image={image} />))}
+    </>
   )
 }
 
-
-  
 const mapStateToProps = (state) => {
   return {
     images: state.data
@@ -45,5 +30,3 @@ const mapStateToProps = (state) => {
 }
 
 export default connect(mapStateToProps, { loadPosts })(Photos)
-
-// export default Photos

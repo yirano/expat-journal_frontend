@@ -1,31 +1,22 @@
 import React, { useEffect } from 'react'
-import {
-  Card, CardImg, CardText, CardBody,
-  CardTitle
-} from 'reactstrap'
+
 import { useParams } from 'react-router'
 import { connect } from 'react-redux'
 import { spotLight } from '../Action/action'
+import PhotoCard from './PhotoCard'
 
 const Photo = (props) => {
   const paramID = useParams()
   useEffect(() => {
     props.spotLight(paramID)
   }, [])
+
   return (
     <>
-    
       {props.image !== undefined ?
-        <Card style={{ minWidth: '300px', width: '500px', height: '450px' }}>
-          <CardImg src={props.image.download_url} alt="" />
-          <CardBody>
-            <CardTitle>{props.image.author}</CardTitle>
-            <CardText>{props.image.url}</CardText>
-          </CardBody>
-        </Card>
+        <PhotoCard image={props.image} />
         : null
       }
-  
     </>
   )
 }
@@ -37,5 +28,3 @@ const mapStateToProps = (state) => {
 }
 
 export default connect(mapStateToProps, { spotLight })(Photo)
-
-// export default Photo
