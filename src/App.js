@@ -21,10 +21,10 @@ function App() {
       </Navbar>
 
       <Switch>
+        <Route exact path="/" component={Login} />
         <Route path="/signup" component={SignUp} />
-        <Route path="/" component={Login} />
+        <Route path="/posts" component={Posts} />
       </Switch>
-
     </>
   )
 }
