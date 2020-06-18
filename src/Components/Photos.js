@@ -3,27 +3,40 @@ import {
   Card, CardImg, CardText, CardBody,
   CardTitle, Button
 } from 'reactstrap'
-import { images } from '../DummyAPI/images'
+import { connect } from 'react-redux'
+import styled from 'styled-components'
 
-const Photos = () => {
+const StyledCard = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+`
+
+const Photos = ({ images }) => {
   console.log(images)
   return (
-    <div>
+    <StyledCard>
       {images.map((image) => {
         return (
 
-          <Card style={{width:"30%", height:"30%"}}>
+          <Card style={{ minWidth: '300px', width: '300px', height: '350px' }}>
             <CardImg src={image.download_url} alt="" />
             <CardBody>
               <CardTitle>{image.author}</CardTitle>
               <CardText>{image.url}</CardText>
-              </CardBody>
+            </CardBody>
           </Card>
 
         )
       })}
-    </div>
+    </StyledCard>
   )
 }
+const mapStateToProps = (state) => {
+  return {
+    images: state.data
+  }
+}
+export default connect(mapStateToProps, {})(Photos)
 
-export default Photos
+// export default Photos
