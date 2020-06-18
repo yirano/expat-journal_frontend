@@ -1,7 +1,8 @@
-import React, { useState } from "react"
-
+import React, { useState, useEffect } from "react"
+import { Route, Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import styled from 'styled-components'
+import { loadPosts } from '../Action/action'
 import Photo from './Photo'
 
 const StyledCard = styled.div`
@@ -10,15 +11,19 @@ const StyledCard = styled.div`
   justify-content: center;
 `
 
-const Photos = ({ images }) => {
-  console.log(images)
+const Photos = ({ images, loadPosts }) => {
+
+  useEffect(() => {
+    loadPosts()
+  })
+
   return (
     <StyledCard>
-      {images.map((image) => {
-        return (
-          <Photo image={image} />
-        )
-      })}
+      {images.map((image) => (
+        <Link to={`/photos/${image.id}`}>
+          <Photo image={image} key={image.id} />
+        </Link>
+      ))}
     </StyledCard>
   )
 }
@@ -27,6 +32,6 @@ const mapStateToProps = (state) => {
     images: state.data
   }
 }
-export default connect(mapStateToProps, {})(Photos)
+export default connect(mapStateToProps, { loadPosts })(Photos)
 
 // export default Photos

@@ -1,19 +1,39 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import {
   Card, CardImg, CardText, CardBody,
-  CardTitle, Button
+  CardTitle
 } from 'reactstrap'
+import { useParams } from 'react-router'
+import { connect } from 'react-redux'
+import { spotLight } from '../Action/action'
 
-const Photo = ({ image }) => {
+const Photo = (props) => {
+  const paramID = useParams()
+  useEffect(() => {
+    props.spotLight(paramID)
+  }, [])
   return (
-    <Card style={{ minWidth: '300px', width: '300px', height: '350px' }}>
-      <CardImg src={image.download_url} alt="" />
-      <CardBody>
-        <CardTitle>{image.author}</CardTitle>
-        <CardText>{image.url}</CardText>
-      </CardBody>
-    </Card>
+    <>
+      {props.image !== undefined ?
+        <Card style={{ minWidth: '300px', width: '500px', height: '450px' }}>
+          <CardImg src={props.image.download_url} alt="" />
+          <CardBody>
+            <CardTitle>{props.imageauthor}</CardTitle>
+            <CardText>{props.image.url}</CardText>
+          </CardBody>
+        </Card>
+        : null
+      }
+    </>
   )
 }
 
-export default Photo
+const mapStateToProps = (state) => {
+  return {
+    image: state.spotLight[0]
+  }
+}
+
+export default connect(mapStateToProps, { spotLight })(Photo)
+
+// export default Photo
