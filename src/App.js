@@ -1,14 +1,14 @@
-import React from 'react';
-import {BrowserRouter as Router} from 'react-router-dom';
-import './App.css';
-import Login from './src/components/Login';
+import React from 'react'
+import { BrowserRouter as Router } from 'react-router-dom'
+import Login from './Components/Login'
+import './App.css'
 
 function App() {
   return (
     <>
-    <Login/>
+      <Login />
     </>
-  );
+  )
 }
 
 export default App
