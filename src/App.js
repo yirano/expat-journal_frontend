@@ -1,12 +1,14 @@
-import React from 'react'
-import './App.css'
+import React from 'react';
+import {BrowserRouter as Router} from 'react-router-dom';
+import './App.css';
+import Login from './src/components/Login';
 
 function App() {
   return (
-    <div className="App">
-      <h1>APP COMPONENT</h1>
-    </div>
-  )
+    <>
+    <Login/>
+    </>
+  );
 }
 
 export default App
