@@ -1,10 +1,8 @@
 import React, { useState } from "react"
-import {
-  Card, CardImg, CardText, CardBody,
-  CardTitle, Button
-} from 'reactstrap'
+
 import { connect } from 'react-redux'
 import styled from 'styled-components'
+import Photo from './Photo'
 
 const StyledCard = styled.div`
   display: flex;
@@ -18,15 +16,7 @@ const Photos = ({ images }) => {
     <StyledCard>
       {images.map((image) => {
         return (
-
-          <Card style={{ minWidth: '300px', width: '300px', height: '350px' }}>
-            <CardImg src={image.download_url} alt="" />
-            <CardBody>
-              <CardTitle>{image.author}</CardTitle>
-              <CardText>{image.url}</CardText>
-            </CardBody>
-          </Card>
-
+          <Photo image={image} />
         )
       })}
     </StyledCard>
