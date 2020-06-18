@@ -5,6 +5,8 @@ import { Button, Navbar } from 'reactstrap'
 import Login from './Components/Login'
 import SignUp from './Components/SignUp'
 import Posts from './Components/Posts'
+import Albums from './Components/Albums'
+import PrivateRoute from './Components/PrivateRoute'
 import './App.css'
 // import SignUp from './Components/SignUp'
 
@@ -25,7 +27,9 @@ function App() {
         <Route path="/signup" component={SignUp} />
         <Route path="/posts" component={Posts} />
 
-      
+        {/* <PrivateRoute path="/posts" component={Posts} /> */}
+        {/* <PrivateRoute path="/photos" component={Photos} /> */}
+        {/* <PrivateRoute path="/albums" component={Albums} */}
       </Switch>
     </Router>
 
