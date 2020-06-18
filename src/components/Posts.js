@@ -1,12 +1,12 @@
-import React from "react";
+import React from "react"
 import {
-    Card, CardImg, CardText, CardBody,
-    CardTitle, Button
-  } from 'reactstrap';
+  Card, CardImg, CardText, CardBody,
+  CardTitle, Button
+} from 'reactstrap'
 
-const Posts=()=>{
-    return(
-        <div>
+const Posts = () => {
+  return (
+    <div className="posts">
       <Card>
         <CardImg top width="100%" src="" alt="" />
         <CardBody>
@@ -16,8 +16,8 @@ const Posts=()=>{
         </CardBody>
       </Card>
     </div>
-  );
-};
-        
-    
-export default Posts;
+  )
+}
+
+
+export default Posts

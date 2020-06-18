@@ -15,12 +15,14 @@ function App() {
         <Link to="/">
           <Button color='info'>Home</Button>
         </Link>
+        <Link to="/posts">
+          <Button color='info'>Posts</Button>
+        </Link>
       </Navbar>
-      <Switch>
 
+      <Switch>
         <Route path="/signup" component={SignUp} />
         <Route path="/" component={Login} />
-        <Route path="/posts" component={Posts}/>
       </Switch>
 
     </>
