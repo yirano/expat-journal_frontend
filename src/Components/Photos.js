@@ -5,20 +5,19 @@ import {
 } from 'reactstrap'
 import { images } from '../DummyAPI/images'
 
-const Photos = (props) => {
+const Photos = () => {
   console.log(images)
   return (
     <div>
       {images.map((image) => {
         return (
 
-          <Card>
+          <Card style={{width:"30%", height:"30%"}}>
             <CardImg src={image.download_url} alt="" />
             <CardBody>
-              <CardTitle>Alejandro Escamilla</CardTitle>
-              <CardText>https://unsplash.com/photos/yC-Yzbqy7PY</CardText>
-              <Button>Button</Button>
-            </CardBody>
+              <CardTitle>{image.author}</CardTitle>
+              <CardText>{image.url}</CardText>
+              </CardBody>
           </Card>
 
         )

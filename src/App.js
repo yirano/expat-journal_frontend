@@ -16,8 +16,8 @@ function App() {
         <Link to="/">
           <Button color='info'>Home</Button>
         </Link>
-        <Link to="/posts">
-          <Button color='info'>Posts</Button>
+        <Link to="/photos">
+          <Button color='info'>Photos</Button>
         </Link>
       </Navbar>
 
