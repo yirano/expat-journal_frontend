@@ -14,16 +14,18 @@ const Photo = (props) => {
   }, [])
   return (
     <>
+    
       {props.image !== undefined ?
         <Card style={{ minWidth: '300px', width: '500px', height: '450px' }}>
           <CardImg src={props.image.download_url} alt="" />
           <CardBody>
-            <CardTitle>{props.imageauthor}</CardTitle>
+            <CardTitle>{props.image.author}</CardTitle>
             <CardText>{props.image.url}</CardText>
           </CardBody>
         </Card>
         : null
       }
+  
     </>
   )
 }
