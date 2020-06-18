@@ -5,9 +5,9 @@ import './App.css'
 
 function App() {
   return (
-    <>
+    <Router>
       <Login />
-    </>
+    </Router>
   )
 }
 
