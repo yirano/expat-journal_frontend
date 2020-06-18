@@ -24,6 +24,8 @@ function App() {
         <Route exact path="/" component={Login} />
         <Route path="/signup" component={SignUp} />
         <Route path="/posts" component={Posts} />
+
+      
       </Switch>
     </Router>
 
