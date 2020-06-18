@@ -15,11 +15,14 @@ function App() {
   return (
     <Router>
       <Navbar color='info'>
-        <Link to="/">
+        <Link to="/albums">
           <Button color='info'>Home</Button>
         </Link>
         <Link to="/photos">
           <Button color='info'>Photos</Button>
+        </Link>
+        <Link to="/posts">
+          <Button color='info'>Posts</Button>
         </Link>
       </Navbar>
 
@@ -29,6 +32,7 @@ function App() {
         <Route path="/signup" component={SignUp} />
         <Route path="/posts" component={Posts} />
         <Route path="/photos" component={Photos} />
+        <Route path="/albums" component={Albums} />
 
         {/* <PrivateRoute path="/posts" component={Posts} /> */}
         {/* <PrivateRoute path="/photos" component={Photos} /> */}
