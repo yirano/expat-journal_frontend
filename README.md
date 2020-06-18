@@ -35,7 +35,7 @@ Curate your adventures with the world.
 
 **Priyanka Sarkar** | [Github](github.com/priyanka10it)
 
-#### Marketing
+### Marketing
 **Philip Lisak** | [Github](github.com/PLisak777)
 
 
