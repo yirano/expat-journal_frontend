@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 
 const Login = () => {
   const handleLogin = e => {
-    console.log('Log in button clicked')
+    console.log('User logged in')
   }
   return (
     <>
