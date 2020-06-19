@@ -35,6 +35,7 @@ function App() {
         <Route path="/albums" component={Albums} />
         <Route exact path="/photos/:id" component={Photo} />
         <Route exact path="/photos" component={Photos} />
+        
 
         {/* <PrivateRoute path="/posts" component={Posts} /> */}
         {/* <PrivateRoute path="/photos" component={Photos} /> */}
