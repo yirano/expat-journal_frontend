@@ -12,10 +12,10 @@ const StyledCardContainer = styled.div`
   justify-content: center;
   flex-direction:row;
   align-items:center;
-`;
+`
 
 const StyledCard = styled.div`
-  width: 800px`;
+  width: 800px`
 
 const Photo = (props) => {
   const paramID = useParams()
@@ -26,13 +26,13 @@ const Photo = (props) => {
 
   return (
     <>
-    <StyledCardContainer>  
-      <StyledCard>   
-       {props.image !== undefined ?
-        <PhotoCard image={props.image} />
-        : null
-      }
-      </StyledCard>
+      <StyledCardContainer>
+        <StyledCard>
+          {props.image !== undefined ?
+            <PhotoCard image={props.image} />
+            : null
+          }
+        </StyledCard>
       </StyledCardContainer>
 
     </>
