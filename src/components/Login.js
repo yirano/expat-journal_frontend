@@ -1,10 +1,10 @@
-import React, { useState } from "react"
+import React, { useState,useEffect } from "react"
 import * as yup from "yup";
 import axiosWithAuth from '../axiosWithAuth/axiosWithAuth'
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap'
 import { Link } from 'react-router-dom'
 
-const Login = (props) => {
+export default function Login (props)  {
   const [credentials, setCredentials] = useState({})
   const handleLogin = e => {
     e.preventDefault()
@@ -24,18 +24,53 @@ const Login = (props) => {
   const handleChange = e => {
     setCredentials({ ...credentials, [e.target.name]: e.target.value })
   }
-  return (
+
+  //Login Page Validation-REACT I
+
+  
+  const [formData, setFormData] = useState({
+    userid: "",
+    password: "",
+      });
+
+          const schema = yup.object().shape({
+            userid: yup.string().required("UserId is a required field"), 
+            password: yup
+            .string()
+            .required("Please enter your password")
+            .min(8, "Password is too short - should be 8 chars minimum.")
+            .matches(/[a-zA-Z@]/),
+          });    
+          
+          
+
+          const submit=()=>{
+            schema.validate(formData);
+          }
+
+          const handle=e=>(
+            setFormData({...formData,[e.target.name]:e.target.value})
+        )
+         
+         
+          
+  return(
     <>
-      <Form onSubmit={handleLogin}>
+    <Form onSubmit={(e)=>{
+        e.preventDeafault()
+        console.log(formData);
+        submit();
+    }}
+    style={{margin:'5%' }}>
         <FormGroup>
           <Label for="userid">UserID</Label>
           <Input
             type="text"
-            name="username"
+            name="userid"
             id="userid"
             placeholder="Please enter your Userid"
-            value={credentials.username}
-            onChange={handleChange}
+            value={formData.userid}
+            onChange={handle}
           />
         </FormGroup>
 
@@ -45,8 +80,8 @@ const Login = (props) => {
             name="password"
             id="password"
             placeholder="Please enter your Password"
-            value={credentials.password}
-            onChange={handleChange}
+            value={formData.password}
+            onChange={handle}
           />
         </FormGroup>
 
@@ -56,7 +91,7 @@ const Login = (props) => {
         </Link>
       </Form>
     </>
-  )
+  );
 }
 
-export default Login
+  
