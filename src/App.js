@@ -8,7 +8,7 @@ import Posts from './Components/Posts'
 import Albums from './Components/Albums'
 import Photos from './Components/Photos'
 import Photo from './Components/Photo'
-import PrivateRoute from './Components/PrivateRoute'
+// import PrivateRoute from './Components/PrivateRoute'
 import './App.css'
 // import SignUp from './Components/SignUp'
 
@@ -35,6 +35,7 @@ function App() {
         <Route path="/albums" component={Albums} />
         <Route exact path="/photos/:id" component={Photo} />
         <Route exact path="/photos" component={Photos} />
+
 
         {/* <PrivateRoute path="/posts" component={Posts} /> */}
         {/* <PrivateRoute path="/photos" component={Photos} /> */}
