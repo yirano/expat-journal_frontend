@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom'
 
 const PhotoCard = ({ image }) => {
   return (
-    <Card style={{ width: "30%", height: "30%" }}>
+    <Card style={{ height: "30%" }}>
       <Link to={`/photos/${image.id}`}>
         <CardImg src={image.download_url} alt="" />
         <CardBody>

@@ -11,11 +11,15 @@ import Photo from './Photo'
 import { useState } from "react"
 import PhotoCard from './PhotoCard'
 
-const StyledCard = styled.div`
+const StyledCardContainer = styled.div`
   display: flex;
  flex-wrap: wrap;
-  justify-content: space-around
-  flex-direction:row
+  justify-content: space-around;
+  flex-direction:row;
+`
+
+const StyledCard = styled.div`
+  width: 300px;
 `
 
 const Albums = ({ images, loadPosts }) => {
@@ -26,13 +30,15 @@ const Albums = ({ images, loadPosts }) => {
 
   return (
     <div>
-      <StyledCard>
+      <StyledCardContainer>
         {images.map((image) => (
-          <Link to={`/photos/${image.id}`}>
-            <PhotoCard image={image} key={image.id} />
-          </Link>
+          <StyledCard>
+            <Link to={`/photos/${image.id}`}>
+              <PhotoCard image={image} key={image.id} />
+            </Link>
+          </StyledCard>
         ))}
-      </StyledCard>
+      </StyledCardContainer>
     </div>
   )
 }
