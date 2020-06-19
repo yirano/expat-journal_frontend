@@ -75,9 +75,9 @@ export default function Login(props) {
         </FormGroup>
 
         <Button color='info' type="submit" >Login</Button>
-        <Link to="/signup">
+        {/* <Link to="/signup">
           <Button color='info'>Sign-Up</Button>
-        </Link>
+        </Link> */}
       </Form>
     </>
   )

@@ -26,6 +26,9 @@ function App() {
         <Link to="/posts">
           <Button color='info'>Posts</Button>
         </Link>
+        <Link to="/login">
+          <Button color='info'>Login</Button>
+        </Link>
       </Navbar>
 
       <Switch>

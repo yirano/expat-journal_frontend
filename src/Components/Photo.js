@@ -8,7 +8,6 @@ import styled from 'styled-components'
 
 const StyledCardContainer = styled.div`
   display: flex;
-
   justify-content: center;
   flex-direction:row;
   align-items:center;
@@ -34,7 +33,6 @@ const Photo = (props) => {
           }
         </StyledCard>
       </StyledCardContainer>
-
     </>
   )
 }
