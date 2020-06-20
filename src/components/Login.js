@@ -41,6 +41,7 @@ export default function Login(props) {
   const handleChange = e => {
     formSchema.validate(credentials)
     // setCredentials({ ...credentials, [e.target.name]: e.target.value })
+    //formSchema.validate(credentials)
     setCredentials({ ...credentials, [e.target.name]: e.target.value })
   }
 
