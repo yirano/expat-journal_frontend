@@ -39,12 +39,8 @@ export default function Login(props) {
   }
 
   const handleChange = e => {
-<<<<<<< Updated upstream
     formSchema.validate(credentials)
     // setCredentials({ ...credentials, [e.target.name]: e.target.value })
-=======
-    schema.validate(credentials)
->>>>>>> Stashed changes
     setCredentials({ ...credentials, [e.target.name]: e.target.value })
   }
 
