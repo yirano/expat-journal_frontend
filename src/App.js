@@ -40,8 +40,10 @@ function App() {
         <Link to="/login">
           <Button>Login</Button>
         </Link>
-      <Button onClick={logout}>LogOut</Button>
-     
+        <Link to ="/login">
+           <Button onClick={logout}>LogOut</Button>
+           </Link>
+
       </header>
 
     
