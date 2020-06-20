@@ -113,7 +113,9 @@ export default function Login(props) {
   return (
         
     <Form onSubmit={formSubmit}>
-
+<h1>Welcome to Expat Journal!!</h1>
+<h5>If you're a new user, please register.<br/>
+If you've already registered, please login to view posts.</h5>
 {serverError ? <p className="error">{serverError}</p> : null}
 <Label for="userid">
   <legend>UserId</legend>
@@ -146,7 +148,7 @@ export default function Login(props) {
 <Button  type="submit" disabled={buttonDisabled}>Submit </Button>
          <Link to="/signup"><br/>
          
-          <Button type="submit">Sign-Up</Button>
+          <Button type="submit">Register</Button>
         </Link> 
       </Form>
       

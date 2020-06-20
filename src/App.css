@@ -1,4 +1,5 @@
 
+
 html {
     font-size: 100%;
   }
@@ -12,12 +13,15 @@ html {
     text-align: center;
   }
   
-  form {
-    display: flex;
+  Form {
+    display:flex;
     flex-direction: column;
-    width: 90%;
-    max-width: 300px;
-    margin: 0 auto;
+    flex-wrap: wrap;
+    width: 500px;
+    margin-left: 35%;
+    margin-top: 5%;
+    justify-content: center;
+    
   }
   
   label {
@@ -30,11 +34,12 @@ html {
   
   input,
   select,
-  textarea {
+  textarea
+   {
     width: 100%;
     margin: 5px 0 0;
     display: block;
-    width: 100%;
+    
     border: 2px solid rgba(0, 0, 0, 0.2);
     border-radius: 5px;
     padding: 10px;
@@ -77,6 +82,7 @@ html {
     color:white;
     cursor: pointer;
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+    align-items: center;
   }
   
   button:hover {
