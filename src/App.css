@@ -1,6 +1,10 @@
 
 html {
-    font-size: 72.5%;
+    font-size: 100%;
+  }
+
+*{
+    background-color: #FCEFF9;
   }
   
   .App {
@@ -68,22 +72,22 @@ html {
     border-radius: 5px;
     letter-spacing: 2px;
     outline: none;
-    background-color: #4dd0e1;
-    background-image: linear-gradient(to right, #4dd0e1, #1ee7e2);
-    color:"info";
+    background-color: #7E4E60;
+    background-image: linear-gradient(to right, #7E4E60, #7E4E60);
+    color:white;
     cursor: pointer;
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
   }
   
   button:hover {
     background-image: none;
-    background-color: #4dd0e1;
+    background-color: #D0B3BE;
     box-shadow: 0 5px 12px rgba(0, 0, 0, 0.3);
   }
   
   button:disabled {
     background-image: none;
-    background-color: white;
+    background-color: grey;
     border: 1px solid rgba(0, 0, 0, 0.1);
     color: rgba(0, 0, 0, 0.1);
     cursor: not-allowed;
@@ -94,8 +98,17 @@ html {
     color: red;
   }
   
- Navbar{
-    font-size: 1.5rem;
- }
+  Button{
+    background-color: #7E4E60;
+    background-image: linear-gradient(to right, #7E4E60, #7E4E60);
+    color:white;
+      }
+
+  .nav{
+    background-color: #7E4E60;
+    display: flex;
+    justify-content: space-evenly;
+  }
   
+ 
   

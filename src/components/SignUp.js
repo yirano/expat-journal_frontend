@@ -152,9 +152,7 @@ const SignUp = () => {
         ) : null}
       </Label>
       <br />
-      <Button style={{color:"info"}}type="submit" disabled={buttonDisabled}>
-        <legend>SignUp</legend>
-      </Button>
+      <Button  type="submit" disabled={buttonDisabled}>Submit </Button>
     </Form>
   );
 }

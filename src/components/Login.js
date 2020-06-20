@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useState,useEffect } from "react"
 import * as yup from "yup"
 import axiosWithAuth from '../axiosWithAuth/axiosWithAuth'
 import { Button, Form, FormGroup, Label, Input, legend } from 'reactstrap'
@@ -7,9 +7,22 @@ import { Link } from 'react-router-dom'
 export default function Login(props) {
   const [credentials, setCredentials] = useState({
     userid: "",
-    password: "",
+    password: ""
   })
 
+  const [formState, setFormState] = useState({
+    userid: "",
+    password: ""
+  })
+
+  const [serverError, setServerError] = useState("")
+
+  const [buttonDisabled, setButtonDisabled] = useState(true)
+
+  const [errors, setErrors] = useState({
+    userid: "",
+    password: ""
+      })
   const handleLogin = e => {
     e.preventDefault()
     props.history.push('/photos')
@@ -26,7 +39,7 @@ export default function Login(props) {
   }
 
   const handleChange = e => {
-    schema.validate(credentials)
+    formSchema.validate(credentials)
     // setCredentials({ ...credentials, [e.target.name]: e.target.value })
     setCredentials({ ...credentials, [e.target.name]: e.target.value })
 
@@ -34,7 +47,7 @@ export default function Login(props) {
 
   //* Login Page Validation-REACT I
 
-  const schema = yup.object().shape({
+  const formSchema = yup.object().shape({
     userid: yup.string().required("UserId is a required field"),
     password: yup
       .string()
@@ -43,44 +56,103 @@ export default function Login(props) {
       .matches(/[a-zA-Z@]/),
   })
 
+  useEffect(() => {
+    console.log(
+          )
+    formSchema.isValid(formState).then(isFormValid => {
+      console.log("is form valid?", isFormValid)
+      setButtonDisabled(!isFormValid) 
+    })
+  }, [formState])
+
+
+  const formSubmit = e => {
+    e.preventDefault() ;
+
+    setFormState({
+      userid: "",
+      password: "",
+          })
+  }
+
+  const validateChange = e => {
+        yup
+      .reach(formSchema, e.target.name)
+      .validate(e.target.value) 
+      .then(inputIsValid => {
+                setErrors({
+          ...errors,
+          [e.target.name]: ""
+        })
+      })
+      .catch(err => {
+                setErrors({
+          ...errors,
+          [e.target.name]: err.errors[0]
+        })
+      })
+  }
+
+  
+  const inputChange = e => {
+        e.persist() 
+    
+
+    const newFormData = {
+      ...formState,
+      [e.target.name]:
+        e.target.value // // remember value of the checkbox is in "checked" and all else is "value"
+    }
+
+    validateChange(e) // for each change in input, do inline validation
+    setFormState(newFormData) // update state with new data
+  }
+
+
+
   return (
-    <>
-      <Form onSubmit={(e) => {
-        e.preventDefault()
-        // console.log(formData)
-        handleLogin()
-      }}
-        style={{ margin: '5%' }}>
-        <FormGroup>
-          <Label for="userid">UserID</Label>
-          <Input
-            type="text"
-            name="userid"
-            id="userid"
-            placeholder="Please enter your Userid"
-            value={credentials.userid}
-            onChange={handleChange}
-          />
-        </FormGroup>
+        
+    <Form onSubmit={formSubmit}>
 
-        <FormGroup>
-          <Label for="password">Password</Label>
-          <Input type="password"
-            name="password"
-            id="password"
-            placeholder="Please enter your Password"
-            value={credentials.password}
-            onChange={handleChange}
-          />
-        </FormGroup>
+{serverError ? <p className="error">{serverError}</p> : null}
+<Label for="userid">
+  <legend>UserId</legend>
+  <Input
+    id="userid"
+    type="text"
+    name="userid"
+    placeholder="Please enter userid here"
+    onChange={inputChange}
+    value={formState.userid}
+  />
+  {errors.userid.length > 0 ? <p className="error">{errors.userid}</p> : null}
+</Label><br />
+<Label htmlFor="password">
+  <legend>Password</legend>
+  <Input
+    type="password"
+    name="password"
+    id="password"
+    placeholder="Please enter password here"
+    value={formState.password}
+    onChange={inputChange}
+  />
+  {errors.password.length > 0 ? (
+    <p className="error">{errors.password}</p>
+  ) : null}
+</Label>
+<br />
 
-        <Button color='info' type="submit" >Login</Button>
-        {/* <Link to="/signup">
-          <Button color='info'>Sign-Up</Button>
-        </Link> */}
+<Button  type="submit" disabled={buttonDisabled}>Submit </Button>
+         <Link to="/signup"><br/>
+         
+          <Button type="submit">Sign-Up</Button>
+        </Link> 
       </Form>
-    </>
-  )
+      
+    
+  );
 }
+
 
 

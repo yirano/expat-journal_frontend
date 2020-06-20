@@ -9,12 +9,15 @@ const StyledCardContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
-  flex-direction:row;
-`
+  flex-direction:row
+`;
 
 const StyledCard = styled.div`
-  width: 300px;
-`
+
+  width: 30%;
+  
+  
+`;
 
 const Albums = ({ images, loadPosts }) => {
 

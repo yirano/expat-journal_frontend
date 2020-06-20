@@ -110,7 +110,7 @@ const Posts = () => {
       <Label htmlFor="description">
         <legend>Description</legend>
         <Input
-          type="text"
+          type="textarea"
           name="description"
           id="description"
           placeholder="Please enter details here"
@@ -152,9 +152,8 @@ const Posts = () => {
         ) : null}
       </Label>
       <br />
-      <Button style={{ color: "info" }} type="submit" disabled={buttonDisabled}>
-        <legend>Post</legend>
-      </Button>
+      <Button  type="submit" disabled={buttonDisabled}>Post </Button>
+        
     </Form>
   )
 }
