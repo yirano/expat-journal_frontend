@@ -15,10 +15,6 @@ const StyledCardContainer = styled.div`
 const StyledCard = styled.div`
   width: 30%;
 `
-const StyledDiv = styled.div`
-  height: 400px;
-`
-
 const Albums = ({ images, loadPosts }) => {
 
   useEffect(() => {
@@ -31,9 +27,7 @@ const Albums = ({ images, loadPosts }) => {
         {images.map((image) => (
           <StyledCard>
             <Link to={`/photos/${image.id}`}>
-              {/* <StyledDiv> */}
               <PhotoCard image={image} key={image.id} height="280px" />
-              {/* </StyledDiv> */}
             </Link>
           </StyledCard>
         ))}
