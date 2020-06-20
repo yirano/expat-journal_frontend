@@ -3,16 +3,22 @@ import {
   Card, CardImg, CardText, CardBody,
   CardTitle
 } from 'reactstrap'
+import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 
+const StyledImageContainer = styled.div`
+  overflow: hidden;
+  display: flex;
+  align-items: flex-end;
+`
 
-const PhotoCard = ({ image }) => {
+const PhotoCard = ({ image, height }) => {
   return (
-    <Card style={{width:"100%"}}>
+    <Card style={{ width: "100%" }}>
       <Link to={`/photos/${image.id}`}>
-        <CardImg src={image.download_url} alt="" width="200" height="400" crop="fill" />
-          
-
+        <StyledImageContainer style={{ height: height }}>
+          <CardImg src={image.download_url} alt="" />
+        </StyledImageContainer>
         <CardBody>
           <CardTitle>Title:{image.author}</CardTitle>
           <CardText>Description:{image.url}</CardText>
