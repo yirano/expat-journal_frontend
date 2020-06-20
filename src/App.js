@@ -12,11 +12,17 @@ import Photo from './Components/Photo'
 
 // import PrivateRoute from './Components/PrivateRoute'
 import './App.css'
+
 // import SignUp from './Components/SignUp'
 
-
+function logout() {
+  alert("Thanks for visiting Expat Journal");
+}
 
 function App() {
+  function logout() {
+    alert("Thanks for visiting Expat Journal");
+  }
   return (
     
     <Router>
@@ -34,8 +40,12 @@ function App() {
         <Link to="/login">
           <Button>Login</Button>
         </Link>
-      
+      <Button onClick={logout}>LogOut</Button>
+     
       </header>
+
+    
+
 
       <Switch>
         {/* Photos component will act as both Public/Private. Private has edit options & etc */}
@@ -52,6 +62,8 @@ function App() {
         {/* <PrivateRoute path="/albums" component={Albums} */}
       </Switch>
     </Router>
+    
+
 
   )
 }
