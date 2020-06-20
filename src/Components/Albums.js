@@ -32,7 +32,7 @@ const Albums = ({ images, loadPosts }) => {
           <StyledCard>
             <Link to={`/photos/${image.id}`}>
               {/* <StyledDiv> */}
-              <PhotoCard image={image} key={image.id} height="300px" />
+              <PhotoCard image={image} key={image.id} height="280px" />
               {/* </StyledDiv> */}
             </Link>
           </StyledCard>

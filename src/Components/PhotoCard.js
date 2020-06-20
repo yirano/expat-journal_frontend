@@ -17,7 +17,7 @@ const PhotoCard = ({ image, height }) => {
     <Card style={{ width: "100%" }}>
       <Link to={`/photos/${image.id}`}>
         <StyledImageContainer style={{ height: height }}>
-          <CardImg src={image.download_url} alt="" style={{ height: '100%' }} />
+          <CardImg src={image.download_url} alt="" />
         </StyledImageContainer>
         <CardBody>
           <CardTitle>Title:{image.author}</CardTitle>
