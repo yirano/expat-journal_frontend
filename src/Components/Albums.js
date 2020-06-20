@@ -10,14 +10,14 @@ const StyledCardContainer = styled.div`
   flex-wrap: wrap;
   justify-content: space-around;
   flex-direction:row
-`;
+`
 
 const StyledCard = styled.div`
 
   width: 30%;
   
   
-`;
+`
 
 const Albums = ({ images, loadPosts }) => {
 

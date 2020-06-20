@@ -5,7 +5,7 @@ export default function axiosWithAuth() {
 
   return axios.create({
     headers: {
-      authorization: token
+      Authorization: token
     }
   })
 }

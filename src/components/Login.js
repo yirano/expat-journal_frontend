@@ -1,4 +1,4 @@
-import React, { useState,useEffect } from "react"
+import React, { useState, useEffect } from "react"
 import * as yup from "yup"
 import axiosWithAuth from '../axiosWithAuth/axiosWithAuth'
 import { Button, Form, FormGroup, Label, Input, legend } from 'reactstrap'
@@ -22,7 +22,7 @@ export default function Login(props) {
   const [errors, setErrors] = useState({
     userid: "",
     password: ""
-      })
+  })
   const handleLogin = e => {
     e.preventDefault()
     props.history.push('/photos')
@@ -39,10 +39,13 @@ export default function Login(props) {
   }
 
   const handleChange = e => {
+<<<<<<< Updated upstream
     formSchema.validate(credentials)
     // setCredentials({ ...credentials, [e.target.name]: e.target.value })
+=======
+    schema.validate(credentials)
+>>>>>>> Stashed changes
     setCredentials({ ...credentials, [e.target.name]: e.target.value })
-
   }
 
   //* Login Page Validation-REACT I
@@ -58,45 +61,45 @@ export default function Login(props) {
 
   useEffect(() => {
     console.log(
-          )
+    )
     formSchema.isValid(formState).then(isFormValid => {
       console.log("is form valid?", isFormValid)
-      setButtonDisabled(!isFormValid) 
+      setButtonDisabled(!isFormValid)
     })
   }, [formState])
 
 
   const formSubmit = e => {
-    e.preventDefault() ;
+    e.preventDefault()
 
     setFormState({
       userid: "",
       password: "",
-          })
+    })
   }
 
   const validateChange = e => {
-        yup
+    yup
       .reach(formSchema, e.target.name)
-      .validate(e.target.value) 
+      .validate(e.target.value)
       .then(inputIsValid => {
-                setErrors({
+        setErrors({
           ...errors,
           [e.target.name]: ""
         })
       })
       .catch(err => {
-                setErrors({
+        setErrors({
           ...errors,
           [e.target.name]: err.errors[0]
         })
       })
   }
 
-  
+
   const inputChange = e => {
-        e.persist() 
-    
+    e.persist()
+
 
     const newFormData = {
       ...formState,
@@ -108,52 +111,50 @@ export default function Login(props) {
     setFormState(newFormData) // update state with new data
   }
 
-
-
   return (
-        
-    <Form onSubmit={formSubmit}>
-<h1>Welcome to Expat Journal!!</h1>
-<h5>If you're a new user, please register.<br/>
-If you've already registered, please login to view posts.</h5>
-{serverError ? <p className="error">{serverError}</p> : null}
-<Label for="userid">
-  <legend>UserId</legend>
-  <Input
-    id="userid"
-    type="text"
-    name="userid"
-    placeholder="Please enter userid here"
-    onChange={inputChange}
-    value={formState.userid}
-  />
-  {errors.userid.length > 0 ? <p className="error">{errors.userid}</p> : null}
-</Label><br />
-<Label htmlFor="password">
-  <legend>Password</legend>
-  <Input
-    type="password"
-    name="password"
-    id="password"
-    placeholder="Please enter password here"
-    value={formState.password}
-    onChange={inputChange}
-  />
-  {errors.password.length > 0 ? (
-    <p className="error">{errors.password}</p>
-  ) : null}
-</Label>
-<br />
 
-<Button  type="submit" disabled={buttonDisabled}>Submit </Button>
-         <Link to="/signup"><br/>
-         
-          <Button type="submit">Register</Button>
-        </Link> 
-      </Form>
-      
-    
-  );
+    <Form onSubmit={formSubmit}>
+      <h1>Welcome to Expat Journal!!</h1>
+      <h5>If you're a new user, please register.<br />
+If you've already registered, please login to view posts.</h5>
+      {serverError ? <p className="error">{serverError}</p> : null}
+      <Label for="userid">
+        <legend>UserId</legend>
+        <Input
+          id="userid"
+          type="text"
+          name="userid"
+          placeholder="Please enter userid here"
+          onChange={inputChange}
+          value={formState.userid}
+        />
+        {errors.userid.length > 0 ? <p className="error">{errors.userid}</p> : null}
+      </Label><br />
+      <Label htmlFor="password">
+        <legend>Password</legend>
+        <Input
+          type="password"
+          name="password"
+          id="password"
+          placeholder="Please enter password here"
+          value={formState.password}
+          onChange={inputChange}
+        />
+        {errors.password.length > 0 ? (
+          <p className="error">{errors.password}</p>
+        ) : null}
+      </Label>
+      <br />
+
+      <Button type="submit" disabled={buttonDisabled}>Submit </Button>
+      <Link to="/signup"><br />
+
+        <Button type="submit">Register</Button>
+      </Link>
+    </Form>
+
+
+  )
 }
 
 
