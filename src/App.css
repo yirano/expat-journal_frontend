@@ -21,8 +21,10 @@ html {
     margin-left: 35%;
     margin-top: 5%;
     justify-content: center;
-    
+    background-color:#FCEFF9;
   }
+
+  
   
   label {
     display: flex;

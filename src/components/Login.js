@@ -4,6 +4,7 @@ import axiosWithAuth from '../axiosWithAuth/axiosWithAuth'
 import { Button, Form, FormGroup, Label, Input, legend } from 'reactstrap'
 import { Link } from 'react-router-dom'
 
+
 export default function Login(props) {
   const [credentials, setCredentials] = useState({
     userid: "",
@@ -101,19 +102,19 @@ export default function Login(props) {
     const newFormData = {
       ...formState,
       [e.target.name]:
-        e.target.value // // remember value of the checkbox is in "checked" and all else is "value"
+        e.target.value 
     }
 
-    validateChange(e) // for each change in input, do inline validation
-    setFormState(newFormData) // update state with new data
+    validateChange(e) 
+    setFormState(newFormData) 
   }
 
   return (
-
-    <Form onSubmit={formSubmit}>
-      <h1>Welcome to Expat Journal!!</h1>
-      <h5>If you're a new user, please register.<br />
-If you've already registered, please login to view posts.</h5>
+    
+    <Form onSubmit={formSubmit} >
+      <h1>Welcome to Expat Journal!!</h1><br/>
+      <h5>If you're a new user, please register.</h5><br />
+<h5>If you've already registered, please login to view posts.</h5>
       {serverError ? <p className="error">{serverError}</p> : null}
       <Label for="userid">
         <legend>UserId</legend>
@@ -124,6 +125,7 @@ If you've already registered, please login to view posts.</h5>
           placeholder="Please enter userid here"
           onChange={inputChange}
           value={formState.userid}
+          
         />
         {errors.userid.length > 0 ? <p className="error">{errors.userid}</p> : null}
       </Label><br />
@@ -149,7 +151,7 @@ If you've already registered, please login to view posts.</h5>
         <Button type="submit">Register</Button>
       </Link>
     </Form>
-
+    
 
   )
 }

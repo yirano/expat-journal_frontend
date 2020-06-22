@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import { loadPosts } from '../Action/action'
 import styled from 'styled-components'
 import PhotoCard from './PhotoCard'
+import {Button} from 'reactstrap'
 
 const StyledCardContainer = styled.div`
   display: flex;
@@ -14,6 +15,7 @@ const StyledCardContainer = styled.div`
 
 const StyledCard = styled.div`
   width: 30%;
+  margin:20px;
 `
 const Albums = ({ images, loadPosts }) => {
 
@@ -26,13 +28,15 @@ const Albums = ({ images, loadPosts }) => {
       <StyledCardContainer>
         {images.map((image) => (
           <StyledCard>
+            <PhotoCard image={image} key={image.id} height="380px" />
             <Link to={`/photos/${image.id}`}>
-              <PhotoCard image={image} key={image.id} height="280px" />
-            </Link>
+            <Button>View Story</Button>
+              </Link>
           </StyledCard>
         ))}
+        
       </StyledCardContainer>
-    </div>
+         </div>
   )
 }
 
