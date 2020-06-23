@@ -1,42 +1,35 @@
 import React, { useState, useEffect } from 'react'
-// import { Link } from 'react-router-dom'
 import { Form, Label, Input, FormText, Button } from 'reactstrap'
 import * as yup from 'yup'
+import axiosWithAuth from '../axiosWithAuth/axiosWithAuth'
 
 const Posts = () => {
-  // const [post, setPost] = useState([])
-
   const [serverError, setServerError] = useState("")
 
   const [formState, setFormState] = useState({
-    title: "",
-    description: "",
-    date: "",
-    url: ""
+    photo_url: "",
+    photo_title: "",
+    photo_description: ""
   })
 
   const [buttonDisabled, setButtonDisabled] = useState(true)
 
   const [errors, setErrors] = useState({
     title: "",
-    description: "",
+    photo_description: "",
     date: "",
-    url: ""
+    photo_url: ""
   })
 
   const formSchema = yup.object().shape({
-    title: yup.string().required("Title is a required field"), // must include name or else error
-    description: yup.string().required("Description is a required fiels"),
-    date: yup.date().required("Please enter date"),
-    url: yup.string().required("Please enter a valid URL").matches(/[https://]/)
+    photo_title: yup.string().required("Title is a required field"),
+    photo_description: yup.string().required("photo_description is a required fiels"),
+    // date: yup.date().required("Please enter date"),
+    photo_url: yup.string().required("Please enter a valid photo_url").matches(/[https://]/)
   })
 
   useEffect(() => {
-    console.log(
-      "checking to see if all values in form state follows the rules set in formSchema"
-    )
     formSchema.isValid(formState).then(isFormValid => {
-      console.log("is form valid?", isFormValid)
       setButtonDisabled(!isFormValid) // disabled= false if form is valid
     })
   }, [formState])
@@ -44,22 +37,29 @@ const Posts = () => {
 
   const formSubmit = e => {
     e.preventDefault() // <form> onSubmit has default behavior from HTML!
-
+    console.log(formState)
+    axiosWithAuth().post('https://expat-journal2.herokuapp.com/api/users/1/stories',
+      {
+        photo_url: formState.photo_url,
+        photo_title: formState.photo_title,
+        photo_description: formState.photo_description
+      })
+      .then(res => console.log('album posted successfully --> ', res))
+      .catch(err => console.log('album post failed --> ', err))
     setFormState({
-      title: "",
-      description: "",
-      date: "",
-      url: ""
+      photo_title: "",
+      photo_description: "",
+      // date: "",
+      photo_url: ""
     })
   }
 
   const validateChange = e => {
-    // get the value out of schema at key "e.target.name" --> "name="
     yup
       .reach(formSchema, e.target.name)
       .validate(e.target.value) // value in input
       .then(inputIsValid => {
-        // if inputIsValid is true, then erase any errors in error state at that key/value in errors
+
         setErrors({
           ...errors,
           [e.target.name]: ""
@@ -76,15 +76,12 @@ const Posts = () => {
 
   // onChange function
   const inputChange = e => {
-    // use persist with async code
-    e.persist() // necessary because we're passing the event asyncronously and we need it to exist even after this function completes (which will complete before validateChange finishes)
-    // console.log("input changed!", e.target.value)
-    // console.log("name of input that fired event", e.target.name) // [e.target.name]: e.target.value --> computed props
+    e.persist() // necessary because we're passing the event asyncronously 
 
     const newFormData = {
       ...formState,
       [e.target.name]:
-        e.target.value // // remember value of the checkbox is in "checked" and all else is "value"
+        e.target.value
     }
 
     validateChange(e) // for each change in input, do inline validation
@@ -96,33 +93,33 @@ const Posts = () => {
     <Form onSubmit={formSubmit}>
 
       {serverError ? <p className="error">{serverError}</p> : null}
-      <Label for="title">
+      <Label for="photo_title">
         <legend>Title</legend>
         <Input
-          id="title"
+          id="photo_title"
           type="text"
-          name="title"
+          name="photo_title"
           onChange={inputChange}
-          value={formState.title}
+          value={formState.photo_title}
         />
-        {errors.title.length > 0 ? <p className="error">{errors.title}</p> : null}
+        {errors.photo_title === '' ? <p className="error">{errors.photo_title}</p> : null}
       </Label><br />
-      <Label htmlFor="description">
-        <legend>Description</legend>
+      <Label htmlFor="photo_description">
+        <legend>photo_description</legend>
         <Input
           type="textarea"
-          name="description"
-          id="description"
+          name="photo_description"
+          id="photo_photo_description"
           placeholder="Please enter details here"
-          value={formState.description}
+          value={formState.photo_description}
           onChange={inputChange}
         />
-        {errors.description.length > 0 ? (
-          <p className="error">{errors.description}</p>
+        {errors.photo_description.length > 0 ? (
+          <p className="error">{errors.photo_description}</p>
         ) : null}
       </Label>
-      <br />
-      <Label htmlFor="date">
+      {/* <br /> */}
+      {/* <Label htmlFor="date">
         <legend>Date</legend>
         <Input
           type="date"
@@ -134,26 +131,26 @@ const Posts = () => {
         />
         {errors.date.length > 0 ? (
           <p className="error">{errors.date}</p>
-        ) : null}
-      </Label>
+        ) : null} */}
+      {/* </Label> */}
       <br />
-      <Label htmlFor="url">
-        <legend>Image URL</legend>
+      <Label htmlFor="photo_url">
+        <legend>Image photo_url</legend>
         <Input
-          type="url"
-          name="url"
-          id="url"
-          placeholder="Please enter image URL here"
-          value={formState.url}
+          type="photo_url"
+          name="photo_url"
+          id="photo_url"
+          placeholder="Please enter image photo_url here"
+          value={formState.photo_url}
           onChange={inputChange}
         />
-        {errors.url.length > 0 ? (
-          <p className="error">{errors.url}</p>
+        {errors.photo_url.length > 0 ? (
+          <p className="error">{errors.photo_url}</p>
         ) : null}
       </Label>
       <br />
-      <Button  type="submit" disabled={buttonDisabled}> Post </Button>
-      
+      <Button type="submit" disabled={buttonDisabled}> Post </Button>
+
     </Form>
   )
 }

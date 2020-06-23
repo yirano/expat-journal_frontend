@@ -10,9 +10,10 @@ export const PHOTO_SPOTLIGHT = 'PHOTO_SPOTLIGHT'
 export const loadPosts = () => dispatch => {
   // dispatch({ type: LOAD_POSTS })
   axiosWithAuth().get('/stories/1/photos')
-  .then(res=> console.log(res))
-  .catch(err => console.log('Error fetching data --> ', err))
+    .then(res => console.log(res))
+    .catch(err => console.log('Error fetching data --> ', err))
 }
+
 
 export const spotLight = (id) => dispatch => {
   dispatch({ type: PHOTO_SPOTLIGHT, payload: id })
