@@ -21,14 +21,15 @@ export default function Login(props) {
     password: ""
   })
 
-  const handleLogin = () => {
+  const handleLogin = (e) => {
+    e.preventDefault()
     axiosWithAuth().post('https://expat-journal2.herokuapp.com/api/auth/login', credentials)
       .then(res => {
         console.log(res)
         localStorage.setItem('token', res.data.token)
-        props.history.push('/photos')
+        // props.history.push('/photos')
       })
-    props.history.push('/photos')
+    // props.history.push('/photos')
   }
 
   //* Login Page Validation-REACT I
