@@ -2,6 +2,9 @@ import React, { useState, useEffect } from 'react'
 // import { Link } from 'react-router-dom'
 import { Form, Label, Input, FormText, Button } from 'reactstrap'
 import * as yup from 'yup'
+function update(){
+    alert("Record updated successfully")
+}
 
 const Edit = () => {
   // const [post, setPost] = useState([])
@@ -98,7 +101,7 @@ const Edit = () => {
         />
              </Label>
       <br />
-      <Button  type="submit" > Update </Button>
+      <Button  type="submit" onClick={update}> Update </Button>
       
     </Form>
   )
