@@ -43,9 +43,6 @@ function App() {
 
       </header>
 
-
-
-
       <Switch>
         {/* Photos component will act as both Public/Private. Private has edit options & etc */}
         <Route exact path="/login" component={Login} />

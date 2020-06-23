@@ -7,13 +7,7 @@ import { Link } from 'react-router-dom'
 
 export default function Login(props) {
 
-
   const [credentials, setCredentials] = useState({
-    username: "",
-    password: ""
-  })
-
-  const [formState, setFormState] = useState({
     username: "",
     password: ""
   })
@@ -27,7 +21,7 @@ export default function Login(props) {
     password: ""
   })
 
-  const handleLogin = e => {
+  const handleLogin = () => {
     axiosWithAuth().post('https://expat-journal2.herokuapp.com/api/auth/login', credentials)
       .then(res => {
         console.log(res)
@@ -51,11 +45,11 @@ export default function Login(props) {
   useEffect(() => {
     console.log(
     )
-    formSchema.isValid(formState).then(isFormValid => {
+    formSchema.isValid(credentials).then(isFormValid => {
       console.log("is form valid?", isFormValid)
       setButtonDisabled(!isFormValid)
     })
-  }, [formState])
+  }, [credentials])
 
   const validateChange = e => {
     yup
@@ -78,15 +72,9 @@ export default function Login(props) {
 
   const inputChange = e => {
     e.persist()
-    const newFormData = {
-      ...formState,
-      [e.target.name]:
-        e.target.value
-    }
     setCredentials({ ...credentials, [e.target.name]: e.target.value })
 
     validateChange(e)
-    setFormState(newFormData)
   }
 
   return (
@@ -104,7 +92,7 @@ export default function Login(props) {
           name="username"
           placeholder="Please enter userid here"
           onChange={inputChange}
-          value={formState.username}
+          value={credentials.username}
 
         />
         {errors.username.length > 0 ? <p className="error">{errors.username}</p> : null}
@@ -116,7 +104,7 @@ export default function Login(props) {
           name="password"
           id="password"
           placeholder="Please enter password here"
-          value={formState.password}
+          value={credentials.password}
           onChange={inputChange}
         />
         {errors.password.length > 0 ? (
