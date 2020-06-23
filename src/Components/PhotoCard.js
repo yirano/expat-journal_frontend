@@ -24,7 +24,6 @@ const PhotoCard = ({ image, height }) => {
       <CardBody>
         <CardTitle>Title:{image.title}</CardTitle>
         <CardText>Description:{image.description}</CardText>
-
       </CardBody>
 
     </Card>

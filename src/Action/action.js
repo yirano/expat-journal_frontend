@@ -11,7 +11,6 @@ export const loadPosts = () => dispatch => {
   // dispatch({ type: LOAD_POSTS })
   axiosWithAuth().get('/posts')
     .then(res => {
-      console.log("res", res.data)
       dispatch({ type: LOAD_POSTS, payload: res.data })
     })
     .catch(err => {
