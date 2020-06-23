@@ -7,13 +7,11 @@ import {
   PHOTO_SPOTLIGHT,
   DATA_LOADING,
 } from '../Action/action'
-import { images } from '../DummyAPI/images'
-
 
 const initialState = {
   data: [],
   error: '',
-  spotLight: '',
+  spotLight: [],
   isLoggedIn: false,
   isLoading: false
 }
@@ -23,7 +21,7 @@ export default (state = initialState, { type, payload }) => {
     case DATA_LOADING:
       return { ...state, isLoading: payload }
     case LOAD_POSTS:
-      return { data: payload, error: '', spotLight: images, isLoggedIn: true, isLoading: false }
+      return { data: payload, error: '', isLoggedIn: true, isLoading: false }
     // case ADD_POST:
     //   return { ...state, isLoggedIn: true }
     // case DELETE_POST:
@@ -35,7 +33,7 @@ export default (state = initialState, { type, payload }) => {
     case PHOTO_SPOTLIGHT:
       return {
         ...state,
-        spotLight: state.data.filter(d => d.id === payload.id)
+        spotLight: payload
       }
     default:
       return state

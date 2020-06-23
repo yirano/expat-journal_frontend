@@ -5,7 +5,7 @@ import { connect } from 'react-redux'
 import { spotLight } from '../Action/action'
 import PhotoCard from './PhotoCard'
 import styled from 'styled-components'
-import {Button} from 'reactstrap'
+import { Button } from 'reactstrap'
 
 const StyledCardContainer = styled.div`
   display: flex;
@@ -27,14 +27,14 @@ const Photo = (props) => {
   return (
     <>
       <StyledCardContainer>
+        {console.log('Photo --> ', props.image)}
         <StyledCard>
           {props.image !== undefined ?
             <PhotoCard image={props.image} />
-            : null
+            : console.log('Load failed', props.image)
           }
-         
         </StyledCard>
-        
+
       </StyledCardContainer>
     </>
   )
@@ -42,7 +42,7 @@ const Photo = (props) => {
 
 const mapStateToProps = (state) => {
   return {
-    image: state.spotLight[0]
+    image: state.spotLight
   }
 }
 

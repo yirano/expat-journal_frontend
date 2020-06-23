@@ -1,10 +1,11 @@
 import React, { useEffect, Component } from "react"
 import { connect } from 'react-redux'
-import { loadPosts } from '../Action/action'
+import { loadPosts, spotLight } from '../Action/action'
 import PhotoCard from './PhotoCard'
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 import { Button } from 'reactstrap'
+import axiosWithAuth from '../axiosWithAuth/axiosWithAuth'
 
 
 const StyledCardContainer = styled.div`
@@ -21,7 +22,7 @@ const StyledCard = styled.div`
 // function remove() {
 //   alert("Are you sure want to delete this post")
 // }
-const Photos = ({ images, loadPosts, isLoading }) => {
+const Photos = ({ images, loadPosts, isLoading, spotLight }) => {
   function remove() {
     alert("Are you sure want to delete this post")
   }
@@ -31,16 +32,20 @@ const Photos = ({ images, loadPosts, isLoading }) => {
     console.log(images)
   }, [])
 
+  const spotLightPhoto = id => {
+    console.log('Spotlight --> ', id)
+    spotLight(id)
+  }
+
   return (
     <div>
       {!isLoading ?
         <StyledCardContainer>
           {console.log(images)}
           {images.map((image) => (
-            <StyledCard>
-              <PhotoCard image={image} key={image.id} height="580px" />
+            <StyledCard id={image.id} onClick={() => spotLightPhoto(image.id)} >
               <Link to={`/photos/${image.id}`}>
-                <Button style={{ marginLeft: "10%" }}>View Story</Button>
+                <PhotoCard image={image} key={image.id} height="580px" />
               </Link>
               <Link to="/Edit">
                 <Button style={{ marginLeft: "10%" }}>Edit</Button>
@@ -65,4 +70,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps, { loadPosts })(Photos)
+export default connect(mapStateToProps, { loadPosts, spotLight })(Photos)
