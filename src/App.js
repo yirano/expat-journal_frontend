@@ -27,15 +27,18 @@ function App(props) {
     <Router>
       <header className="nav">
 
-        <Link to="/albums">
+        <Link to="/photos">
           <Button>Home</Button>
         </Link>
-        <Link to="/photos">
+        {/* <Link to="/photos">
           <Button>Photos</Button>
-        </Link>
-        <Link to="/posts">
-          <Button>Posts</Button>
-        </Link>
+        </Link> */}
+        {props.isLoggedIn ?
+          <Link to="/posts">
+            <Button>Posts</Button>
+          </Link>
+          : null
+        }
         {/* <Link to="/signup">
           <Button>Sign Up</Button>
         </Link> */}
@@ -63,9 +66,13 @@ function App(props) {
       </Switch>
     </Router>
 
-
-
   )
 }
 
-export default connect(null, { logOut })(App)
+const mapStateToProps = (state, ownProps) => {
+  return {
+    isLoggedIn: state.isLoggedIn
+  }
+}
+
+export default connect(mapStateToProps, { logOut })(App)

@@ -23,7 +23,7 @@ export default (state = initialState, { type, payload }) => {
     case DATA_LOADING:
       return { ...state, isLoading: payload }
     case LOAD_POSTS:
-      return { data: payload, isLoggedIn: false, error: '', spotLight: images, isLoading: false }
+      return { data: payload, error: '', spotLight: images, isLoggedIn: true, isLoading: false }
     case ADD_POST:
       return { ...state, isLoggedIn: true }
     case DELETE_POST:
