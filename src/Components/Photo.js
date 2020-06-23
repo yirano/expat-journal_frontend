@@ -5,6 +5,7 @@ import { connect } from 'react-redux'
 import { spotLight } from '../Action/action'
 import PhotoCard from './PhotoCard'
 import styled from 'styled-components'
+import {Button} from 'reactstrap'
 
 const StyledCardContainer = styled.div`
   display: flex;
@@ -31,7 +32,9 @@ const Photo = (props) => {
             <PhotoCard image={props.image} />
             : null
           }
+         
         </StyledCard>
+        
       </StyledCardContainer>
     </>
   )
