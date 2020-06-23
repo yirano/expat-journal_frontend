@@ -38,14 +38,14 @@ const Posts = () => {
   const formSubmit = e => {
     e.preventDefault() // <form> onSubmit has default behavior from HTML!
     console.log(formState)
-    axiosWithAuth().post('https://expat-journal2.herokuapp.com/api/users/1/stories',
+    axiosWithAuth().post('/users/3/stories',
       {
         photo_url: formState.photo_url,
         photo_title: formState.photo_title,
         photo_description: formState.photo_description
       })
       .then(res => console.log('album posted successfully --> ', res))
-      .catch(err => console.log('album post failed --> ', err))
+      .catch(err => console.log('album post failed --> ', err.response))
     setFormState({
       photo_title: "",
       photo_description: "",
