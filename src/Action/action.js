@@ -25,6 +25,7 @@ export const logIn = (credentials) => dispatch => {
 export const logOut = () => dispatch => {
   localStorage.removeItem('token')
   window.location.reload(true)
+  dispatch({ type: LOG_OUT, payload: false })
 }
 
 export const loadPosts = () => dispatch => {
@@ -45,6 +46,10 @@ export const addPost = (post) => dispatch => {
 
 export const spotLight = (id) => dispatch => {
   axiosWithAuth().get(`/posts/${id}`)
-    .then(res => dispatch({ type: PHOTO_SPOTLIGHT, payload: res.data }))
+    .then(res => {
+      console.log(res)
+      dispatch({ type: PHOTO_SPOTLIGHT, payload: res.data })
+    }
+    )
 
 }

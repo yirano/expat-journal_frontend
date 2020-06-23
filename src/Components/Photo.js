@@ -20,18 +20,18 @@ const StyledCard = styled.div`
 const Photo = (props) => {
   const paramID = useParams()
   useEffect(() => {
-    props.spotLight(paramID)
+    // props.spotLight(paramID)
   }, [])
 
 
   return (
     <>
       <StyledCardContainer>
-        {console.log('Photo --> ', props.image)}
         <StyledCard>
-          {props.image !== undefined ?
+          {console.log('Photo --> ', props.image)}
+          {props.image ?
             <PhotoCard image={props.image} />
-            : console.log('Load failed', props.image)
+            : null
           }
         </StyledCard>
 
