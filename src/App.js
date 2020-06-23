@@ -8,6 +8,7 @@ import Posts from './Components/Posts'
 import Albums from './Components/Albums'
 import Photos from './Components/Photos'
 import Photo from './Components/Photo'
+import Edit from './Components/Edit'
 
 import PrivateRoute from './Components/PrivateRoute'
 import './App.css'
@@ -48,6 +49,8 @@ function App() {
         {/* Photos component will act as both Public/Private. Private has edit options & etc */}
         <Route exact path="/login" component={Login} />
         <Route path="/signup" component={SignUp} />
+        <Route path="/posts" component={Posts} />
+        <Route path="/edit" component={Edit} />
         <Route path="/albums" component={Albums} />
         <Route exact path="/photos/:id" component={Photo} />
         <Route exact path="/photos" component={Photos} />
