@@ -80,9 +80,7 @@ const Posts = () => {
   }
 
   return (
-
     <Form onSubmit={formSubmit}>
-
       {serverError ? <p className="error">{serverError}</p> : null}
       <Label for="title">
         <legend>Title</legend>
