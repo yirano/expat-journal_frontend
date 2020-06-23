@@ -36,7 +36,6 @@ const Posts = (props) => {
     })
   }, [formState])
 
-
   const formSubmit = e => {
     e.preventDefault()
     props.addPost(formState)

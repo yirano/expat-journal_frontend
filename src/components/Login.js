@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react"
 import * as yup from "yup"
-import axiosWithAuth from '../axiosWithAuth/axiosWithAuth'
+// import axiosWithAuth from '../axiosWithAuth/axiosWithAuth'
 import { logIn } from '../Action/action'
 import { Button, Form, Label, Input, legend } from 'reactstrap'
 import { Link } from 'react-router-dom'
@@ -23,7 +23,7 @@ function Login(props) {
     password: ""
   })
 
-  const handleLogin = (e) => {
+  const handleLogin = () => {
     // e.preventDefault()
     props.logIn(credentials)
     props.history.push('/photos')
@@ -116,7 +116,6 @@ function Login(props) {
         <Button type="submit">Register</Button>
       </Link>
     </Form>
-
 
   )
 }

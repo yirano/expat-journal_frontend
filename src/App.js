@@ -30,18 +30,14 @@ function App(props) {
         <Link to="/photos">
           <Button>Home</Button>
         </Link>
-        {/* <Link to="/photos">
-          <Button>Photos</Button>
-        </Link> */}
+
         {props.isLoggedIn ?
           <Link to="/posts">
             <Button>Posts</Button>
           </Link>
           : null
         }
-        {/* <Link to="/signup">
-          <Button>Sign Up</Button>
-        </Link> */}
+
         {localStorage.getItem('token') === null ?
           <Link to="/login">
             <Button>Login</Button>
@@ -54,7 +50,6 @@ function App(props) {
       </header>
 
       <Switch>
-
         <Route exact path="/login" component={Login} />
         <Route path="/signup" component={SignUp} />
         <Route path="/edit" component={Edit} />
