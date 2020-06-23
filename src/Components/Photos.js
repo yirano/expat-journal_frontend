@@ -7,19 +7,6 @@ import { Link } from 'react-router-dom'
 import { Button } from 'reactstrap'
 
 
-
-// import {Card, CardImg, CardTitle, CardText, CardDeck,CardBody} from 'reactstrap'
-// import styled from 'styled-components'
-// import Photo from './Photo'
-// import { useState } from "react"
-
-// const StyledCard = styled.div`
-//   display: flex;
-//  flex-wrap: wrap;
-//   justify-content: space-around
-//   flex-direction:row
-// `
-
 const StyledCardContainer = styled.div`
   display: flex;
  flex-wrap: wrap;
@@ -34,7 +21,7 @@ const StyledCard = styled.div`
 // function remove() {
 //   alert("Are you sure want to delete this post")
 // }
-const Photos = ({ images, loadPosts }) => {
+const Photos = ({ images, loadPosts, isLoading }) => {
   function remove() {
     alert("Are you sure want to delete this post")
   }
@@ -46,23 +33,25 @@ const Photos = ({ images, loadPosts }) => {
 
   return (
     <div>
-      <StyledCardContainer>
-        {console.log(images)}
-        {images.map((image) => (
-          <StyledCard>
-            <PhotoCard image={image} key={image.id} height="580px" />
-            <Link to={`/photos/${image.id}`}>
-              <Button style={{ marginLeft: "10%" }}>View Story</Button>
-            </Link>
-            <Link to="/Edit">
-              <Button style={{ marginLeft: "10%" }}>Edit</Button>
-            </Link>
+      {!isLoading ?
+        <StyledCardContainer>
+          {console.log(images)}
+          {images.map((image) => (
+            <StyledCard>
+              <PhotoCard image={image} key={image.id} height="580px" />
+              <Link to={`/photos/${image.id}`}>
+                <Button style={{ marginLeft: "10%" }}>View Story</Button>
+              </Link>
+              <Link to="/Edit">
+                <Button style={{ marginLeft: "10%" }}>Edit</Button>
+              </Link>
 
-            <Button style={{ marginLeft: "10%" }} onClick={remove}>Delete</Button>
+              <Button style={{ marginLeft: "10%" }} onClick={remove}>Delete</Button>
 
-          </StyledCard>
-        ))}
-      </StyledCardContainer>
+            </StyledCard>
+          ))}
+        </StyledCardContainer>
+        : <h1>LOADING</h1>}
     </div>
   )
 }
@@ -71,7 +60,8 @@ const Photos = ({ images, loadPosts }) => {
 
 const mapStateToProps = (state) => {
   return {
-    images: state.data
+    images: state.data,
+    isLoading: state.isLoading
   }
 }
 

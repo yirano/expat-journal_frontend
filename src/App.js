@@ -36,15 +36,17 @@ function App(props) {
         <Link to="/posts">
           <Button>Posts</Button>
         </Link>
-        <Link to="/signup">
+        {/* <Link to="/signup">
           <Button>Sign Up</Button>
-        </Link>
-        <Link to="/login">
-          <Button>Login</Button>
-        </Link>
-        <Link to="/login">
-          <Button onClick={logOut}>LogOut</Button>
-        </Link>
+        </Link> */}
+        {localStorage.getItem('token') === null ?
+          <Link to="/login">
+            <Button>Login</Button>
+          </Link> :
+          <Link to="/login">
+            <Button onClick={logOut}>LogOut</Button>
+          </Link>
+        }
 
       </header>
 

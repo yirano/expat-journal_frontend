@@ -24,6 +24,7 @@ function Login(props) {
   })
 
   const handleLogin = (e) => {
+    // e.preventDefault()
     props.logIn(credentials)
     props.history.push('/photos')
   }
