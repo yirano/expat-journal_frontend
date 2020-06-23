@@ -24,6 +24,7 @@ export const logIn = (credentials) => dispatch => {
 
 export const logOut = () => dispatch => {
   localStorage.removeItem('token')
+  window.location.reload(true)
 }
 
 export const loadPosts = () => dispatch => {
