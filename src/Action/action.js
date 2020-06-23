@@ -8,13 +8,12 @@ export const LOAD_POSTS = 'LOAD_POSTS'
 export const PHOTO_SPOTLIGHT = 'PHOTO_SPOTLIGHT'
 
 export const loadPosts = () => dispatch => {
-  // dispatch({ type: LOAD_POSTS })
   axiosWithAuth().get('/posts')
     .then(res => {
       dispatch({ type: LOAD_POSTS, payload: res.data })
     })
     .catch(err => {
-      console.log('Error while fetching data --> ', err)
+      console.log('Error while fetching data --> ', err.response)
     })
 }
 

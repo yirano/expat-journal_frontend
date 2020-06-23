@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react"
 import * as yup from "yup"
 import axiosWithAuth from '../axiosWithAuth/axiosWithAuth'
-import { Button, Form, FormGroup, Label, Input, legend } from 'reactstrap'
+import { Button, Form, Label, Input, legend } from 'reactstrap'
 import { Link } from 'react-router-dom'
 
 
@@ -29,8 +29,6 @@ export default function Login(props) {
         localStorage.setItem('token', res.data.token)
         // props.history.push('/photos')
       })
-
-    // props.history.push('/photos')
   }
 
   //* Login Page Validation-REACT I
@@ -48,7 +46,6 @@ export default function Login(props) {
     console.log(
     )
     formSchema.isValid(credentials).then(isFormValid => {
-      // console.log("is form valid?", isFormValid)
       setButtonDisabled(!isFormValid)
     })
   }, [credentials])
