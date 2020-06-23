@@ -17,6 +17,12 @@ export const loadPosts = () => dispatch => {
     })
 }
 
+export const addPost = (post) => dispatch => {
+  axiosWithAuth().post('/posts/user/1', post)
+    .then(res => console.log('Post Successful --> ', res))
+    .catch(err => console.log('Post error --> ', err.response))
+}
+
 export const spotLight = (id) => dispatch => {
   dispatch({ type: PHOTO_SPOTLIGHT, payload: id })
 }

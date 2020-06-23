@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react'
 import { Form, Label, Input, Button } from 'reactstrap'
 import * as yup from 'yup'
-import axiosWithAuth from '../axiosWithAuth/axiosWithAuth'
+import { addPost } from '../Action/action'
+import { connect } from 'react-redux'
 
-const Posts = () => {
+const Posts = (props) => {
 
   const [serverError, setServerError] = useState("")
 
@@ -38,9 +39,7 @@ const Posts = () => {
 
   const formSubmit = e => {
     e.preventDefault()
-    axiosWithAuth().post('/posts/user/1', formState)
-      .then(res => console.log(res))
-      .catch(err => console.log(err.response))
+    props.addPost(formState)
     setFormState({
       title: "",
       description: "",
@@ -130,4 +129,6 @@ const Posts = () => {
   )
 }
 
-export default Posts
+export default connect(null, { addPost })(Posts)
+
+// export default Posts
