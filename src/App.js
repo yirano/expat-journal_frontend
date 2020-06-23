@@ -12,10 +12,8 @@ import Photo from './Components/Photo'
 import PrivateRoute from './Components/PrivateRoute'
 import './App.css'
 
-// import SignUp from './Components/SignUp'
 
 function App() {
-
   const logOut = () => {
     localStorage.setItem('token', '')
   }
@@ -33,6 +31,9 @@ function App() {
         </Link>
         <Link to="/posts">
           <Button>Posts</Button>
+        </Link>
+        <Link to="/signup">
+          <Button>Sign Up</Button>
         </Link>
         <Link to="/login">
           <Button>Login</Button>

@@ -16,17 +16,17 @@ const StyledImageContainer = styled.div`
 const PhotoCard = ({ image, height }) => {
   return (
     <Card style={{ width: "100%" }}>
-      <Link to={`/photos/${image.id}`}/>
-        <StyledImageContainer style={{ height: height }}>
-          <CardImg src={image.download_url} alt="" style={{ minHeight: '100%' }} />
-        </StyledImageContainer>
-        
-        <CardBody>
-          <CardTitle>Title:{image.author}</CardTitle>
-          <CardText>Description:{image.url}</CardText>
-          
-           </CardBody>
-      
+      <Link to={`/photos/${image.id}`} />
+      <StyledImageContainer style={{ height: height }}>
+        <CardImg src={image.photo_url} alt="" style={{ minHeight: '100%' }} />
+      </StyledImageContainer>
+
+      <CardBody>
+        <CardTitle>Title:{image.author}</CardTitle>
+        <CardText>Description:{image.url}</CardText>
+
+      </CardBody>
+
     </Card>
   )
 }

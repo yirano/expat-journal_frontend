@@ -10,7 +10,7 @@ import { images } from '../DummyAPI/images'
 
 
 const initialState = {
-  data: images,
+  data: [],
   isLoading: false,
   isLoggedIn: false,
   error: '',
@@ -20,7 +20,7 @@ const initialState = {
 export default (state = initialState, { type, payload }) => {
   switch (type) {
     case LOAD_POSTS:
-      return { ...state, isLoggedIn: true, spotLight: images }
+      return { data: payload, isLoading: false, isLoggedIn: true, error: '', spotLight: images }
     case ADD_POST:
       return { ...state }
     case DELETE_POST:

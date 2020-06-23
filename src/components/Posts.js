@@ -152,8 +152,8 @@ const Posts = () => {
         ) : null}
       </Label>
       <br />
-      <Button  type="submit" disabled={buttonDisabled}> Post </Button>
-      
+      <Button type="submit" disabled={buttonDisabled}> Post </Button>
+
     </Form>
   )
 }

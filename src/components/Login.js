@@ -21,14 +21,16 @@ export default function Login(props) {
     password: ""
   })
 
-  const handleLogin = () => {
-    axiosWithAuth().post('https://expat-journal2.herokuapp.com/api/auth/login', credentials)
+  const handleLogin = (e) => {
+    e.preventDefault()
+    axiosWithAuth().post('/auth/login', credentials)
       .then(res => {
         console.log(res)
         localStorage.setItem('token', res.data.token)
-        props.history.push('/photos')
+        // props.history.push('/photos')
       })
-    props.history.push('/photos')
+
+    // props.history.push('/photos')
   }
 
   //* Login Page Validation-REACT I
@@ -38,7 +40,7 @@ export default function Login(props) {
     password: yup
       .string()
       .required("Please enter your password")
-      .min(8, "Password is too short - should be 8 chars minimum.")
+      .min(5, "Password is too short - should be 8 chars minimum.")
       .matches(/[a-zA-Z@]/),
   })
 
@@ -46,7 +48,7 @@ export default function Login(props) {
     console.log(
     )
     formSchema.isValid(credentials).then(isFormValid => {
-      console.log("is form valid?", isFormValid)
+      // console.log("is form valid?", isFormValid)
       setButtonDisabled(!isFormValid)
     })
   }, [credentials])
