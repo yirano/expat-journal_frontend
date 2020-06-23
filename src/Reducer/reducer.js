@@ -1,6 +1,6 @@
 import {
   LOAD_POSTS,
-  LOAD_POSTS_PUBLIC,
+  LOG_OUT,
   ADD_POST,
   DELETE_POST,
   EDIT_POST,
@@ -11,24 +11,23 @@ import { images } from '../DummyAPI/images'
 
 const initialState = {
   data: [],
-  isLoading: false,
-  isLoggedIn: false,
   error: '',
-  spotLight: ''
+  spotLight: '',
+  isLoggedIn: false,
 }
 
 export default (state = initialState, { type, payload }) => {
   switch (type) {
     case LOAD_POSTS:
-      return { data: payload, isLoading: false, isLoggedIn: true, error: '', spotLight: images }
+      return { data: payload, isLoggedIn: false, error: '', spotLight: images }
     case ADD_POST:
-      return { ...state }
+      return { ...state, isLoggedIn: true }
     case DELETE_POST:
-      return { ...state }
+      return { ...state, isLoggedIn: true }
     case EDIT_POST:
-      return { ...state }
-    case LOAD_POSTS_PUBLIC:
-      return { ...state, IsLoggedIn: false }
+      return { ...state, isLoggedIn: true }
+    case LOG_OUT:
+      return { ...state, isLoggedIn: payload }
     case PHOTO_SPOTLIGHT:
       return {
         ...state,

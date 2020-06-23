@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from "react"
 import * as yup from "yup"
 import axiosWithAuth from '../axiosWithAuth/axiosWithAuth'
+import { logIn } from '../Action/action'
 import { Button, Form, Label, Input, legend } from 'reactstrap'
 import { Link } from 'react-router-dom'
+import { connect } from 'react-redux'
 
 
-export default function Login(props) {
+function Login(props) {
 
   const [credentials, setCredentials] = useState({
     username: "",
@@ -23,12 +25,10 @@ export default function Login(props) {
 
   const handleLogin = (e) => {
     e.preventDefault()
-    axiosWithAuth().post('/auth/login', credentials)
-      .then(res => {
-        console.log(res)
-        localStorage.setItem('token', res.data.token)
-        // props.history.push('/photos')
-      })
+    props.logIn(credentials)
+
+    props.history.push('/photos')
+
   }
 
   //* Login Page Validation-REACT I
@@ -123,5 +123,5 @@ export default function Login(props) {
   )
 }
 
-
+export default connect(null, { logIn })(Login)
 

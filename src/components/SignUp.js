@@ -34,7 +34,7 @@ const SignUp = () => {
     e.preventDefault()
     console.log(formState)
     Axios.post('https://bwexpat-journal.herokuapp.com/api/auth/register', formState).then(res => console.log(res))
-      .catch(err => console.log('Error signing up --> ', err))
+      .catch(err => console.log('Error signing up --> ', err.response))
     setFormState({
       username: "",
       password: ""

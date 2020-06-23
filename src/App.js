@@ -1,6 +1,10 @@
 import React from 'react'
 import { Link, Route, Switch, BrowserRouter as Router } from 'react-router-dom'
 import { Button, Navbar } from 'reactstrap'
+import { connect } from 'react-redux'
+
+import PrivateRoute from './Components/PrivateRoute'
+import { logOut } from './Action/action'
 
 import Login from './Components/Login'
 import SignUp from './Components/SignUp'
@@ -10,13 +14,12 @@ import Photos from './Components/Photos'
 import Photo from './Components/Photo'
 import Edit from './Components/Edit'
 
-import PrivateRoute from './Components/PrivateRoute'
 import './App.css'
 
 
-function App() {
+function App(props) {
   const logOut = () => {
-    localStorage.setItem('token', '')
+    props.logOut()
   }
 
   return (
@@ -49,7 +52,6 @@ function App() {
 
         <Route exact path="/login" component={Login} />
         <Route path="/signup" component={SignUp} />
-        <Route path="/posts" component={Posts} />
         <Route path="/edit" component={Edit} />
         <Route path="/albums" component={Albums} />
         <Route exact path="/photos/:id" component={Photo} />
@@ -64,4 +66,4 @@ function App() {
   )
 }
 
-export default App
+export default connect(null, { logOut })(App)
