@@ -19,12 +19,11 @@ export const logIn = (credentials) => dispatch => {
       window.location.reload(true)
     })
     .catch(err => console.log('Error logging in -->', err))
-
 }
 
 export const logOut = () => dispatch => {
   localStorage.removeItem('token')
-  window.location.reload(true)
+  // window.location.reload(true)
   dispatch({ type: LOG_OUT, payload: false })
 }
 

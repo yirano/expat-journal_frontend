@@ -19,7 +19,6 @@ const StyledCard = styled.div`
 
 const Photo = (props) => {
   const paramID = useParams()
-  console.log(paramID)
   useEffect(() => {
     props.spotLight(paramID.id)
   }, [])
