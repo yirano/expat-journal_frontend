@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react"
+import { Link } from 'react-router-dom'
 import { Form, Label, Input, Button } from 'reactstrap'
 import * as yup from 'yup'
 import Axios from 'axios'
 
-const SignUp = () => {
+const SignUp = (props) => {
 
   const [serverError, setServerError] = useState("")
 
@@ -39,6 +40,7 @@ const SignUp = () => {
       username: "",
       password: ""
     })
+    props.history.push('/login')
 
   }
 
