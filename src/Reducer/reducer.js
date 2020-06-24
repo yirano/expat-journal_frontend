@@ -24,6 +24,7 @@ export default (state = initialState, { type, payload }) => {
     case PHOTO_SPOTLIGHT:
       return {
         ...state,
+        isLoggedIn: true,
         spotLight: payload
       }
     default:
