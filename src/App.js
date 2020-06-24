@@ -20,7 +20,7 @@ import './App.css'
 function App(props) {
   const logOut = () => {
     props.logOut()
-    // props.history.push('/login')
+    props.history.push('/login')
   }
 
   return (

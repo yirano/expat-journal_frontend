@@ -34,7 +34,6 @@ const Photo = (props) => {
             : null
           }
         </StyledCard>
-
       </StyledCardContainer>
     </>
   )
