@@ -13,13 +13,22 @@ const StyledImageContainer = styled.div`
   align-items: flex-end;
 `
 
+
+
 const PhotoCard = ({ image, height }) => {
   const [img, setImg] = useState(image)
 
+  function scale(e) {
+    e.target.style.transform = 'scale(1.5)';
+  }
+  function scale2(e) {
+    e.target.style.transform = 'scale(1.0)';
+  }
+
   return (
-    <Card style={{ width: "100%" }}>
+    <Card style={{ width: "100%"}}>
       <StyledImageContainer style={{ height: height }}>
-        <CardImg src={image.photo_url} alt="" style={{ minHeight: '100%' }} />
+        <CardImg src={image.photo_url} alt="" style={{ minHeight: '100%' }} onMouseOver={scale} onMouseLeave={scale2}/>
       </StyledImageContainer>
 
       <CardBody>
