@@ -1,110 +1,139 @@
 import React, { useState, useEffect } from 'react'
-// import { Link } from 'react-router-dom'
-import { Form, Label, Input, FormText, Button } from 'reactstrap'
+import { Form, Label, Input, Button } from 'reactstrap'
 import * as yup from 'yup'
-function update(){
-    alert("Record updated successfully")
-}
+import { addPost, spotLight } from '../Action/action'
+import { connect } from 'react-redux'
+import { useParams } from 'react-router'
 
-const Edit = () => {
-  // const [post, setPost] = useState([])
+const Edit = (props) => {
+  let initialState = {
+    photo_url: '',
+    photo_title: '',
+    photo_description: ''
+  }
 
-  
-
-  const [formState, setFormState] = useState({
-    title: "",
-    description: "",
-    date: "",
-    url: ""
+  const [serverError, setServerError] = useState("")
+  const [formState, setFormState] = useState(initialState)
+  const [buttonDisabled, setButtonDisabled] = useState(true)
+  const [errors, setErrors] = useState({
+    photo_title: "",
+    photo_description: "",
+    photo_url: ""
+  })
+  const formSchema = yup.object().shape({
+    photo_title: yup.string().required("Title is a required field"),
+    photo_description: yup.string().required("Description is a required fiels"),
+    photo_url: yup.string().required("Please enter a valid URL").matches(/[https://]/)
   })
 
-  
+  useEffect(() => {
+    formSchema.isValid(formState).then(isFormValid => {
+      setButtonDisabled(!isFormValid) // disabled= false if form is valid
+    })
+  }, [formState])
 
-  
   const formSubmit = e => {
-    e.preventDefault() // <form> onSubmit has default behavior from HTML!
-
+    e.preventDefault()
+    console.log(formState)
+    props.addPost(formState)
     setFormState({
-      title: "",
-      description: "",
-      date: "",
-      url: ""
+      photo_title: "",
+      photo_description: "",
+      photo_url: ""
     })
   }
 
-  // onChange function
+  const validateChange = e => {
+    yup
+      .reach(formSchema, e.target.name)
+      .validate(e.target.value) // value in input
+      .then(inputIsValid => {
+        setErrors({
+          ...errors,
+          [e.target.name]: ""
+        })
+      })
+      .catch(err => {
+        setErrors({
+          ...errors,
+          [e.target.name]: err.errors[0]
+        })
+      })
+  }
+
   const inputChange = e => {
-    // use persist with async code
-    e.persist() // necessary because we're passing the event asyncronously and we need it to exist even after this function completes (which will complete before validateChange finishes)
-    // console.log("input changed!", e.target.value)
-    // console.log("name of input that fired event", e.target.name) // [e.target.name]: e.target.value --> computed props
+    e.persist()
 
     const newFormData = {
       ...formState,
       [e.target.name]:
-        e.target.value // // remember value of the checkbox is in "checked" and all else is "value"
+        e.target.value
     }
 
-   
-    setFormState(newFormData) // update state with new data
+    validateChange(e)
+    setFormState(newFormData)
   }
 
   return (
+    <>
+      {props.spotLight !== undefined ?
 
-    <Form onSubmit={formSubmit}>
-
-      
-      <Label for="title">
-        <legend>Title</legend>
-        <Input
-          id="title"
-          type="text"
-          name="title"
-          onChange={inputChange}
-          value={formState.title}
-        />
-        
-      </Label><br />
-      <Label htmlFor="description">
-        <legend>Description</legend>
-        <Input
-          type="textarea"
-          name="description"
-          id="description"
-          placeholder=""
-          value={formState.description}
-          onChange={inputChange}
-        />
-       </Label>
-      <br />
-      <Label htmlFor="date">
-        <legend>Date</legend>
-        <Input
-          type="date"
-          name="date"
-          id="date"
-          placeholder=""
-          value={formState.date}
-          onChange={inputChange}
-        />
-              </Label>
-      <br />
-      <Label htmlFor="url">
-        <legend>Image URL</legend>
-        <Input
-          type="url"
-          name="url"
-          id="url"
-          placeholder=""
-          value={formState.url}
-          onChange={inputChange}
-        />
-             </Label>
-      <br />
-      <Button  type="submit" onClick={update}> Update </Button>
-      
-    </Form>
+        <Form onSubmit={formSubmit}>
+          {serverError ? <p className="error">{serverError}</p> : null}
+          <Label for="photo_title">
+            <legend>Title</legend>
+            <Input
+              id="photo_title"
+              type="text"
+              name="photo_title"
+              onChange={inputChange}
+              value={props.spotLight.photo_title}
+            />
+            {errors.photo_title === '' ? <p className="error">{errors.photo_title}</p> : null}
+          </Label><br />
+          <Label htmlFor="photo_description">
+            <legend>photo_description</legend>
+            <Input
+              type="textarea"
+              name="photo_description"
+              id="photo_photo_description"
+              placeholder="Please enter details here"
+              value={props.spotLight.photo_description}
+              onChange={inputChange}
+            />
+            {errors.photo_description === '' ? (
+              <p className="error">{errors.photo_description}</p>
+            ) : null}
+          </Label>
+          <br />
+          <Label htmlFor="photo_url">
+            <legend>Image photo_url</legend>
+            <Input
+              type="url"
+              name="photo_url"
+              id="photo_url"
+              placeholder="Please enter image URL here"
+              value={props.spotLight.photo_url}
+              onChange={inputChange}
+            />
+            {errors.photo_url.length > 0 ? (
+              <p className="error">{errors.photo_url}</p>
+            ) : null}
+          </Label>
+          <br />
+          <Button type="submit" disabled={buttonDisabled}> Post </Button>
+        </Form> : null
+      }
+    </>
   )
 }
 
-export default Edit
+const mapStateToProps = (state, ownProps) => {
+  return {
+    spotLight: state.spotLight
+  }
+}
+
+export default connect(mapStateToProps, { addPost })(Edit)
+
+// export default Posts

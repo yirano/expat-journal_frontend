@@ -14,7 +14,6 @@ const StyledImageContainer = styled.div`
 `
 
 const PhotoCard = ({ image, height }) => {
-  const [img, setImg] = useState(image)
 
   return (
     <Card style={{ width: "100%" }}>
@@ -26,7 +25,6 @@ const PhotoCard = ({ image, height }) => {
         <CardTitle>Title: {image.photo_title}</CardTitle>
         <CardText>Description: {image.photo_description}</CardText>
       </CardBody>
-
     </Card>
   )
 }

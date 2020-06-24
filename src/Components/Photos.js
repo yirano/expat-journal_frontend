@@ -3,9 +3,10 @@ import { connect } from 'react-redux'
 import { loadPosts, spotLight, deletePhoto } from '../Action/action'
 import PhotoCard from './PhotoCard'
 import styled from 'styled-components'
-import { Link } from 'react-router-dom'
+import { Link, Route } from 'react-router-dom'
 import { Button } from 'reactstrap'
 import axiosWithAuth from '../axiosWithAuth/axiosWithAuth'
+import Edit from './Edit'
 
 
 const StyledCardContainer = styled.div`
@@ -35,7 +36,6 @@ const Photos = ({ images, loadPosts, isLoading, spotLight, deletePhoto }) => {
   }, [])
 
   const spotLightPhoto = id => {
-    console.log('Spotlight --> ', id)
     spotLight(id)
   }
 
@@ -49,12 +49,10 @@ const Photos = ({ images, loadPosts, isLoading, spotLight, deletePhoto }) => {
               <Link to={`/photos/${image.id}`}>
                 <PhotoCard image={image} key={image.id} height="580px" />
               </Link>
-              <Link to="/Edit">
-                <Button style={{ marginLeft: "10%" }}>Edit</Button>
+              <Link to={`/edit/${image.id}`}>
+                <Button style={{ marginLeft: "10%" }} id={image.id}>Edit</Button>
               </Link>
-
               <Button style={{ marginLeft: "10%" }} id={image.id} onClick={(e) => remove(e)}>Delete</Button>
-
             </StyledCard>
           ))}
         </StyledCardContainer>
@@ -62,8 +60,6 @@ const Photos = ({ images, loadPosts, isLoading, spotLight, deletePhoto }) => {
     </div>
   )
 }
-
-
 
 const mapStateToProps = (state) => {
   return {

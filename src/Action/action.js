@@ -46,7 +46,7 @@ export const addPost = (post) => dispatch => {
 export const spotLight = (id) => dispatch => {
   axiosWithAuth().get(`/photos/${id}`)
     .then(res => {
-      console.log(res)
+      console.log('ACTION --> spotLight --> ', res)
       dispatch({ type: PHOTO_SPOTLIGHT, payload: res.data })
     })
     .catch(err => console.log('Spotlight error --> ', err.response))
