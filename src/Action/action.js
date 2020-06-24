@@ -11,9 +11,9 @@ export const DATA_LOADING = 'DATA_LOADING'
 
 export const logIn = (credentials) => dispatch => {
   // dispatch({ type: DATA_LOADING, payload: true })
-  axiosWithAuth().post('/auth/login', credentials)
+  axios.post('https://expat-journal2.herokuapp.com/api/auth/login', credentials)
     .then(res => {
-      console.log(res)
+      console.log('Log in success --> ', res)
       localStorage.setItem('token', res.data.token)
       dispatch({ type: DATA_LOADING, payload: false })
       window.location.reload(true)
@@ -28,7 +28,7 @@ export const logOut = () => dispatch => {
 }
 
 export const loadPosts = () => dispatch => {
-  axiosWithAuth().get('/posts')
+  axiosWithAuth().get('/stories/1/photos')
     .then(res => {
       dispatch({ type: LOAD_POSTS, payload: res.data })
     })
