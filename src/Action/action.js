@@ -9,7 +9,7 @@ export const PHOTO_SPOTLIGHT = 'PHOTO_SPOTLIGHT'
 
 export const loadPosts = () => dispatch => {
   // dispatch({ type: LOAD_POSTS })
-  axiosWithAuth().get('/stories/3/photos')
+  axiosWithAuth().get('/users')
     .then(res => console.log(res))
     .catch(err => console.log('Error fetching data --> ', err))
 }
