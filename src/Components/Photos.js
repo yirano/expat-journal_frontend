@@ -9,6 +9,7 @@ import axiosWithAuth from '../axiosWithAuth/axiosWithAuth'
 import Edit from './Edit'
 
 
+
 const StyledCardContainer = styled.div`
   display: flex;
  flex-wrap: wrap;
@@ -23,9 +24,11 @@ const StyledCard = styled.div`
 // function remove() {
 //   alert("Are you sure want to delete this post")
 // }
+
+
 const Photos = ({ images, loadPosts, isLoading, spotLight, deletePhoto }) => {
   function remove(e) {
-    // alert("Are you sure want to delete this post")
+    alert("Are you sure want to delete this post")
     console.log('Delete id ---> ', e.target.id)
     deletePhoto(e.target.id)
   }
@@ -47,12 +50,13 @@ const Photos = ({ images, loadPosts, isLoading, spotLight, deletePhoto }) => {
           {images.map((image) => (
             <StyledCard id={image.id} onClick={() => spotLightPhoto(image.id)} >
               <Link to={`/photos/${image.id}`}>
-                <PhotoCard image={image} key={image.id} height="580px" />
+                <PhotoCard image={image} key={image.id} height="900px" />
               </Link>
-              <Link to={`/edit/${image.id}`}>
-                <Button style={{ marginLeft: "10%" }} id={image.id}>Edit</Button>
+              <Link to="/Edit">
+                <Button style={{ marginLeft: "25%" }}>Edit</Button>
               </Link>
-              <Button style={{ marginLeft: "10%" }} id={image.id} onClick={(e) => remove(e)}>Delete</Button>
+              <Button style={{ marginLeft: "10%" }} id={image.id} onClick={remove}>Delete</Button>
+
             </StyledCard>
           ))}
         </StyledCardContainer>

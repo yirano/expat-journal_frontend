@@ -4,6 +4,8 @@ import * as yup from 'yup'
 import { addPost, spotLight } from '../Action/action'
 import { connect } from 'react-redux'
 import { useParams } from 'react-router'
+import PhotoCard from './PhotoCard'
+import styled from 'styled-components'
 
 const Edit = (props) => {
   const initialState = {
@@ -73,54 +75,63 @@ const Edit = (props) => {
     setFormState(newFormData)
   }
 
+  const StyledContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  `
+
   return (
     <>
       {props.spotLight !== undefined ?
-        <Form onSubmit={formSubmit}>
-          {serverError ? <p className="error">{serverError}</p> : null}
-          <Label for="photo_title">
-            <legend>Title</legend>
-            <Input
-              id="photo_title"
-              type="text"
-              name="photo_title"
-              onChange={inputChange}
-              value={props.spotLight.photo_title}
-            />
-            {errors.photo_title === '' ? <p className="error">{errors.photo_title}</p> : null}
-          </Label><br />
-          <Label htmlFor="photo_description">
-            <legend>photo_description</legend>
-            <Input
-              type="textarea"
-              name="photo_description"
-              id="photo_photo_description"
-              placeholder="Please enter details here"
-              value={props.spotLight.photo_description}
-              onChange={inputChange}
-            />
-            {errors.photo_description === '' ? (
-              <p className="error">{errors.photo_description}</p>
-            ) : null}
-          </Label>
-          <br />
-          <Label htmlFor="photo_url">
-            <legend>Image photo_url</legend>
-            <Input
-              type="url"
-              name="photo_url"
-              id="photo_url"
-              placeholder="Please enter image URL here"
-              value={props.spotLight.photo_url}
-              onChange={inputChange}
-            />
-            {errors.photo_url.length > 0 ? (
-              <p className="error">{errors.photo_url}</p>
-            ) : null}
-          </Label>
-          <br />
-          <Button type="submit" disabled={buttonDisabled}> Post </Button>
-        </Form> : null
+        <StyledContainer>
+          <Form onSubmit={formSubmit}>
+            {serverError ? <p className="error">{serverError}</p> : null}
+            <Label for="photo_title">
+              <legend>Title</legend>
+              <Input
+                id="photo_title"
+                type="text"
+                name="photo_title"
+                onChange={inputChange}
+                value={props.spotLight.photo_title}
+              />
+              {errors.photo_title === '' ? <p className="error">{errors.photo_title}</p> : null}
+            </Label><br />
+            <Label htmlFor="photo_description">
+              <legend>photo_description</legend>
+              <Input
+                type="textarea"
+                name="photo_description"
+                id="photo_photo_description"
+                placeholder="Please enter details here"
+                value={props.spotLight.photo_description}
+                onChange={inputChange}
+              />
+              {errors.photo_description === '' ? (
+                <p className="error">{errors.photo_description}</p>
+              ) : null}
+            </Label>
+            <br />
+            <Label htmlFor="photo_url">
+              <legend>Image photo_url</legend>
+              <Input
+                type="url"
+                name="photo_url"
+                id="photo_url"
+                placeholder="Please enter image URL here"
+                value={props.spotLight.photo_url}
+                onChange={inputChange}
+              />
+              {errors.photo_url.length > 0 ? (
+                <p className="error">{errors.photo_url}</p>
+              ) : null}
+            </Label>
+            <br />
+            <Button type="submit" disabled={buttonDisabled}> Post </Button>
+          </Form>
+        </StyledContainer>
+        : null
       }
     </>
   )

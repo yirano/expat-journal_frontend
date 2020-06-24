@@ -6,6 +6,7 @@ html {
 
 *{
     background-color: #FCEFF9;
+    
   }
   
   .App {
@@ -117,6 +118,9 @@ html {
     display: flex;
     justify-content: space-evenly;
   }
+
+  
+
   
   
 

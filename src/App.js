@@ -33,7 +33,7 @@ function App(props) {
           <Button>Home</Button>
         </Link>
 
-        {props.isLoggedIn ?
+        {props.isLoggedIn || localStorage.key('token') !== '' ?
           <Link to="/posts">
             <Button>Posts</Button>
           </Link>
