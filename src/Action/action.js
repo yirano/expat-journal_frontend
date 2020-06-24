@@ -37,7 +37,7 @@ export const loadPosts = () => dispatch => {
     })
 }
 
-export const addPost = (post) => dispatch => {
+export const addPost = (post) => {
   axiosWithAuth().post('/posts/user/1', post)
     .then(res => console.log('Post Successful --> ', res))
     .catch(err => console.log('Post error --> ', err.response))
@@ -49,7 +49,7 @@ export const spotLight = (id) => dispatch => {
     .then(res => {
       console.log(res)
       dispatch({ type: PHOTO_SPOTLIGHT, payload: res.data })
-    }
-    )
+    })
+    .catch(err => console.log('Spotlight error --> ', err.response))
 
 }
