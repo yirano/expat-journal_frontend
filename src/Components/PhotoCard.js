@@ -23,8 +23,8 @@ const PhotoCard = ({ image, height }) => {
       </StyledImageContainer>
 
       <CardBody>
-        <CardTitle>Title:{image.title}</CardTitle>
-        <CardText>Description:{image.description}</CardText>
+        <CardTitle>Title: {image.photo_title}</CardTitle>
+        <CardText>Description: {image.photo_description}</CardText>
       </CardBody>
 
     </Card>
