@@ -1,6 +1,6 @@
 import React, { useEffect, Component } from "react"
 import { connect } from 'react-redux'
-import { loadPosts, spotLight } from '../Action/action'
+import { loadPosts, spotLight, deletePhoto } from '../Action/action'
 import PhotoCard from './PhotoCard'
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
@@ -22,9 +22,11 @@ const StyledCard = styled.div`
 // function remove() {
 //   alert("Are you sure want to delete this post")
 // }
-const Photos = ({ images, loadPosts, isLoading, spotLight }) => {
-  function remove() {
-    alert("Are you sure want to delete this post")
+const Photos = ({ images, loadPosts, isLoading, spotLight, deletePhoto }) => {
+  function remove(e) {
+    // alert("Are you sure want to delete this post")
+    console.log('Delete id ---> ', e.target.id)
+    deletePhoto(e.target.id)
   }
 
   useEffect(() => {
@@ -51,7 +53,7 @@ const Photos = ({ images, loadPosts, isLoading, spotLight }) => {
                 <Button style={{ marginLeft: "10%" }}>Edit</Button>
               </Link>
 
-              <Button style={{ marginLeft: "10%" }} onClick={remove}>Delete</Button>
+              <Button style={{ marginLeft: "10%" }} id={image.id} onClick={(e) => remove(e)}>Delete</Button>
 
             </StyledCard>
           ))}
@@ -70,4 +72,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps, { loadPosts, spotLight })(Photos)
+export default connect(mapStateToProps, { loadPosts, spotLight, deletePhoto })(Photos)

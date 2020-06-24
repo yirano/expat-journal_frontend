@@ -43,7 +43,6 @@ export const addPost = (post) => dispatch => {
     .catch(err => console.log('Post error --> ', err.response))
 }
 
-
 export const spotLight = (id) => dispatch => {
   axiosWithAuth().get(`/posts/${id}`)
     .then(res => {
@@ -51,5 +50,14 @@ export const spotLight = (id) => dispatch => {
       dispatch({ type: PHOTO_SPOTLIGHT, payload: res.data })
     })
     .catch(err => console.log('Spotlight error --> ', err.response))
+}
 
+export const deletePhoto = (id) => dispatch => {
+  console.log('Delete Photo Action ID --> ', id)
+  axiosWithAuth().delete(`/photos/${id}`)
+    .then(res => {
+      console.log('Delete successful --> ', res)
+      window.location.reload(true)
+    })
+    .catch(err => console.log('Error deleting --> ', err.response))
 }
