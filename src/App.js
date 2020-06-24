@@ -17,9 +17,11 @@ import Edit from './Components/Edit'
 import './App.css'
 
 
+
 function App(props) {
   const logOut = () => {
     props.logOut()
+    alert("Thanks for visiting Expat Journal!")
     // props.history.push('/login')
   }
 
