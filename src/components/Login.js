@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from "react"
 import * as yup from "yup"
-import axiosWithAuth from '../axiosWithAuth/axiosWithAuth'
-import { Button, Form, FormGroup, Label, Input, legend } from 'reactstrap'
+// import axiosWithAuth from '../axiosWithAuth/axiosWithAuth'
+import { logIn } from '../Action/action'
+import { Button, Form, Label, Input, legend } from 'reactstrap'
 import { Link } from 'react-router-dom'
+import { connect } from 'react-redux'
 
 
-export default function Login(props) {
+function Login(props) {
 
   const [credentials, setCredentials] = useState({
     username: "",
@@ -21,15 +23,10 @@ export default function Login(props) {
     password: ""
   })
 
-  const handleLogin = (e) => {
-    e.preventDefault()
-    axiosWithAuth().post('https://expat-journal2.herokuapp.com/api/auth/login', credentials)
-      .then(res => {
-        console.log(res)
-        localStorage.setItem('token', res.data.token)
-        // props.history.push('/photos')
-      })
-    // props.history.push('/photos')
+  const handleLogin = () => {
+    // e.preventDefault()
+    props.logIn(credentials)
+    props.history.push('/photos')
   }
 
   //* Login Page Validation-REACT I
@@ -39,7 +36,7 @@ export default function Login(props) {
     password: yup
       .string()
       .required("Please enter your password")
-      .min(8, "Password is too short - should be 8 chars minimum.")
+      .min(5, "Password is too short - should be 8 chars minimum.")
       .matches(/[a-zA-Z@]/),
   })
 
@@ -47,7 +44,6 @@ export default function Login(props) {
     console.log(
     )
     formSchema.isValid(credentials).then(isFormValid => {
-      console.log("is form valid?", isFormValid)
       setButtonDisabled(!isFormValid)
     })
   }, [credentials])
@@ -121,9 +117,8 @@ export default function Login(props) {
       </Link>
     </Form>
 
-
   )
 }
 
-
+export default connect(null, { logIn })(Login)
 

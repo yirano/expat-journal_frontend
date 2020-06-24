@@ -1,11 +1,11 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import { spotLight } from '../Action/action'
 import {
   Card, CardImg, CardText, CardBody,
-  CardTitle,
-  Button
+  CardTitle
 } from 'reactstrap'
 import styled from 'styled-components'
-import { Link } from 'react-router-dom'
+import { connect } from 'react-redux'
 
 const StyledImageContainer = styled.div`
   overflow: hidden;
@@ -14,19 +14,19 @@ const StyledImageContainer = styled.div`
 `
 
 const PhotoCard = ({ image, height }) => {
+  const [img, setImg] = useState(image)
+
   return (
     <Card style={{ width: "100%" }}>
-      <Link to={`/photos/${image.id}`}/>
-        <StyledImageContainer style={{ height: height }}>
-          <CardImg src={image.download_url} alt="" style={{ minHeight: '100%' }} />
-        </StyledImageContainer>
-        
-        <CardBody>
-          <CardTitle>Title:{image.author}</CardTitle>
-          <CardText>Description:{image.url}</CardText>
-          
-           </CardBody>
-      
+      <StyledImageContainer style={{ height: height }}>
+        <CardImg src={image.photo_url} alt="" style={{ minHeight: '100%' }} />
+      </StyledImageContainer>
+
+      <CardBody>
+        <CardTitle>Title:{image.title}</CardTitle>
+        <CardText>Description:{image.description}</CardText>
+      </CardBody>
+
     </Card>
   )
 }
