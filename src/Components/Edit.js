@@ -6,12 +6,11 @@ import { connect } from 'react-redux'
 import { useParams } from 'react-router'
 
 const Edit = (props) => {
-  let initialState = {
+  const initialState = {
     photo_url: '',
     photo_title: '',
     photo_description: ''
   }
-
   const [serverError, setServerError] = useState("")
   const [formState, setFormState] = useState(initialState)
   const [buttonDisabled, setButtonDisabled] = useState(true)
@@ -77,7 +76,6 @@ const Edit = (props) => {
   return (
     <>
       {props.spotLight !== undefined ?
-
         <Form onSubmit={formSubmit}>
           {serverError ? <p className="error">{serverError}</p> : null}
           <Label for="photo_title">
