@@ -37,6 +37,7 @@ const Posts = (props) => {
 
   const formSubmit = e => {
     e.preventDefault()
+    console.log(formState)
     props.addPost(formState)
     setFormState({
       photo_title: "",
