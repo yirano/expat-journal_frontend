@@ -22,7 +22,7 @@ function App(props) {
   const logOut = () => {
     props.logOut()
     alert("Thanks for visiting Expat Journal!")
-    // props.history.push('/login')
+     props.history.push('/login')
   }
 
   return (
@@ -49,6 +49,7 @@ function App(props) {
             <Button onClick={logOut}>LogOut</Button>
           </Link>
         }
+         
 
       </header>
 
