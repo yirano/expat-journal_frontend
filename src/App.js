@@ -48,8 +48,6 @@ function App(props) {
             <Button onClick={logOut}>LogOut</Button>
           </Link>
         }
-
-
       </header>
 
       <Switch>

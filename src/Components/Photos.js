@@ -7,6 +7,7 @@ import { Link, Route } from 'react-router-dom'
 import { Button } from 'reactstrap'
 import axiosWithAuth from '../axiosWithAuth/axiosWithAuth'
 import Edit from './Edit'
+import NoPostMessage from './NoPostMessage'
 
 
 
@@ -21,11 +22,6 @@ const StyledCard = styled.div`
   width: 800px;
   margin:20px;
 `
-// function remove() {
-//   alert("Are you sure want to delete this post")
-// }
-
-
 const Photos = ({ images, loadPosts, isLoading, spotLight, deletePhoto }) => {
   function remove(e) {
     alert("Are you sure want to delete this post")
@@ -34,7 +30,8 @@ const Photos = ({ images, loadPosts, isLoading, spotLight, deletePhoto }) => {
   }
 
   useEffect(() => {
-    loadPosts()
+    const id = localStorage.getItem('id')
+    loadPosts(id)
     console.log(images)
   }, [])
 
@@ -44,6 +41,7 @@ const Photos = ({ images, loadPosts, isLoading, spotLight, deletePhoto }) => {
 
   return (
     <div>
+
       {!isLoading ?
         <StyledCardContainer>
           {console.log(images)}
@@ -60,7 +58,7 @@ const Photos = ({ images, loadPosts, isLoading, spotLight, deletePhoto }) => {
             </StyledCard>
           ))}
         </StyledCardContainer>
-        : <h1>LOADING</h1>}
+        : <NoPostMessage />}
     </div>
   )
 }

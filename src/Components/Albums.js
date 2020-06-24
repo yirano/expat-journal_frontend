@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import { loadPosts } from '../Action/action'
 import styled from 'styled-components'
 import PhotoCard from './PhotoCard'
-import {Button} from 'reactstrap'
+import { Button } from 'reactstrap'
 
 const StyledCardContainer = styled.div`
   display: flex;
@@ -17,20 +17,14 @@ const StyledCard = styled.div`
   width: 30%;
   margin:20px;
 `
-function remove() {
-  alert("Are you sure want to delete this post");
-}
 
-
-const Albums = ({ images, loadPosts}) => {
-  function remove() {
-    alert("Are you sure want to delete this post");
+const Albums = ({ images, loadPosts }) => {
+  const remove = () => {
+    alert("Are you sure want to delete this post")
   }
   useEffect(() => {
     loadPosts()
   })
-  
-
   return (
     <div>
       <StyledCardContainer>
@@ -38,19 +32,19 @@ const Albums = ({ images, loadPosts}) => {
           <StyledCard>
             <PhotoCard image={image} key={image.id} height="380px" />
             <Link to={`/photos/${image.id}`}>
-            <Button style={{marginLeft:"2%"}}>View Story</Button> 
+              <Button style={{ marginLeft: "2%" }}>View Story</Button>
             </Link>
             <Link to="/Edit">
-            <Button style={{marginLeft:"2%"}}>Edit</Button>
-              </Link>
-             
-            <Button style={{marginLeft:"2%"}} onClick={remove}>Delete</Button>
-             
+              <Button style={{ marginLeft: "2%" }}>Edit</Button>
+            </Link>
+
+            <Button style={{ marginLeft: "2%" }} onClick={remove}>Delete</Button>
+
           </StyledCard>
         ))}
-        
+
       </StyledCardContainer>
-         </div>
+    </div>
   )
 }
 
@@ -61,5 +55,3 @@ const mapStateToProps = (state) => {
 }
 
 export default connect(mapStateToProps, { loadPosts })(Albums)
-
-// export default Photos

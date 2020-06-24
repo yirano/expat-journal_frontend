@@ -1,5 +1,6 @@
 import axios from 'axios'
 import axiosWithAuth from '../axiosWithAuth/axiosWithAuth'
+import { useState } from 'react'
 
 export const EDIT_POST = 'EDIT_POST'
 export const ADD_POST = 'ADD_POST'
@@ -9,26 +10,27 @@ export const LOAD_POSTS = 'LOAD_POSTS'
 export const PHOTO_SPOTLIGHT = 'PHOTO_SPOTLIGHT'
 export const DATA_LOADING = 'DATA_LOADING'
 
+
 export const logIn = (credentials) => dispatch => {
-  // dispatch({ type: DATA_LOADING, payload: true })
   axios.post('https://expat-journal2.herokuapp.com/api/auth/login', credentials)
     .then(res => {
       console.log('Log in success --> ', res)
+      localStorage.setItem('id', res.data.id)
       localStorage.setItem('token', res.data.token)
-      dispatch({ type: DATA_LOADING, payload: false })
-      window.location.reload(true)
+      window.location.reload()
     })
     .catch(err => console.log('Error logging in -->', err.response))
 }
 
 export const logOut = () => dispatch => {
   localStorage.removeItem('token')
-  // window.location.reload(true)
+  localStorage.removeItem('id')
+
   dispatch({ type: LOG_OUT, payload: false })
 }
 
-export const loadPosts = () => dispatch => {
-  axiosWithAuth().get('/stories/2/photos')
+export const loadPosts = (id) => dispatch => {
+  axiosWithAuth().get(`/stories/${id}/photos`)
     .then(res => {
       dispatch({ type: LOAD_POSTS, payload: res.data })
     })
@@ -37,8 +39,9 @@ export const loadPosts = () => dispatch => {
     })
 }
 
-export const addPost = (post) => dispatch => {
-  axiosWithAuth().post('/stories/2/photos', post)
+export const addPost = (post, id) => dispatch => {
+  console.log('addPost id --> ', id)
+  axiosWithAuth().post(`/stories/${id}/photos`, post)
     .then(res => console.log('Post Successful --> ', res))
     .catch(err => console.log('Post error --> ', err.response))
 }

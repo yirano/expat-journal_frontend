@@ -37,8 +37,9 @@ const Posts = (props) => {
 
   const formSubmit = e => {
     e.preventDefault()
+    const id = localStorage.getItem('id')
     console.log(formState)
-    props.addPost(formState)
+    props.addPost(formState, id)
     setFormState({
       photo_title: "",
       photo_description: "",
@@ -128,5 +129,3 @@ const Posts = (props) => {
 }
 
 export default connect(null, { addPost })(Posts)
-
-// export default Posts
