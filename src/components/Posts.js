@@ -9,22 +9,22 @@ const Posts = (props) => {
   const [serverError, setServerError] = useState("")
 
   const [formState, setFormState] = useState({
-    title: "",
-    description: "",
+    photo_title: "",
+    photo_description: "",
     photo_url: ""
   })
 
   const [buttonDisabled, setButtonDisabled] = useState(true)
 
   const [errors, setErrors] = useState({
-    title: "",
-    description: "",
+    photo_title: "",
+    photo_description: "",
     photo_url: ""
   })
 
   const formSchema = yup.object().shape({
-    title: yup.string().required("Title is a required field"),
-    description: yup.string().required("Description is a required fiels"),
+    photo_title: yup.string().required("Title is a required field"),
+    photo_description: yup.string().required("Description is a required fiels"),
     photo_url: yup.string().required("Please enter a valid URL").matches(/[https://]/)
   })
 
@@ -39,8 +39,8 @@ const Posts = (props) => {
     e.preventDefault()
     props.addPost(formState)
     setFormState({
-      title: "",
-      description: "",
+      photo_title: "",
+      photo_description: "",
       photo_url: ""
     })
   }
@@ -100,7 +100,7 @@ const Posts = (props) => {
           value={formState.photo_description}
           onChange={inputChange}
         />
-        {errors.photo_description.length > 0 ? (
+        {errors.photo_description === '' ? (
           <p className="error">{errors.photo_description}</p>
         ) : null}
       </Label>
