@@ -8,9 +8,13 @@ import AlbumCard from './AlbumCard'
 
 const StyledCardContainer = styled.div`
   display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
-  flex-direction:column
+  justify-content: space-evenly;
+`
+const StyledAlbum = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 24%;
+  height: 600px;
 `
 
 const Albums = (props) => {
@@ -22,22 +26,22 @@ const Albums = (props) => {
     props.loadAlbums(id)
   }, [])
   console.log('Rendered albums --> ', props.albums)
+
+
   return (
-    <div>
-      <StyledCardContainer>
-        {props.albums !== undefined ? props.albums.map((album) => (
-          <>
-            <Link to={`/albums/${album.id}`}>
-              <AlbumCard album={album} />
-            </Link>
-            <Link to={`/album/${album.id}/post`}>
-              <Button style={{ marginLeft: "2%", height: '40px' }} id={album.id} >Add to Album</Button>
-            </Link>
-            <Button style={{ marginLeft: "2%", height: '40px' }} id={album.id} onClick={e => remove(e)}>Delete</Button>
-          </>
-        )) : null}
-      </StyledCardContainer>
-    </div >
+    <StyledCardContainer>
+      {props.albums !== undefined ? props.albums.map((album) => (
+        <StyledAlbum>
+          <Link to={`/albums/${album.id}`}>
+            <AlbumCard album={album} />
+          </Link>
+          <Link to={`/album/${album.id}/post`}>
+            <Button style={{ marginLeft: "2%", height: '40px' }} id={album.id} >Add to Album</Button>
+          </Link>
+          <Button style={{ marginLeft: "2%", height: '40px' }} id={album.id} onClick={e => remove(e)}>Delete</Button>
+        </StyledAlbum>
+      )) : null}
+    </StyledCardContainer>
   )
 }
 

@@ -20,20 +20,18 @@ const AlbumCard = ({ width, height, album, loadPosts, stuff }) => {
       })
   }, [])
 
-  console.log(coverImg)
   return (
-    <Card style={{ width: "100%" }}>
+    <Card style={{ display: 'flex' }}>
       {/* <StyledImageContainer style={{ height: height, width: width }}>
         <CardImg src={album.photo_url} alt="" style={{ minHeight: '100%' }} />
       </StyledImageContainer> */}
-
-
+      <CardImg src={coverImg} style={{ height: '500px' }} />
       <CardBody>
-        <CardImg src={coverImg} />
         <CardTitle>Title: {album.story_name}</CardTitle>
         <CardText>Description: {album.story_description}</CardText>
       </CardBody>
     </Card>
+
   )
 }
 
