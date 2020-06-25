@@ -28,7 +28,7 @@ export const logOut = () => dispatch => {
 }
 
 export const loadPosts = () => dispatch => {
-  axiosWithAuth().get('/stories/2/photos')
+  axiosWithAuth().get('/stories/5/photos')
     .then(res => {
       dispatch({ type: LOAD_POSTS, payload: res.data })
     })
@@ -38,7 +38,7 @@ export const loadPosts = () => dispatch => {
 }
 
 export const addPost = (post) => dispatch => {
-  axiosWithAuth().post('/stories/2/photos', post)
+  axiosWithAuth().post('/stories/5/photos', post)
     .then(res => console.log('Post Successful --> ', res))
     .catch(err => console.log('Post error --> ', err.response))
 }

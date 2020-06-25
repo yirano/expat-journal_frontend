@@ -96,7 +96,7 @@ const Posts = (props) => {
         <Input
           type="textarea"
           name="photo_description"
-          id="photo_photo_description"
+          id="photo_description"
           placeholder="Please enter details here"
           value={formState.photo_description}
           onChange={inputChange}
