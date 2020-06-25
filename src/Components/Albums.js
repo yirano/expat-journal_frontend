@@ -16,7 +16,7 @@ const StyledAlbum = styled.div`
   flex-direction: column;
   width: 24%;
   min-width: 500px;
-  height: 600px;
+  padding: 20px 0;
 `
 
 const StyledButtonContainer = styled.div`

@@ -32,7 +32,7 @@ function App(props) {
           <Button>Home</Button>
         </Link>
 
-        {props.isLoggedIn || localStorage.key('token') !== '' ?
+        {localStorage.key('token') !== null ?
           <Link to="/addalbum">
             <Button>New Album</Button>
           </Link>

@@ -5,13 +5,14 @@ import styled from 'styled-components'
 import { connect } from 'react-redux'
 import axiosWithAuth from '../axiosWithAuth/axiosWithAuth'
 
+
 const StyledImageContainer = styled.div`
   overflow: hidden;
   display: flex;
   align-items: flex-end;
 `
 const AlbumCard = ({ width, height, album, loadPosts, stuff }) => {
-  const [coverImg, setCoverImg] = useState({ coverImage: '' })
+  const [coverImg, setCoverImg] = useState(require('../Images/no_image.jpg'))
 
   useEffect(() => {
     axiosWithAuth().get(`stories/${album.id}/photos`)
@@ -20,13 +21,14 @@ const AlbumCard = ({ width, height, album, loadPosts, stuff }) => {
       })
   }, [])
 
+
   return (
     <Card style={{ display: 'flex' }}>
       {/* <StyledImageContainer style={{ height: height, width: width }}>
         <CardImg src={album.photo_url} alt="" style={{ minHeight: '100%' }} />
       </StyledImageContainer> */}
-      <StyledImageContainer style={{height: '500px', width: '100%'}}>
-      <CardImg src={coverImg} style={{ minHeight: '100%' }} />
+      <StyledImageContainer style={{ height: '500px', width: '100%' }}>
+        <CardImg src={coverImg} style={{ minHeight: '100%' }} />
       </StyledImageContainer>
       <CardBody>
         <CardTitle>Title: {album.story_name}</CardTitle>
