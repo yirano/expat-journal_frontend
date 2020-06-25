@@ -30,6 +30,19 @@ export const logOut = () => dispatch => {
   dispatch({ type: LOG_OUT, payload: false })
 }
 
+export const loadAlbums = (id) => dispatch => {
+  axiosWithAuth().get(`/users/${id}`)
+    .then(res => {
+      console.log('Album Loaded --> ', res.data)
+      dispatch({ type: LOAD_ALBUMS, payload: res.data.stories })
+    })
+    .catch(err => {
+      console.log('Album Load Failed --> ', err.response)
+    })
+}
+
+
+
 export const loadPosts = () => dispatch => {
   axiosWithAuth().get('/stories/5/photos')
     .then(res => {
@@ -37,6 +50,16 @@ export const loadPosts = () => dispatch => {
     })
     .catch(err => {
       console.log('Error while fetching data --> ', err.response)
+    })
+}
+
+export const addAlbum = (post, id) => dispatch => {
+  axiosWithAuth().post(`/users/${id}/stories`, post)
+    .then(res => {
+      console.log('New Album Created --> ', res.data)
+    })
+    .catch(err => {
+      console.log('Error Creating New Album --> ', err.response)
     })
 }
 

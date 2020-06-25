@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { Form, Label, Input, Button } from 'reactstrap'
 import * as yup from 'yup'
-// import { addAlbum } from '../Action/action'
+import { addAlbum } from '../Action/action'
 import { connect } from 'react-redux'
 
 const AddAlbum = (props) => {
@@ -112,4 +112,4 @@ const AddAlbum = (props) => {
   )
 }
 
-export default connect(null, {})(AddAlbum)
+export default connect(null, { addAlbum })(AddAlbum)

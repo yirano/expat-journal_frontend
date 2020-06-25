@@ -28,7 +28,7 @@ const Photos = ({ images, loadPosts, isLoading, spotLight, deletePhoto, album })
 
   useEffect(() => {
     // const id = localStorage.getItem('id')
-    loadPosts(album.id)
+    // loadPosts(album.id)
   }, [])
 
   console.log('COMPONENT -> Photos -> images', images)

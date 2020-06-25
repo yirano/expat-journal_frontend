@@ -30,7 +30,7 @@ export default (state = initialState, { type, payload }) => {
         spotLight: payload
       }
     case LOAD_ALBUMS:
-      // console.log('REDUCER -> LOAD_ALBUMS ', payload)
+      console.log('REDUCER -> LOAD_ALBUMS ', payload)
       return { ...state, albumData: payload, error: '', spotLight: state.spotLight, isLoggedIn: true, isLoading: false }
     default:
       return state

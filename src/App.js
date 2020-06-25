@@ -65,7 +65,7 @@ function App(props) {
         <Route path="/edit/:id">
           <Edit stuff={props.spotLight} />
         </Route>
-        {/* <Route path="/albums" component={Albums} /> */}
+        <Route path="/albums" component={Albums} />
         <Route exact path="/photos/:id" component={Photo} />
         <Route exact path="/photos" component={Photos} />
 

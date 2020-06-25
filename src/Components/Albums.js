@@ -1,7 +1,7 @@
 import React, { useEffect } from "react"
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
-//import { loadAlbums, removeAlbum } from '../Action/action'
+import { loadAlbums } from '../Action/action'
 import styled from 'styled-components'
 import { Button } from 'reactstrap'
 import AlbumCard from './AlbumCard'
@@ -15,13 +15,13 @@ const StyledCardContainer = styled.div`
 
 const Albums = (props) => {
   const remove = (e) => {
-    props.removeAlbum(e.target.id)
+    // props.removeAlbum(e.target.id)
   }
   useEffect(() => {
     const id = localStorage.getItem('id')
-   {/* props.loadAlbums(id)*/}
+    props.loadAlbums(id)
   }, [])
-
+  console.log(props.albums)
   return (
     <div>
       <StyledCardContainer>
@@ -30,9 +30,6 @@ const Albums = (props) => {
             <Link to={`/album/${album.id}`}>
               <AlbumCard album={album} />
             </Link>
-            {/* <Link to="/Edit">
-              <Button style={{ marginLeft: "2%" }}>Edit</Button>
-            </Link> */}
             <Button style={{ marginLeft: "2%", height: '40px' }} id={album.id} onClick={e => remove(e)}>Delete</Button>
           </>
         ))}
@@ -47,4 +44,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps, { })(Albums)
+export default connect(mapStateToProps, { loadAlbums })(Albums)
