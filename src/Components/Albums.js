@@ -15,7 +15,7 @@ const StyledAlbum = styled.div`
   display: flex;
   flex-direction: column;
   width: 24%;
-  min-width: 400px;
+  min-width: 500px;
   height: 600px;
 `
 
@@ -45,6 +45,9 @@ const Albums = (props) => {
           <StyledButtonContainer>
             <Link to={`/album/${album.id}/post`}>
               <Button style={{ marginLeft: "2%", height: '40px' }} id={album.id} >Add to Album</Button>
+            </Link>
+            <Link to={`/album/edit/${album.id}`}>
+              <Button style={{ marginLeft: "2%", height: '40px' }} id={album.id}>Edit Album</Button>
             </Link>
             <Button style={{ marginLeft: "2%", height: '40px' }} id={album.id} onClick={e => remove(e)}>Delete</Button>
           </StyledButtonContainer>
