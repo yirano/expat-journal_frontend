@@ -58,8 +58,8 @@ function App(props) {
         <Route exact path="/photo/:id" component={Photo} />
 
         <PrivateRoute path="/album/:id/post" component={Posts} />
-        <PrivateRoute path="/addalbum" component={AddAlbum} />
-
+        <PrivateRoute exact path="/addalbum" component={AddAlbum} />
+        <PrivateRoute exact path="/album/edit/:id" component={AddAlbum} />
       </Switch>
     </Router>
 

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { Form, Label, Input, Button } from 'reactstrap'
 import * as yup from 'yup'
 import { addAlbum } from '../Action/action'
-import { connect } from 'react-redux'
+import { connect, useDispatch } from 'react-redux'
 import styled from 'styled-components'
 const StyledHeader = styled.h1`
     // text-align: center;
@@ -89,7 +89,7 @@ const AddAlbum = (props) => {
 
   return (
     <StyledForm>
-      <StyledHeader>Start an Album</StyledHeader>
+      <StyledHeader>{props.isEditingAlbum ? 'Edit your Album!' : 'Start an Album'}</StyledHeader>
       <Form onSubmit={formSubmit}>
         {serverError ? <p className="error">{serverError}</p> : null}
         <Label for="story_name">
@@ -125,4 +125,10 @@ const AddAlbum = (props) => {
   )
 }
 
-export default connect(null, { addAlbum })(AddAlbum)
+const mapStateToProps = (state, ownProps) => {
+  return {
+    isEditingAlbum: state.isEditingAlbum
+  }
+}
+
+export default connect(mapStateToProps, { addAlbum })(AddAlbum)

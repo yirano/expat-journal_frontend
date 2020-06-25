@@ -1,6 +1,6 @@
 import React, { useEffect } from "react"
 import { Link } from 'react-router-dom'
-import { connect } from 'react-redux'
+import { connect, useDispatch } from 'react-redux'
 import { loadAlbums, removeAlbum } from '../Action/action'
 import styled from 'styled-components'
 import { Button } from 'reactstrap'
@@ -25,6 +25,8 @@ const StyledButtonContainer = styled.div`
 `
 
 const Albums = (props) => {
+  const dispatch = useDispatch()
+
   const remove = (e) => {
     props.removeAlbum(e.target.id)
   }
@@ -44,10 +46,10 @@ const Albums = (props) => {
           </Link>
           <StyledButtonContainer>
             <Link to={`/album/${album.id}/post`}>
-              <Button style={{ marginLeft: "2%", height: '40px' }} id={album.id} >Add to Album</Button>
+              <Button style={{ marginLeft: "2%", height: '40px' }} id={album.id} onClick={() => dispatch({ type: 'EDIT_ALBUM', payload: false })}>Add to Album</Button>
             </Link>
             <Link to={`/album/edit/${album.id}`}>
-              <Button style={{ marginLeft: "2%", height: '40px' }} id={album.id}>Edit Album</Button>
+              <Button style={{ marginLeft: "2%", height: '40px' }} id={album.id} onClick={() => dispatch({ type: 'EDIT_ALBUM', payload: true })}>Edit Album</Button>
             </Link>
             <Button style={{ marginLeft: "2%", height: '40px' }} id={album.id} onClick={e => remove(e)}>Delete</Button>
           </StyledButtonContainer>

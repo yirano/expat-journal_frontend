@@ -4,6 +4,7 @@ import {
   PHOTO_SPOTLIGHT,
   DATA_LOADING,
   LOAD_ALBUMS,
+  EDIT_ALBUM
 } from '../Action/action'
 
 const initialState = {
@@ -12,7 +13,8 @@ const initialState = {
   error: '',
   spotLight: [],
   isLoggedIn: false,
-  isLoading: false
+  isLoading: false,
+  isEditingAlbum: false
 }
 
 export default (state = initialState, { type, payload }) => {
@@ -31,6 +33,9 @@ export default (state = initialState, { type, payload }) => {
       }
     case LOAD_ALBUMS:
       return { ...state, albumData: payload, error: '', spotLight: state.spotLight, isLoggedIn: true, isLoading: false }
+    case EDIT_ALBUM:
+      console.log(payload)
+      return { ...state, isEditingAlbum: payload }
     default:
       return state
   }

@@ -10,6 +10,7 @@ export const LOAD_POSTS = 'LOAD_POSTS'
 export const PHOTO_SPOTLIGHT = 'PHOTO_SPOTLIGHT'
 export const DATA_LOADING = 'DATA_LOADING'
 export const LOAD_ALBUMS = 'LOAD_ALBUMS'
+export const EDIT_ALBUM = 'EDIT_ALBUM'
 
 
 export const logIn = (credentials) => dispatch => {
