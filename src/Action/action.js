@@ -59,6 +59,7 @@ export const addAlbum = (post, id) => dispatch => {
   axiosWithAuth().post(`/users/${id}/stories`, post)
     .then(res => {
       console.log('New Album Created --> ', res.data)
+      window.location.reload(true)
     })
     .catch(err => {
       console.log('Error Creating New Album --> ', err.response)

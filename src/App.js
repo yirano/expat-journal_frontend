@@ -33,7 +33,7 @@ function App(props) {
             <Button>Home</Button>
           </a>
           : <Link to="/albums">
-            <Button>Home</Button>
+            <Button>Albums</Button>
           </Link>
         }
 
