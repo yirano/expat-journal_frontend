@@ -78,7 +78,9 @@ const SignUp = (props) => {
 
   return (
     <Form onSubmit={formSubmit}>
-
+      <h1>Welcome to Expat Journal Registration Page!!</h1><br />
+      <h5>Please register yourself to enjoy Expat Journal</h5><br />
+      
       {serverError ? <p className="error">{serverError}</p> : null}
       <br />
       <Label htmlFor="username">

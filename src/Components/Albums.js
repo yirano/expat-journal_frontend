@@ -29,6 +29,7 @@ const Albums = (props) => {
 
   const remove = (e) => {
     props.removeAlbum(e.target.id)
+    alert("Are you sure want to delete this album?")
   }
   useEffect(() => {
     const id = localStorage.getItem('id')

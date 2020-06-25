@@ -26,6 +26,7 @@ const AddAlbum = (props) => {
   const [formState, setFormState] = useState({
     story_name: "",
     story_description: "",
+
   })
 
   const [buttonDisabled, setButtonDisabled] = useState(true)
@@ -33,12 +34,13 @@ const AddAlbum = (props) => {
   const [errors, setErrors] = useState({
     story_name: "",
     story_description: "",
-    photo_url: ""
+
   })
 
   const formSchema = yup.object().shape({
     story_name: yup.string().required("Title is a required field"),
     story_description: yup.string().required("Description is a required fiels"),
+
   })
 
   useEffect(() => {
@@ -75,6 +77,7 @@ const AddAlbum = (props) => {
     setFormState({
       story_name: "",
       story_description: "",
+      photo_url: ""
     })
   }
 
@@ -149,7 +152,6 @@ const AddAlbum = (props) => {
         </Label>
         <br />
         {props.isEditingAlbum ? <Button type="submit" disabled={buttonDisabled}>Edit Album</Button> : <Button type="submit" disabled={buttonDisabled}> Post Album </Button>}
-
 
       </Form>
     </StyledForm>

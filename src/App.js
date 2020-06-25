@@ -28,9 +28,14 @@ function App(props) {
   return (
     <Router>
       <header className="nav">
-        <Link to="/albums">
-          <Button>Home</Button>
-        </Link>
+        {localStorage.getItem('token') === null ?
+          <a href="https://xpatjournal.netlify.app/">
+            <Button>Home</Button>
+          </a>
+          : <Link to="/albums">
+            <Button>Home</Button>
+          </Link>
+        }
 
         {localStorage.key('token') !== null ?
           <Link to="/addalbum">
@@ -45,6 +50,7 @@ function App(props) {
           </Link> :
           <Link to="/login">
             <Button onClick={logOut}>LogOut</Button>
+
           </Link>
         }
       </header>

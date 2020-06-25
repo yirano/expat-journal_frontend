@@ -74,6 +74,7 @@ function Login(props) {
     validateChange(e)
   }
 
+  
   return (
 
     <Form onSubmit={handleLogin} >
@@ -109,8 +110,9 @@ function Login(props) {
         ) : null}
       </Label>
       <br />
-
-      <Button type="submit" disabled={buttonDisabled}>Submit </Button>
+          
+      <Button type="submit" disabled={buttonDisabled} >Submit </Button>
+    
       <Link to="/signup"><br />
 
         <Button type="submit">Register</Button>
