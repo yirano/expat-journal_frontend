@@ -1,57 +1,50 @@
 import React, { useEffect } from "react"
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { loadPosts } from '../Action/action'
+import { loadAlbums, removeAlbum } from '../Action/action'
 import styled from 'styled-components'
-import PhotoCard from './PhotoCard'
 import { Button } from 'reactstrap'
+import AlbumCard from './AlbumCard'
 
 const StyledCardContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
-  flex-direction:row
+  flex-direction:column
 `
 
-const StyledCard = styled.div`
-  width: 30%;
-  margin:20px;
-`
-
-const Albums = ({ images, loadPosts }) => {
-  const remove = () => {
-    alert("Are you sure want to delete this post")
+const Albums = (props) => {
+  const remove = (e) => {
+    props.removeAlbum(e.target.id)
   }
   useEffect(() => {
-    loadPosts()
-  })
+    const id = localStorage.getItem('id')
+    props.loadAlbums(id)
+  }, [])
+
   return (
     <div>
       <StyledCardContainer>
-        {images.map((image) => (
-          <StyledCard>
-            <PhotoCard image={image} key={image.id} height="380px" />
-            <Link to={`/photos/${image.id}`}>
-              <Button style={{ marginLeft: "2%" }}>View Story</Button>
+        {props.albums.map((album) => (
+          <>
+            <Link to={`/album/${album.id}`}>
+              <AlbumCard album={album} />
             </Link>
-            <Link to="/Edit">
+            {/* <Link to="/Edit">
               <Button style={{ marginLeft: "2%" }}>Edit</Button>
-            </Link>
-
-            <Button style={{ marginLeft: "2%" }} onClick={remove}>Delete</Button>
-
-          </StyledCard>
+            </Link> */}
+            <Button style={{ marginLeft: "2%", height: '40px' }} id={album.id} onClick={e => remove(e)}>Delete</Button>
+          </>
         ))}
-
       </StyledCardContainer>
-    </div>
+    </div >
   )
 }
 
 const mapStateToProps = (state) => {
   return {
-    images: state.data
+    albums: state.albumData
   }
 }
 
-export default connect(mapStateToProps, { loadPosts })(Albums)
+export default connect(mapStateToProps, { loadAlbums, removeAlbum })(Albums)

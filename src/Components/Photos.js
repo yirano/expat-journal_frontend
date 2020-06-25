@@ -22,7 +22,7 @@ const StyledCard = styled.div`
   width: 800px;
   margin:20px;
 `
-const Photos = ({ images, loadPosts, isLoading, spotLight, deletePhoto }) => {
+const Photos = ({ images, loadPosts, isLoading, spotLight, deletePhoto, album }) => {
   function remove(e) {
     alert("Are you sure want to delete this post")
     console.log('Delete id ---> ', e.target.id)
@@ -30,11 +30,11 @@ const Photos = ({ images, loadPosts, isLoading, spotLight, deletePhoto }) => {
   }
 
   useEffect(() => {
-    const id = localStorage.getItem('id')
-    loadPosts(id)
-    console.log(images)
+    // const id = localStorage.getItem('id')
+    loadPosts(album.id)
   }, [])
 
+  console.log('COMPONENT -> Photos -> images', images)
   const spotLightPhoto = id => {
     spotLight(id)
   }
@@ -44,7 +44,6 @@ const Photos = ({ images, loadPosts, isLoading, spotLight, deletePhoto }) => {
 
       {!isLoading ?
         <StyledCardContainer>
-          {console.log(images)}
           {images.map((image) => (
             <StyledCard id={image.id} onClick={() => spotLightPhoto(image.id)} >
               <Link to={`/photos/${image.id}`}>
