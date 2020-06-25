@@ -17,6 +17,11 @@ const StyledAlbum = styled.div`
   height: 600px;
 `
 
+const StyledButtonContainer = styled.div`
+  display: flex;
+  justify-content: flex-end;
+`
+
 const Albums = (props) => {
   const remove = (e) => {
     props.removeAlbum(e.target.id)
@@ -35,10 +40,12 @@ const Albums = (props) => {
           <Link to={`/albums/${album.id}`}>
             <AlbumCard album={album} />
           </Link>
-          <Link to={`/album/${album.id}/post`}>
-            <Button style={{ marginLeft: "2%", height: '40px' }} id={album.id} >Add to Album</Button>
-          </Link>
-          <Button style={{ marginLeft: "2%", height: '40px' }} id={album.id} onClick={e => remove(e)}>Delete</Button>
+          <StyledButtonContainer>
+            <Link to={`/album/${album.id}/post`}>
+              <Button style={{ marginLeft: "2%", height: '40px' }} id={album.id} >Add to Album</Button>
+            </Link>
+            <Button style={{ marginLeft: "2%", height: '40px' }} id={album.id} onClick={e => remove(e)}>Delete</Button>
+          </StyledButtonContainer>
         </StyledAlbum>
       )) : null}
     </StyledCardContainer>
