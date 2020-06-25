@@ -35,12 +35,8 @@ function App(props) {
         </Link>
 
         <Link to="/addalbum">
-          <Button>Add to Album</Button>
+          <Button>New Album</Button>
         </Link>
-
-        {/* <Link to="/photos">
-          <Button>Photos</Button>
-        </Link> */}
 
         {props.isLoggedIn || localStorage.key('token') !== '' ?
           <Link to="/posts">
@@ -69,7 +65,7 @@ function App(props) {
         <Route path="/albums" component={Albums} />
         <Route exact path="/photo/:id" component={Photo} />
 
-        <PrivateRoute path="/posts" component={Posts} />
+        <PrivateRoute path="/album/:id/post" component={Posts} />
         <PrivateRoute path="/addalbum" component={AddAlbum} />
 
       </Switch>

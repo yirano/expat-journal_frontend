@@ -1,52 +1,41 @@
 import React, { useState, useEffect } from 'react'
-import { Form, Label, Input, Button } from 'reactstrap'
+import { Form, Label, Input, Button, Dropdown } from 'reactstrap'
 import * as yup from 'yup'
-import { addPost } from '../Action/action'
+import { addPost, loadAlbums } from '../Action/action'
 import { connect } from 'react-redux'
+import { useParams } from 'react-router'
 
 const Posts = (props) => {
-
+  const param = useParams().id
   const [serverError, setServerError] = useState("")
-
   const [formState, setFormState] = useState({
     photo_title: "",
     photo_description: "",
     photo_url: ""
   })
-
   const [buttonDisabled, setButtonDisabled] = useState(true)
-
   const [errors, setErrors] = useState({
     photo_title: "",
     photo_description: "",
     photo_url: ""
   })
-
   const formSchema = yup.object().shape({
     photo_title: yup.string().required("Title is a required field"),
     photo_description: yup.string().required("Description is a required fiels"),
     photo_url: yup.string().required("Please enter a valid URL").matches(/[https://]/)
   })
 
-  useEffect(() => {
-
-    formSchema.isValid(formState).then(isFormValid => {
-      setButtonDisabled(!isFormValid) // disabled= false if form is valid
-    })
-  }, [formState])
-
   const formSubmit = e => {
     e.preventDefault()
-    const id = localStorage.getItem('id')
+
     console.log(formState)
-    props.addPost(formState, id)
+    props.addPost(formState, param)
     setFormState({
       photo_title: "",
       photo_description: "",
       photo_url: ""
     })
   }
-
   const validateChange = e => {
     yup
       .reach(formSchema, e.target.name)
@@ -64,7 +53,6 @@ const Posts = (props) => {
         })
       })
   }
-
   const inputChange = e => {
     e.persist()
 
@@ -77,6 +65,12 @@ const Posts = (props) => {
     validateChange(e)
     setFormState(newFormData)
   }
+
+  useEffect(() => {
+    formSchema.isValid(formState).then(isFormValid => {
+      setButtonDisabled(!isFormValid) // disabled= false if form is valid
+    })
+  }, [formState])
 
   return (
     <Form onSubmit={formSubmit}>
@@ -122,10 +116,16 @@ const Posts = (props) => {
         ) : null}
       </Label>
       <br />
-      <Button type="submit" disabled={buttonDisabled}> Post </Button>
 
+      <Button type="submit" disabled={buttonDisabled}> Post </Button>
     </Form>
   )
 }
 
-export default connect(null, { addPost })(Posts)
+const mapStateToProps = (state, ownProps) => {
+  return {
+    albums: state.albumData
+  }
+}
+
+export default connect(mapStateToProps, { addPost, loadAlbums })(Posts)

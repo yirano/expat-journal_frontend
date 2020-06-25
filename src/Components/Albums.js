@@ -30,6 +30,9 @@ const Albums = (props) => {
             <Link to={`/albums/${album.id}`}>
               <AlbumCard album={album} />
             </Link>
+            <Link to={`/album/${album.id}/post`}>
+              <Button style={{ marginLeft: "2%", height: '40px' }} id={album.id} >Add to Album</Button>
+            </Link>
             <Button style={{ marginLeft: "2%", height: '40px' }} id={album.id} onClick={e => remove(e)}>Delete</Button>
           </>
         )) : null}

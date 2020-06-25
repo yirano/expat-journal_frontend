@@ -27,10 +27,11 @@ const AddAlbum = (props) => {
   })
 
   useEffect(() => {
-
     formSchema.isValid(formState).then(isFormValid => {
       setButtonDisabled(!isFormValid) // disabled= false if form is valid
     })
+
+
   }, [formState])
 
   const formSubmit = e => {
