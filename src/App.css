@@ -18,6 +18,8 @@ Form {
 	width: 500px;
 	justify-content: center;
 	background-color: #fceff9;
+	align-self: center;
+	margin: 0 auto;
 }
 
 label {
