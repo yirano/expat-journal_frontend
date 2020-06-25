@@ -25,14 +25,14 @@ const Albums = (props) => {
   return (
     <div>
       <StyledCardContainer>
-        {props.albums.map((album) => (
+        {props.albums !== undefined ? props.albums.map((album) => (
           <>
-            <Link to={`/album/${album.id}`}>
+            <Link to={`/albums/${album.id}`}>
               <AlbumCard album={album} />
             </Link>
             <Button style={{ marginLeft: "2%", height: '40px' }} id={album.id} onClick={e => remove(e)}>Delete</Button>
           </>
-        ))}
+        )) : null}
       </StyledCardContainer>
     </div >
   )

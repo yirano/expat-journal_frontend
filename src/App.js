@@ -38,9 +38,9 @@ function App(props) {
           <Button>Add to Album</Button>
         </Link>
 
-        <Link to="/photos">
+        {/* <Link to="/photos">
           <Button>Photos</Button>
-        </Link>
+        </Link> */}
 
         {props.isLoggedIn || localStorage.key('token') !== '' ?
           <Link to="/posts">
@@ -65,9 +65,9 @@ function App(props) {
         <Route path="/edit/:id">
           <Edit stuff={props.spotLight} />
         </Route>
+        <Route path="/albums/:id" component={Photos} />
         <Route path="/albums" component={Albums} />
-        <Route exact path="/photos/:id" component={Photo} />
-        <Route exact path="/photos" component={Photos} />
+        {/* <Route exact path="/photos" component={Photos} /> */}
 
         <PrivateRoute path="/posts" component={Posts} />
         <PrivateRoute path="/addalbum" component={AddAlbum} />

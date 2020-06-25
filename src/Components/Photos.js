@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { loadPosts, spotLight, deletePhoto } from '../Action/action'
 import PhotoCard from './PhotoCard'
 import styled from 'styled-components'
-import { Link } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import { Button } from 'reactstrap'
 
 
@@ -20,6 +20,10 @@ const StyledCard = styled.div`
   margin:20px;
 `
 const Photos = ({ images, loadPosts, isLoading, spotLight, deletePhoto, album }) => {
+
+  const param = useParams().id
+  console.log(param)
+
   function remove(e) {
     alert("Are you sure want to delete this post")
     console.log('Delete id ---> ', e.target.id)
@@ -28,7 +32,7 @@ const Photos = ({ images, loadPosts, isLoading, spotLight, deletePhoto, album })
 
   useEffect(() => {
     // const id = localStorage.getItem('id')
-    // loadPosts(album.id)
+    loadPosts(param)
   }, [])
 
   console.log('COMPONENT -> Photos -> images', images)

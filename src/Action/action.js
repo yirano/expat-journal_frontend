@@ -41,10 +41,8 @@ export const loadAlbums = (id) => dispatch => {
     })
 }
 
-
-
-export const loadPosts = () => dispatch => {
-  axiosWithAuth().get('/stories/5/photos')
+export const loadPosts = (id) => dispatch => {
+  axiosWithAuth().get(`stories/${id}/photos`)
     .then(res => {
       dispatch({ type: LOAD_POSTS, payload: res.data })
     })
