@@ -3,6 +3,7 @@ import { Form, Label, Input, Button } from 'reactstrap'
 import * as yup from 'yup'
 import { addAlbum } from '../Action/action'
 import { connect } from 'react-redux'
+import styled from 'styled-components'
 
 const AddAlbum = (props) => {
 
@@ -75,9 +76,20 @@ const AddAlbum = (props) => {
     setFormState(newFormData)
   }
 
+  const StyledHeader = styled.h1`
+    // text-align: center;
+  `
+
+  const StyledForm = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 5% 0;
+  `
+
   return (
-    <>
-      <h1>Start an Album</h1>
+    <StyledForm>
+      <StyledHeader>Start an Album</StyledHeader>
       <Form onSubmit={formSubmit}>
         {serverError ? <p className="error">{serverError}</p> : null}
         <Label for="story_name">
@@ -92,7 +104,7 @@ const AddAlbum = (props) => {
           {errors.story_name === '' ? <p className="error">{errors.story_name}</p> : null}
         </Label><br />
         <Label htmlFor="story_description">
-          <legend>story_description</legend>
+          <legend>Story Description</legend>
           <Input
             type="textarea"
             name="story_description"
@@ -109,7 +121,7 @@ const AddAlbum = (props) => {
         <Button type="submit" disabled={buttonDisabled}> Post Album </Button>
 
       </Form>
-    </>
+    </StyledForm>
   )
 }
 

@@ -33,7 +33,6 @@ export const logOut = () => dispatch => {
 export const loadAlbums = (id) => dispatch => {
   axiosWithAuth().get(`/users/${id}`)
     .then(res => {
-      console.log('Album Loaded --> ', res.data)
       dispatch({ type: LOAD_ALBUMS, payload: res.data.stories })
     })
     .catch(err => {
@@ -48,7 +47,7 @@ export const loadPosts = (id) => dispatch => {
     })
     .catch(err => {
       console.log('Error while fetching data --> ', err.response)
-      dispatch({ type: LOAD_POSTS, payload: [] })
+      dispatch({ type: LOAD_POSTS, payload: { data: [], error: err.response }, })
     })
 }
 

@@ -20,7 +20,7 @@ export default (state = initialState, { type, payload }) => {
     case DATA_LOADING:
       return { ...state, isLoading: payload }
     case LOAD_POSTS:
-      return { data: payload, error: '', isLoggedIn: true, isLoading: false }
+      return { data: payload.data, error: payload.error, isLoggedIn: true, isLoading: false, albumData: state.albumData }
     case LOG_OUT:
       return { ...state, isLoggedIn: payload }
     case PHOTO_SPOTLIGHT:
@@ -30,7 +30,6 @@ export default (state = initialState, { type, payload }) => {
         spotLight: payload
       }
     case LOAD_ALBUMS:
-      console.log('REDUCER -> LOAD_ALBUMS ', payload)
       return { ...state, albumData: payload, error: '', spotLight: state.spotLight, isLoggedIn: true, isLoading: false }
     default:
       return state

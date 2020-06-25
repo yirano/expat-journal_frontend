@@ -26,21 +26,15 @@ function App(props) {
   }
 
   return (
-
     <Router>
       <header className="nav">
-
         <Link to="/albums">
           <Button>Home</Button>
         </Link>
 
-        <Link to="/addalbum">
-          <Button>New Album</Button>
-        </Link>
-
         {props.isLoggedIn || localStorage.key('token') !== '' ?
-          <Link to="/posts">
-            <Button>Posts</Button>
+          <Link to="/addalbum">
+            <Button>New Album</Button>
           </Link>
           : null
         }
@@ -58,9 +52,7 @@ function App(props) {
       <Switch>
         <Route exact path="/login" component={Login} />
         <Route path="/signup" component={SignUp} />
-        <Route path="/edit/:id">
-          <Edit stuff={props.spotLight} />
-        </Route>
+        <Route path="/edit/:id" component={Edit} />
         <Route path="/albums/:id" component={Photos} />
         <Route path="/albums" component={Albums} />
         <Route exact path="/photo/:id" component={Photo} />
