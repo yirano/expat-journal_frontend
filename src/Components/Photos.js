@@ -36,6 +36,7 @@ const Photos = ({ images, loadPosts, isLoading, spotLight, deletePhoto, album })
   }, [])
 
   console.log('COMPONENT -> Photos -> images', images)
+  console.log('COMPONENT -> Photos -> isLoading', isLoading)
   const spotLightPhoto = id => {
     spotLight(id)
   }
@@ -65,7 +66,7 @@ const Photos = ({ images, loadPosts, isLoading, spotLight, deletePhoto, album })
 
 const mapStateToProps = (state) => {
   return {
-    images: state.data,
+    images: state.data || [],
     isLoading: state.isLoading
   }
 }

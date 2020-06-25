@@ -4,6 +4,16 @@ import * as yup from 'yup'
 import { addAlbum } from '../Action/action'
 import { connect } from 'react-redux'
 import styled from 'styled-components'
+const StyledHeader = styled.h1`
+    // text-align: center;
+  `
+
+const StyledForm = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 5% 0;
+  `
 
 const AddAlbum = (props) => {
 
@@ -76,16 +86,6 @@ const AddAlbum = (props) => {
     setFormState(newFormData)
   }
 
-  const StyledHeader = styled.h1`
-    // text-align: center;
-  `
-
-  const StyledForm = styled.div`
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 5% 0;
-  `
 
   return (
     <StyledForm>

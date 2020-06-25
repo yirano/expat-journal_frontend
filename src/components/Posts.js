@@ -6,6 +6,14 @@ import { connect } from 'react-redux'
 import { useParams } from 'react-router'
 import styled from 'styled-components'
 
+const StyledForm = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 5% 0;
+  `
+
+
 const Posts = (props) => {
   const param = useParams().id
   const [serverError, setServerError] = useState("")
@@ -73,12 +81,6 @@ const Posts = (props) => {
     })
   }, [formState])
 
-  const StyledForm = styled.div`
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 5% 0;
-  `
 
   return (
     <StyledForm>

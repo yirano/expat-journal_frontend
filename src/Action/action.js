@@ -43,7 +43,8 @@ export const loadAlbums = (id) => dispatch => {
 export const loadPosts = (id) => dispatch => {
   axiosWithAuth().get(`stories/${id}/photos`)
     .then(res => {
-      dispatch({ type: LOAD_POSTS, payload: res.data })
+      console.log(res.data)
+      dispatch({ type: LOAD_POSTS, payload: { data: res.data } })
     })
     .catch(err => {
       console.log('Error while fetching data --> ', err.response)
