@@ -75,7 +75,9 @@ export const addPost = (post, id) => dispatch => {
 export const editAlbum = (id, info) => dispatch => {
   console.log('EDITALBUM --> ', id)
   axiosWithAuth().put(`/stories/${id}`, info)
-    .then(res => console.log('Album Edit Success --> ', res))
+    .then(res => {
+      window.location.reload(true)
+    })
     .catch(err => console.log('Error Editing Album --> ', err.response))
 }
 
@@ -99,6 +101,7 @@ export const removeAlbum = id => dispatch => {
     .then(res => {
       console.log('Album Delete Successful --> ', res)
       window.location.reload(true)
+
     })
     .catch(err => console.log('Error Deleting Album --> ', err.response))
 }

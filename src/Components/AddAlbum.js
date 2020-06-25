@@ -81,6 +81,8 @@ const AddAlbum = (props) => {
   const submitAlbumEdit = e => {
     e.preventDefault()
     props.editAlbum(param, formState)
+    props.history.push('/albums')
+
   }
 
   const validateChange = e => {
