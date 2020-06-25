@@ -47,7 +47,7 @@ const Photos = ({ images, loadPosts, isLoading, spotLight, deletePhoto, album })
         <StyledCardContainer>
           {images.map((image) => (
             <StyledCard id={image.id} onClick={() => spotLightPhoto(image.id)} >
-              <Link to={`/photos/${image.id}`}>
+              <Link to={`/photo/${image.id}`}>
                 <PhotoCard image={image} key={image.id} height="900px" />
               </Link>
               <Link to={`/edit/${image.id}`}>

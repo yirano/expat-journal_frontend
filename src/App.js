@@ -67,7 +67,7 @@ function App(props) {
         </Route>
         <Route path="/albums/:id" component={Photos} />
         <Route path="/albums" component={Albums} />
-        {/* <Route exact path="/photos" component={Photos} /> */}
+        <Route exact path="/photo/:id" component={Photo} />
 
         <PrivateRoute path="/posts" component={Posts} />
         <PrivateRoute path="/addalbum" component={AddAlbum} />
