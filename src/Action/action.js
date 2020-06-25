@@ -53,6 +53,8 @@ export const loadPosts = (id) => dispatch => {
     })
 }
 
+
+
 export const addAlbum = (post, id) => dispatch => {
   axiosWithAuth().post(`/users/${id}/stories`, post)
     .then(res => {
@@ -68,6 +70,13 @@ export const addPost = (post, id) => dispatch => {
   axiosWithAuth().post(`/stories/${id}/photos`, post)
     .then(res => console.log('Post Successful --> ', res))
     .catch(err => console.log('Post error --> ', err.response))
+}
+
+export const editAlbum = (id, info) => dispatch => {
+  console.log('EDITALBUM --> ', id)
+  axiosWithAuth().put(`/stories/${id}`, info)
+    .then(res => console.log('Album Edit Success --> ', res))
+    .catch(err => console.log('Error Editing Album --> ', err.response))
 }
 
 export const editPost = (id, post) => dispatch => {

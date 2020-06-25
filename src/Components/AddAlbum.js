@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react'
 import { Form, Label, Input, Button } from 'reactstrap'
 import * as yup from 'yup'
-import { addAlbum } from '../Action/action'
+import { addAlbum, editAlbum } from '../Action/action'
 import { connect, useDispatch } from 'react-redux'
 import styled from 'styled-components'
+import { useParams } from 'react-router'
+import axiosWithAuth from '../axiosWithAuth/axiosWithAuth'
 const StyledHeader = styled.h1`
     // text-align: center;
   `
@@ -16,6 +18,8 @@ const StyledForm = styled.div`
   `
 
 const AddAlbum = (props) => {
+  const param = useParams().id
+  const userID = localStorage.getItem('id')
 
   const [serverError, setServerError] = useState("")
 
@@ -42,8 +46,26 @@ const AddAlbum = (props) => {
       setButtonDisabled(!isFormValid) // disabled= false if form is valid
     })
 
-
   }, [formState])
+
+  useEffect(() => {
+    if (props.isEditingAlbum) {
+
+      axiosWithAuth().get(`/users/${userID}`)
+        .then(res => {
+          // console.log(res.data.stories)
+          return res.data.stories.filter(story => story.id === Number(param))
+        })
+        .then(res => {
+          console.log(res)
+          setFormState({
+            story_name: res[0].story_name,
+            story_description: res[0].story_description
+          })
+        })
+        .catch(err => console.log(err.response))
+    }
+  }, [])
 
   const formSubmit = e => {
     e.preventDefault()
@@ -54,6 +76,11 @@ const AddAlbum = (props) => {
       story_name: "",
       story_description: "",
     })
+  }
+
+  const submitAlbumEdit = e => {
+    e.preventDefault()
+    props.editAlbum(param, formState)
   }
 
   const validateChange = e => {
@@ -87,10 +114,11 @@ const AddAlbum = (props) => {
   }
 
 
+
   return (
     <StyledForm>
       <StyledHeader>{props.isEditingAlbum ? 'Edit your Album!' : 'Start an Album'}</StyledHeader>
-      <Form onSubmit={formSubmit}>
+      <Form onSubmit={props.isEditingAlbum ? submitAlbumEdit : formSubmit}>
         {serverError ? <p className="error">{serverError}</p> : null}
         <Label for="story_name">
           <legend>Title</legend>
@@ -118,7 +146,8 @@ const AddAlbum = (props) => {
           ) : null}
         </Label>
         <br />
-        <Button type="submit" disabled={buttonDisabled}> Post Album </Button>
+        {props.isEditingAlbum ? <Button type="submit" disabled={buttonDisabled}>Edit Album</Button> : <Button type="submit" disabled={buttonDisabled}> Post Album </Button>}
+
 
       </Form>
     </StyledForm>
@@ -131,4 +160,4 @@ const mapStateToProps = (state, ownProps) => {
   }
 }
 
-export default connect(mapStateToProps, { addAlbum })(AddAlbum)
+export default connect(mapStateToProps, { addAlbum, editAlbum })(AddAlbum)
