@@ -61,9 +61,7 @@ const Photos = ({ images, loadPosts, isLoading, spotLight, deletePhoto }) => {
           ))}
         </StyledCardContainer>
         : <h1>LOADING</h1>}
-      <Route path='/edit/:id'>
-        <Edit />
-      </Route>
+
     </div>
   )
 }

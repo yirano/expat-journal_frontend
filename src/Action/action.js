@@ -43,6 +43,12 @@ export const addPost = (post) => dispatch => {
     .catch(err => console.log('Post error --> ', err.response))
 }
 
+export const editPost = (id, post) => dispatch => {
+  axiosWithAuth().put(`/photos/${id}`, post)
+    .then(res => console.log('Post Edit Success --> ', res))
+    .catch(err => console.log('Error editing --> ', err.response))
+}
+
 export const spotLight = (id) => dispatch => {
   axiosWithAuth().get(`/photos/${id}`)
     .then(res => {
