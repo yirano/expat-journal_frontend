@@ -18,7 +18,8 @@ export const logIn = (credentials) => dispatch => {
       console.log('Log in success --> ', res)
       localStorage.setItem('id', res.data.id)
       localStorage.setItem('token', res.data.token)
-      // window.location.reload()
+      dispatch({ type: DATA_LOADING, payload: false })
+      // window.location.reload(true)
     })
     .catch(err => console.log('Error logging in -->', err.response))
 }
@@ -29,17 +30,8 @@ export const logOut = () => dispatch => {
   dispatch({ type: LOG_OUT, payload: false })
 }
 
-export const loadAlbums = (id) => dispatch => {
-  axiosWithAuth().get(`/users/${id}`)
-    .then(res => {
-      // console.log('INSIDE ACTION LOAD ALBUMS --> ', res.data.stories)
-      dispatch({ type: LOAD_ALBUMS, payload: res.data.stories })
-    })
-    .catch(err => console.log('Album error --> ', err))
-}
-
-export const loadPosts = (id) => dispatch => {
-  axiosWithAuth().get(`/stories/${id}/photos`)
+export const loadPosts = () => dispatch => {
+  axiosWithAuth().get('/stories/5/photos')
     .then(res => {
       dispatch({ type: LOAD_POSTS, payload: res.data })
     })
@@ -48,11 +40,8 @@ export const loadPosts = (id) => dispatch => {
     })
 }
 
-
-
-export const addPost = (post, id) => dispatch => {
-  console.log('addPost id --> ', id)
-  axiosWithAuth().post(`/stories/${id}/photos`, post)
+export const addPost = (post) => dispatch => {
+  axiosWithAuth().post('/stories/5/photos', post)
     .then(res => console.log('Post Successful --> ', res))
     .catch(err => console.log('Post error --> ', err.response))
 }
@@ -66,7 +55,7 @@ export const addAlbum = (info, id) => dispatch => {
 export const spotLight = (id) => dispatch => {
   axiosWithAuth().get(`/photos/${id}`)
     .then(res => {
-      console.log('ACTION --> spotLight --> ', res)
+      // console.log('ACTION --> spotLight --> ', res)
       dispatch({ type: PHOTO_SPOTLIGHT, payload: res.data })
     })
     .catch(err => console.log('Spotlight error --> ', err.response))
@@ -82,7 +71,7 @@ export const removeAlbum = id => dispatch => {
 }
 
 export const deletePhoto = (id) => dispatch => {
-  console.log('Delete Photo Action ID --> ', id)
+  // console.log('Delete Photo Action ID --> ', id)
   axiosWithAuth().delete(`/photos/${id}`)
     .then(res => {
       console.log('Photo Delete successful --> ', res)

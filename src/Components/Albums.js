@@ -1,7 +1,7 @@
 import React, { useEffect } from "react"
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { loadAlbums, removeAlbum } from '../Action/action'
+//import { loadAlbums, removeAlbum } from '../Action/action'
 import styled from 'styled-components'
 import { Button } from 'reactstrap'
 import AlbumCard from './AlbumCard'
@@ -19,7 +19,7 @@ const Albums = (props) => {
   }
   useEffect(() => {
     const id = localStorage.getItem('id')
-    props.loadAlbums(id)
+   {/* props.loadAlbums(id)*/}
   }, [])
 
   return (
@@ -47,4 +47,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps, { loadAlbums, removeAlbum })(Albums)
+export default connect(mapStateToProps, { })(Albums)

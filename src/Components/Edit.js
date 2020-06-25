@@ -3,18 +3,20 @@ import { Form, Label, Input, Button } from 'reactstrap'
 import * as yup from 'yup'
 import { addPost, spotLight } from '../Action/action'
 import { connect } from 'react-redux'
-import { useParams } from 'react-router'
+import { useParams } from 'react-router-dom'
 import PhotoCard from './PhotoCard'
 import styled from 'styled-components'
 
 const Edit = (props) => {
+  // console.log('EDIT COMPONENT ', props)
+  const param = useParams().id
   const initialState = {
-    photo_url: '',
+    photo_url: props.image.photo_url,
     photo_title: '',
     photo_description: ''
   }
-  const [serverError, setServerError] = useState("")
   const [formState, setFormState] = useState(initialState)
+  const [serverError, setServerError] = useState("")
   const [buttonDisabled, setButtonDisabled] = useState(true)
   const [errors, setErrors] = useState({
     photo_title: "",
@@ -31,17 +33,20 @@ const Edit = (props) => {
     formSchema.isValid(formState).then(isFormValid => {
       setButtonDisabled(!isFormValid) // disabled= false if form is valid
     })
+    props.spotLight(param)
+
+    // setTimeout(setFormState({
+    //   photo_url: props.image.photo_url,
+    //   photo_title: props.image.photo_title,
+    //   photo_description: props.image.photo_description
+    // }), 900)
   }, [formState])
 
   const formSubmit = e => {
     e.preventDefault()
     console.log(formState)
     props.addPost(formState)
-    setFormState({
-      photo_title: "",
-      photo_description: "",
-      photo_url: ""
-    })
+    setFormState(initialState)
   }
 
   const validateChange = e => {
@@ -80,7 +85,7 @@ const Edit = (props) => {
   flex-direction: column;
   justify-content: center;
   `
-
+  console.log('SPOTLIGHT ', props.image)
   return (
     <>
       {props.spotLight !== undefined ?
@@ -94,7 +99,7 @@ const Edit = (props) => {
                 type="text"
                 name="photo_title"
                 onChange={inputChange}
-                value={props.spotLight.photo_title}
+                value={props.image.photo_title}
               />
               {errors.photo_title === '' ? <p className="error">{errors.photo_title}</p> : null}
             </Label><br />
@@ -105,7 +110,7 @@ const Edit = (props) => {
                 name="photo_description"
                 id="photo_photo_description"
                 placeholder="Please enter details here"
-                value={props.spotLight.photo_description}
+                value={props.image.photo_description}
                 onChange={inputChange}
               />
               {errors.photo_description === '' ? (
@@ -120,7 +125,7 @@ const Edit = (props) => {
                 name="photo_url"
                 id="photo_url"
                 placeholder="Please enter image URL here"
-                value={props.spotLight.photo_url}
+                value={props.image.photo_url}
                 onChange={inputChange}
               />
               {errors.photo_url.length > 0 ? (
@@ -139,10 +144,10 @@ const Edit = (props) => {
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    spotLight: state.spotLight
+    image: state.spotLight || ''
   }
 }
 
-export default connect(mapStateToProps, { addPost })(Edit)
+export default connect(mapStateToProps, { addPost, spotLight })(Edit)
 
 // export default Posts
