@@ -26,7 +26,7 @@ function Login(props) {
     e.preventDefault()
     console.log(credentials)
     props.logIn(credentials)
-    props.history.push('/photos')
+    props.history.push('/albums')
   }
 
   //* Login Page Validation-REACT I
