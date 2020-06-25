@@ -19,7 +19,7 @@ export const logIn = (credentials) => dispatch => {
       localStorage.setItem('id', res.data.id)
       localStorage.setItem('token', res.data.token)
       dispatch({ type: DATA_LOADING, payload: false })
-      // window.location.reload(true)
+      window.location.reload(true)
     })
     .catch(err => console.log('Error logging in -->', err.response))
 }

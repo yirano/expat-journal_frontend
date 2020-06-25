@@ -27,6 +27,7 @@ const StyledButtonContainer = styled.div`
 const Albums = (props) => {
   const remove = (e) => {
     props.removeAlbum(e.target.id)
+    alert("Are you sure want to delete this album?")
   }
   useEffect(() => {
     const id = localStorage.getItem('id')
@@ -43,13 +44,13 @@ const Albums = (props) => {
             <AlbumCard album={album} />
           </Link>
           <StyledButtonContainer>
-            <Link to={`/album/${album.id}/post`}>
-              <Button style={{ marginLeft: "2%", height: '40px' }} id={album.id} >Add to Album</Button>
+            <Link to={`/albums/${album.id}/post`}>
+              <Button style={{marginLeft: "2%", height: '40px' }} id={album.id} >Add to Album</Button>
             </Link>
-            <Link to={`/album/edit/${album.id}`}>
-              <Button style={{ marginLeft: "2%", height: '40px' }} id={album.id}>Edit Album</Button>
+            <Link to={`/albums/edit/${album.id}`}>
+              <Button style={{ marginLeft: "5%", height: '40px' }} id={album.id}>Edit Album</Button>
             </Link>
-            <Button style={{ marginLeft: "2%", height: '40px' }} id={album.id} onClick={e => remove(e)}>Delete</Button>
+            <Button style={{marginLeft: "2%",  height: '40px' }} id={album.id} onClick={e => remove(e)}>Delete</Button>
           </StyledButtonContainer>
         </StyledAlbum>
       )) : null}

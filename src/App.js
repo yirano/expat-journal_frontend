@@ -28,11 +28,14 @@ function App(props) {
   return (
     <Router>
       <header className="nav">
+      {props.isLoggedIn || localStorage.key('token') !== '' ?
         <Link to="/albums">
           <Button>Home</Button>
         </Link>
-
-        {props.isLoggedIn || localStorage.key('token') !== '' ?
+        :null
+  }
+        {/*{props.isLoggedIn || localStorage.key('token') !== '' ?*/}
+        {localStorage.getItem('token') === null ?
           <Link to="/addalbum">
             <Button>New Album</Button>
           </Link>
@@ -45,6 +48,7 @@ function App(props) {
           </Link> :
           <Link to="/login">
             <Button onClick={logOut}>LogOut</Button>
+            
           </Link>
         }
       </header>
