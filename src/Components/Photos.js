@@ -10,7 +10,7 @@ import { Button } from 'reactstrap'
 
 const StyledCardContainer = styled.div`
   display: flex;
- flex-wrap: wrap;
+  flex-wrap: wrap;
   justify-content: space-around;
   flex-direction:row
 `

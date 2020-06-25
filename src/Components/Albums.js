@@ -9,11 +9,13 @@ import AlbumCard from './AlbumCard'
 const StyledCardContainer = styled.div`
   display: flex;
   justify-content: space-evenly;
+  flex-wrap: wrap;
 `
 const StyledAlbum = styled.div`
   display: flex;
   flex-direction: column;
   width: 24%;
+  min-width: 400px;
   height: 600px;
 `
 
