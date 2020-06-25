@@ -62,7 +62,9 @@ function App(props) {
       <Switch>
         <Route exact path="/login" component={Login} />
         <Route path="/signup" component={SignUp} />
-        <Route path="/edit/:id" component={Edit} />
+        <Route path="/edit/:id">
+          <Edit stuff={props.spotLight} />
+        </Route>
         {/* <Route path="/albums" component={Albums} /> */}
         <Route exact path="/photos/:id" component={Photo} />
         <Route exact path="/photos" component={Photos} />
@@ -78,7 +80,8 @@ function App(props) {
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    isLoggedIn: state.isLoggedIn
+    isLoggedIn: state.isLoggedIn,
+    spotLight: state.spotLight
   }
 }
 

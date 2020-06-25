@@ -46,10 +46,10 @@ export const addPost = (post) => dispatch => {
     .catch(err => console.log('Post error --> ', err.response))
 }
 
-export const addAlbum = (info, id) => dispatch => {
-  axiosWithAuth().post(`/users/${id}/stories`, info)
-    .then(res => console.log('Adding Album Successful --> ', res))
-    .catch(err => console.log('Error Adding Album --> ', err.response))
+export const editPost = (id, post) => dispatch => {
+  axiosWithAuth().put(`/photos/${id}`, post)
+    .then(res => console.log('Post Edit Success --> ', res))
+    .catch(err => console.log('Error editing --> ', err.response))
 }
 
 export const spotLight = (id) => dispatch => {

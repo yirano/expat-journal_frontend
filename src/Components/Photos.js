@@ -1,13 +1,10 @@
-import React, { useEffect, Component } from "react"
+import React, { useEffect } from "react"
 import { connect } from 'react-redux'
 import { loadPosts, spotLight, deletePhoto } from '../Action/action'
 import PhotoCard from './PhotoCard'
 import styled from 'styled-components'
-import { Link, Route } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { Button } from 'reactstrap'
-import axiosWithAuth from '../axiosWithAuth/axiosWithAuth'
-import Edit from './Edit'
-import NoPostMessage from './NoPostMessage'
 
 
 
@@ -58,7 +55,6 @@ const Photos = ({ images, loadPosts, isLoading, spotLight, deletePhoto, album })
           ))}
         </StyledCardContainer>
         : <h1>LOADING</h1>}
-      {/* <Route exact path='/edit/:id' component={Edit} /> */}
     </div>
   )
 }

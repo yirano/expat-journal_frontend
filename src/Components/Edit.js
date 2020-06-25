@@ -1,153 +1,90 @@
 import React, { useState, useEffect } from 'react'
 import { Form, Label, Input, Button } from 'reactstrap'
-import * as yup from 'yup'
-import { addPost, spotLight } from '../Action/action'
+import { addPost, editPost } from '../Action/action'
 import { connect } from 'react-redux'
-import { useParams } from 'react-router-dom'
-import PhotoCard from './PhotoCard'
-import styled from 'styled-components'
-
+import { useParams } from 'react-router'
+import axiosWithAuth from '../axiosWithAuth/axiosWithAuth'
+const initialState = {
+  photo_url: '',
+  photo_title: '',
+  photo_description: ''
+}
 const Edit = (props) => {
-  // console.log('EDIT COMPONENT ', props)
   const param = useParams().id
-  const initialState = {
-    photo_url: props.image.photo_url,
-    photo_title: '',
-    photo_description: ''
-  }
+  console.log('STUFF ', props.stuff)
+
   const [formState, setFormState] = useState(initialState)
-  const [serverError, setServerError] = useState("")
-  const [buttonDisabled, setButtonDisabled] = useState(true)
-  const [errors, setErrors] = useState({
-    photo_title: "",
-    photo_description: "",
-    photo_url: ""
-  })
-  const formSchema = yup.object().shape({
-    photo_title: yup.string().required("Title is a required field"),
-    photo_description: yup.string().required("Description is a required fiels"),
-    photo_url: yup.string().required("Please enter a valid URL").matches(/[https://]/)
-  })
 
-  useEffect(() => {
-    formSchema.isValid(formState).then(isFormValid => {
-      setButtonDisabled(!isFormValid) // disabled= false if form is valid
-    })
-    props.spotLight(param)
-
-    // setTimeout(setFormState({
-    //   photo_url: props.image.photo_url,
-    //   photo_title: props.image.photo_title,
-    //   photo_description: props.image.photo_description
-    // }), 900)
-  }, [formState])
-
-  const formSubmit = e => {
+  const handleSubmit = e => {
     e.preventDefault()
-    console.log(formState)
-    props.addPost(formState)
+    props.editPost(param, formState)
     setFormState(initialState)
   }
 
-  const validateChange = e => {
-    yup
-      .reach(formSchema, e.target.name)
-      .validate(e.target.value) // value in input
-      .then(inputIsValid => {
-        setErrors({
-          ...errors,
-          [e.target.name]: ""
+  useEffect(() => {
+    axiosWithAuth().get(`/photos/${param}`)
+      .then(res => {
+        setFormState({
+          photo_url: res.data.photo_url,
+          photo_title: res.data.photo_title,
+          photo_description: res.data.photo_description
         })
       })
-      .catch(err => {
-        setErrors({
-          ...errors,
-          [e.target.name]: err.errors[0]
-        })
-      })
-  }
+  }, [])
 
-  const inputChange = e => {
-    e.persist()
-
-    const newFormData = {
+  const handleChange = e => {
+    setFormState({
       ...formState,
       [e.target.name]:
         e.target.value
-    }
-
-    validateChange(e)
-    setFormState(newFormData)
+    })
   }
-
-  const StyledContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  `
-  console.log('SPOTLIGHT ', props.image)
   return (
     <>
-      {props.spotLight !== undefined ?
-        <StyledContainer>
-          <Form onSubmit={formSubmit}>
-            {serverError ? <p className="error">{serverError}</p> : null}
-            <Label for="photo_title">
-              <legend>Title</legend>
-              <Input
-                id="photo_title"
-                type="text"
-                name="photo_title"
-                onChange={inputChange}
-                value={props.image.photo_title}
-              />
-              {errors.photo_title === '' ? <p className="error">{errors.photo_title}</p> : null}
-            </Label><br />
-            <Label htmlFor="photo_description">
-              <legend>photo_description</legend>
-              <Input
-                type="textarea"
-                name="photo_description"
-                id="photo_photo_description"
-                placeholder="Please enter details here"
-                value={props.image.photo_description}
-                onChange={inputChange}
-              />
-              {errors.photo_description === '' ? (
-                <p className="error">{errors.photo_description}</p>
-              ) : null}
-            </Label>
-            <br />
-            <Label htmlFor="photo_url">
-              <legend>Image photo_url</legend>
-              <Input
-                type="url"
-                name="photo_url"
-                id="photo_url"
-                placeholder="Please enter image URL here"
-                value={props.image.photo_url}
-                onChange={inputChange}
-              />
-              {errors.photo_url.length > 0 ? (
-                <p className="error">{errors.photo_url}</p>
-              ) : null}
-            </Label>
-            <br />
-            <Button type="submit" disabled={buttonDisabled}> Post </Button>
-          </Form>
-        </StyledContainer>
-        : null
-      }
+      <Form onSubmit={handleSubmit}>
+        <Label for="photo_title">
+          <legend>Title</legend>
+          <Input
+            id="photo_title"
+            type="text"
+            name="photo_title"
+            onChange={e => handleChange(e)}
+            value={formState.photo_title}
+          />
+        </Label><br />
+        <Label htmlFor="photo_description">
+          <legend>photo_description</legend>
+          <Input
+            type="textarea"
+            name="photo_description"
+            id="photo_photo_description"
+            placeholder="Please enter details here"
+            value={formState.photo_description}
+            onChange={e => handleChange(e)}
+          />
+        </Label>
+        <br />
+        <Label htmlFor="photo_url">
+          <legend>Image photo_url</legend>
+          <Input
+            type="url"
+            name="photo_url"
+            id="photo_url"
+            placeholder="Please enter image URL here"
+            value={formState.photo_url}
+            onChange={e => handleChange(e)}
+          />
+        </Label>
+        <Button type="submit"> Post </Button>
+      </Form>
     </>
   )
 }
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    image: state.spotLight || ''
+    // image: state.spotLight.photo_url
   }
 }
 
-export default connect(mapStateToProps, { addPost, spotLight })(Edit)
-
-// export default Posts
+export default connect(mapStateToProps, { addPost, editPost })(Edit)

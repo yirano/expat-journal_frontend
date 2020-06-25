@@ -1,12 +1,9 @@
-import React, { useEffect, useState } from 'react'
-import { spotLight } from '../Action/action'
+import React from 'react'
 import {
   Card, CardImg, CardText, CardBody,
   CardTitle
 } from 'reactstrap'
 import styled from 'styled-components'
-
-import { connect } from 'react-redux'
 
 
 const StyledImageContainer = styled.div`
@@ -25,7 +22,7 @@ const PhotoCard = ({ image, height, width, style }) => {
   }
 
   return (
-    <Card  style={{ width: "100%" }}>
+    <Card style={{ width: "100%" }}>
       <StyledImageContainer style={{ height: height }}>
         <CardImg src={image.photo_url} alt="" style={{ minHeight: '100%' }} onMouseOver={scale} onMouseLeave={scale2} />
       </StyledImageContainer>
