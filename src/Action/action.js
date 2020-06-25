@@ -48,6 +48,7 @@ export const loadPosts = (id) => dispatch => {
     })
     .catch(err => {
       console.log('Error while fetching data --> ', err.response)
+      dispatch({ type: LOAD_POSTS, payload: [] })
     })
 }
 

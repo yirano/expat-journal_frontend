@@ -21,7 +21,7 @@ const Albums = (props) => {
     const id = localStorage.getItem('id')
     props.loadAlbums(id)
   }, [])
-  console.log(props.albums)
+  console.log('Rendered albums --> ', props.albums)
   return (
     <div>
       <StyledCardContainer>
@@ -40,7 +40,7 @@ const Albums = (props) => {
 
 const mapStateToProps = (state) => {
   return {
-    albums: state.albumData
+    albums: state.albumData || []
   }
 }
 
