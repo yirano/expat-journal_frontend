@@ -25,7 +25,9 @@ const AlbumCard = ({ width, height, album, loadPosts, stuff }) => {
       {/* <StyledImageContainer style={{ height: height, width: width }}>
         <CardImg src={album.photo_url} alt="" style={{ minHeight: '100%' }} />
       </StyledImageContainer> */}
-      <CardImg src={coverImg} style={{ height: '500px' }} />
+      <StyledImageContainer style={{height: '500px', width: '100%'}}>
+      <CardImg src={coverImg} style={{ minHeight: '100%' }} />
+      </StyledImageContainer>
       <CardBody>
         <CardTitle>Title: {album.story_name}</CardTitle>
         <CardText>Description: {album.story_description}</CardText>
