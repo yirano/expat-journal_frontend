@@ -46,13 +46,12 @@ const Photos = ({ images, loadPosts, isLoading, spotLight, deletePhoto }) => {
     <div>
       {!isLoading ?
         <StyledCardContainer>
-          {console.log(images)}
           {images.map((image) => (
             <StyledCard id={image.id} onClick={() => spotLightPhoto(image.id)} >
               <Link to={`/photos/${image.id}`}>
                 <PhotoCard image={image} key={image.id} height="900px" />
               </Link>
-              <Link to="/Edit">
+              <Link to={`/edit/${image.id}`}>
                 <Button style={{ marginLeft: "25%" }}>Edit</Button>
               </Link>
               <Button style={{ marginLeft: "10%" }} id={image.id} onClick={remove}>Delete</Button>
@@ -61,6 +60,7 @@ const Photos = ({ images, loadPosts, isLoading, spotLight, deletePhoto }) => {
           ))}
         </StyledCardContainer>
         : <h1>LOADING</h1>}
+      {/* <Route exact path='/edit/:id' component={Edit} /> */}
     </div>
   )
 }

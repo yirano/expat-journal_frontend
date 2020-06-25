@@ -46,14 +46,14 @@ export const addPost = (post) => dispatch => {
 export const spotLight = (id) => dispatch => {
   axiosWithAuth().get(`/photos/${id}`)
     .then(res => {
-      console.log('ACTION --> spotLight --> ', res)
+      // console.log('ACTION --> spotLight --> ', res)
       dispatch({ type: PHOTO_SPOTLIGHT, payload: res.data })
     })
     .catch(err => console.log('Spotlight error --> ', err.response))
 }
 
 export const deletePhoto = (id) => dispatch => {
-  console.log('Delete Photo Action ID --> ', id)
+  // console.log('Delete Photo Action ID --> ', id)
   axiosWithAuth().delete(`/photos/${id}`)
     .then(res => {
       console.log('Delete successful --> ', res)
