@@ -24,7 +24,7 @@ const SignUp = (props) => {
 
   useEffect(() => {
     formSchema.isValid(formState).then(isFormValid => {
-      setButtonDisabled(!isFormValid) // disabled= false if form is valid
+      setButtonDisabled(!isFormValid)
     })
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -47,31 +47,19 @@ const SignUp = (props) => {
     yup
       .reach(formSchema, e.target.name)
       .validate(e.target.value)
-      .then(inputIsValid => {
-        setErrors({
-          ...errors,
-          [e.target.name]: ""
-        })
+      .then(() => {
+        setErrors({ ...errors, [e.target.name]: "" })
       })
       .catch(err => {
-        setErrors({
-          ...errors,
-          [e.target.name]: err.errors[0]
-        })
+        setErrors({ ...errors, [e.target.name]: err.errors[0] })
       })
   }
 
   const inputChange = e => {
     e.persist()
 
-    const newFormData = {
-      ...formState,
-      [e.target.name]:
-        e.target.value
-    }
-
     validateChange(e)
-    setFormState(newFormData)
+    setFormState({ ...formState, [e.target.name]: e.target.value })
   }
 
 

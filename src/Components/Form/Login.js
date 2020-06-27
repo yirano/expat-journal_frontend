@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react"
 import * as yup from "yup"
-// import axiosWithAuth from '../axiosWithAuth/axiosWithAuth'
 import { logIn } from '../../Action/action'
 import { Button, Form, Label, Input } from 'reactstrap'
 import { Link } from 'react-router-dom'
@@ -12,8 +11,6 @@ function Login(props) {
     username: "",
     password: ""
   })
-
-
 
   const [buttonDisabled, setButtonDisabled] = useState(true)
 
