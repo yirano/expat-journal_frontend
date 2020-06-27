@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
-import { Form, Label, Input, Button, Dropdown } from 'reactstrap'
+import { Form, Label, Input, Button } from 'reactstrap'
 import * as yup from 'yup'
-import { addPost, loadAlbums } from '../Action/action'
+import { addPost, loadAlbums } from '../../Action/action'
 import { connect } from 'react-redux'
 import { useParams } from 'react-router'
 import styled from 'styled-components'
@@ -12,7 +12,6 @@ const StyledForm = styled.div`
     align-items: center;
     padding: 5% 0;
   `
-
 
 const Posts = (props) => {
   const param = useParams().id

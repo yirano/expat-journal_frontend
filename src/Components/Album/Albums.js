@@ -1,7 +1,7 @@
 import React, { useEffect } from "react"
 import { Link } from 'react-router-dom'
 import { connect, useDispatch } from 'react-redux'
-import { loadAlbums, removeAlbum } from '../Action/action'
+import { loadAlbums, removeAlbum } from '../../Action/action'
 import styled from 'styled-components'
 import { Button } from 'reactstrap'
 import AlbumCard from './AlbumCard'

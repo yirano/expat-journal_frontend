@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import { Form, Label, Input, Button } from 'reactstrap'
-import { addPost, editPost } from '../Action/action'
+import { addPost, editPost } from '../../Action/action'
 import { connect } from 'react-redux'
 import { useParams } from 'react-router'
-import axiosWithAuth from '../axiosWithAuth/axiosWithAuth'
+import axiosWithAuth from '../../axiosWithAuth/axiosWithAuth'
 const initialState = {
   photo_url: '',
   photo_title: '',
@@ -81,10 +81,4 @@ const Edit = (props) => {
   )
 }
 
-const mapStateToProps = (state, ownProps) => {
-  return {
-    // image: state.spotLight.photo_url
-  }
-}
-
-export default connect(mapStateToProps, { addPost, editPost })(Edit)
+export default connect(null, { addPost, editPost })(Edit)

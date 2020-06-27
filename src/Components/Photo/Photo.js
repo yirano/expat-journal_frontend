@@ -2,10 +2,10 @@ import React, { useEffect } from 'react'
 
 import { useParams } from 'react-router'
 import { connect } from 'react-redux'
-import { spotLight } from '../Action/action'
+import { spotLight } from '../../Action/action'
 import PhotoCard from './PhotoCard'
 import styled from 'styled-components'
-import { Button } from 'reactstrap'
+
 
 const StyledCardContainer = styled.div`
   display: flex;

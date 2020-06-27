@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react"
 import * as yup from "yup"
 // import axiosWithAuth from '../axiosWithAuth/axiosWithAuth'
-import { logIn } from '../Action/action'
+import { logIn } from '../../Action/action'
 import { Button, Form, Label, Input, legend } from 'reactstrap'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
@@ -66,15 +66,12 @@ function Login(props) {
       })
   }
 
-
   const inputChange = e => {
     e.persist()
     setCredentials({ ...credentials, [e.target.name]: e.target.value })
-
     validateChange(e)
   }
 
-  
   return (
 
     <Form onSubmit={handleLogin} >
@@ -110,9 +107,9 @@ function Login(props) {
         ) : null}
       </Label>
       <br />
-          
+
       <Button type="submit" disabled={buttonDisabled} >Submit </Button>
-    
+
       <Link to="/signup"><br />
 
         <Button type="submit">Register</Button>

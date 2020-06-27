@@ -1,12 +1,10 @@
 import React, { useEffect } from "react"
 import { connect } from 'react-redux'
-import { loadPosts, spotLight, deletePhoto } from '../Action/action'
+import { loadPosts, spotLight, deletePhoto } from '../../Action/action'
 import PhotoCard from './PhotoCard'
 import styled from 'styled-components'
 import { Link, useParams } from 'react-router-dom'
 import { Button } from 'reactstrap'
-
-
 
 const StyledCardContainer = styled.div`
   display: flex;
@@ -31,7 +29,6 @@ const Photos = ({ images, loadPosts, isLoading, spotLight, deletePhoto, album })
   }
 
   useEffect(() => {
-    // const id = localStorage.getItem('id')
     loadPosts(param)
   }, [])
 

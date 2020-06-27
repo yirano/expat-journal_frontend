@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react'
-import { loadPosts } from '../Action/action'
+import { loadPosts } from '../../Action/action'
 import { Card, CardText, CardBody, CardTitle, CardImg } from 'reactstrap'
 import styled from 'styled-components'
 import { connect } from 'react-redux'
-import axiosWithAuth from '../axiosWithAuth/axiosWithAuth'
+import axiosWithAuth from '../../axiosWithAuth/axiosWithAuth'
 
 
 const StyledImageContainer = styled.div`
@@ -11,7 +11,7 @@ const StyledImageContainer = styled.div`
   display: flex;
   align-items: flex-end;
 `
-const AlbumCard = ({ width, height, album, loadPosts, stuff }) => {
+const AlbumCard = ({ album }) => {
   const [coverImg, setCoverImg] = useState(require('../Images/no_image.jpg'))
 
   useEffect(() => {
@@ -24,9 +24,6 @@ const AlbumCard = ({ width, height, album, loadPosts, stuff }) => {
 
   return (
     <Card style={{ display: 'flex' }}>
-      {/* <StyledImageContainer style={{ height: height, width: width }}>
-        <CardImg src={album.photo_url} alt="" style={{ minHeight: '100%' }} />
-      </StyledImageContainer> */}
       <StyledImageContainer style={{ height: '500px', width: '100%' }}>
         <CardImg src={coverImg} style={{ minHeight: '100%' }} />
       </StyledImageContainer>
@@ -39,7 +36,7 @@ const AlbumCard = ({ width, height, album, loadPosts, stuff }) => {
   )
 }
 
-const mapStateToProps = (state, ownProps) => {
+const mapStateToProps = (state) => {
   return {
     stuff: state.data
   }

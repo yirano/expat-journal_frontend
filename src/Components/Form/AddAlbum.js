@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react'
 import { Form, Label, Input, Button } from 'reactstrap'
 import * as yup from 'yup'
-import { addAlbum, editAlbum } from '../Action/action'
-import { connect, useDispatch } from 'react-redux'
+import { addAlbum, editAlbum } from '../../Action/action'
+import { connect } from 'react-redux'
 import styled from 'styled-components'
 import { useParams } from 'react-router'
-import axiosWithAuth from '../axiosWithAuth/axiosWithAuth'
+import axiosWithAuth from '../../axiosWithAuth/axiosWithAuth'
 const StyledHeader = styled.h1`
     // text-align: center;
   `
@@ -117,8 +117,6 @@ const AddAlbum = (props) => {
     validateChange(e)
     setFormState(newFormData)
   }
-
-
 
   return (
     <StyledForm>
