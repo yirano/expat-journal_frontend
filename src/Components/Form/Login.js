@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react"
 import * as yup from "yup"
 // import axiosWithAuth from '../axiosWithAuth/axiosWithAuth'
 import { logIn } from '../../Action/action'
-import { Button, Form, Label, Input, legend } from 'reactstrap'
+import { Button, Form, Label, Input } from 'reactstrap'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 
@@ -13,7 +13,7 @@ function Login(props) {
     password: ""
   })
 
-  const [serverError, setServerError] = useState("")
+
 
   const [buttonDisabled, setButtonDisabled] = useState(true)
 
@@ -46,16 +46,18 @@ function Login(props) {
     formSchema.isValid(credentials).then(isFormValid => {
       setButtonDisabled(!isFormValid)
     })
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [credentials])
 
   const validateChange = e => {
     yup
       .reach(formSchema, e.target.name)
       .validate(e.target.value)
-      .then(inputIsValid => {
+      .then(() => {
         setErrors({
           ...errors,
-          [e.target.name]: ""
+          [e.target.name]: ''
         })
       })
       .catch(err => {
@@ -78,7 +80,6 @@ function Login(props) {
       <h1>Welcome to Expat Journal!!</h1><br />
       <h5>If you're a new user, please register.</h5><br />
       <h5>If you've already registered, please login to view posts.</h5>
-      {serverError ? <p className="error">{serverError}</p> : null}
       <Label for="userid">
         <legend>UserId</legend>
         <Input

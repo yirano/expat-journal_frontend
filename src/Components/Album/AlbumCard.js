@@ -12,13 +12,15 @@ const StyledImageContainer = styled.div`
   align-items: flex-end;
 `
 const AlbumCard = ({ album }) => {
-  const [coverImg, setCoverImg] = useState(require('../Images/no_image.jpg'))
+  const [coverImg, setCoverImg] = useState(require('../../Images/no_image.jpg'))
 
   useEffect(() => {
     axiosWithAuth().get(`stories/${album.id}/photos`)
       .then(res => {
         setCoverImg(res.data[0].photo_url)
       })
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
 

@@ -17,7 +17,7 @@ const StyledCard = styled.div`
   width: 800px;
   margin:20px;
 `
-const Photos = ({ images, loadPosts, isLoading, spotLight, deletePhoto, album }) => {
+const Photos = ({ images, loadPosts, isLoading, spotLight, deletePhoto }) => {
 
   const param = useParams().id
   console.log(param)
@@ -30,6 +30,8 @@ const Photos = ({ images, loadPosts, isLoading, spotLight, deletePhoto, album })
 
   useEffect(() => {
     loadPosts(param)
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   console.log('COMPONENT -> Photos -> images', images)

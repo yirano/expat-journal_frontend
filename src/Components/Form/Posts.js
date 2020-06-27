@@ -15,7 +15,7 @@ const StyledForm = styled.div`
 
 const Posts = (props) => {
   const param = useParams().id
-  const [serverError, setServerError] = useState("")
+
   const [formState, setFormState] = useState({
     photo_title: "",
     photo_description: "",
@@ -78,6 +78,8 @@ const Posts = (props) => {
     formSchema.isValid(formState).then(isFormValid => {
       setButtonDisabled(!isFormValid) // disabled= false if form is valid
     })
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [formState])
 
 
@@ -85,7 +87,6 @@ const Posts = (props) => {
     <StyledForm>
       <h1>Share a Photo</h1>
       <Form onSubmit={formSubmit}>
-        {serverError ? <p className="error">{serverError}</p> : null}
         <Label for="photo_title">
           <legend>Title</legend>
           <Input
@@ -135,7 +136,7 @@ const Posts = (props) => {
   )
 }
 
-const mapStateToProps = (state, ownProps) => {
+const mapStateToProps = (state) => {
   return {
     albums: state.albumData
   }

@@ -21,8 +21,6 @@ const AddAlbum = (props) => {
   const param = useParams().id
   const userID = localStorage.getItem('id')
 
-  const [serverError, setServerError] = useState("")
-
   const [formState, setFormState] = useState({
     story_name: "",
     story_description: "",
@@ -48,6 +46,7 @@ const AddAlbum = (props) => {
       setButtonDisabled(!isFormValid) // disabled= false if form is valid
     })
 
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [formState])
 
   useEffect(() => {
@@ -55,7 +54,7 @@ const AddAlbum = (props) => {
 
       axiosWithAuth().get(`/users/${userID}`)
         .then(res => {
-          // console.log(res.data.stories)
+
           return res.data.stories.filter(story => story.id === Number(param))
         })
         .then(res => {
@@ -67,6 +66,8 @@ const AddAlbum = (props) => {
         })
         .catch(err => console.log(err.response))
     }
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   const formSubmit = e => {
@@ -92,7 +93,7 @@ const AddAlbum = (props) => {
     yup
       .reach(formSchema, e.target.name)
       .validate(e.target.value) // value in input
-      .then(inputIsValid => {
+      .then(() => {
         setErrors({
           ...errors,
           [e.target.name]: ""
@@ -122,7 +123,6 @@ const AddAlbum = (props) => {
     <StyledForm>
       <StyledHeader>{props.isEditingAlbum ? 'Edit your Album!' : 'Start an Album'}</StyledHeader>
       <Form onSubmit={props.isEditingAlbum ? submitAlbumEdit : formSubmit}>
-        {serverError ? <p className="error">{serverError}</p> : null}
         <Label for="story_name">
           <legend>Title</legend>
           <Input
@@ -156,7 +156,7 @@ const AddAlbum = (props) => {
   )
 }
 
-const mapStateToProps = (state, ownProps) => {
+const mapStateToProps = (state) => {
   return {
     isEditingAlbum: state.isEditingAlbum
   }

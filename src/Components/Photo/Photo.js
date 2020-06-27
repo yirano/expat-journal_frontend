@@ -21,6 +21,8 @@ const Photo = (props) => {
   const paramID = useParams()
   useEffect(() => {
     props.spotLight(paramID.id)
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
 

@@ -1,6 +1,5 @@
 import axios from 'axios'
 import axiosWithAuth from '../axiosWithAuth/axiosWithAuth'
-import { useState } from 'react'
 
 export const EDIT_POST = 'EDIT_POST'
 export const ADD_POST = 'ADD_POST'
@@ -52,7 +51,6 @@ export const loadPosts = (id) => dispatch => {
       dispatch({ type: LOAD_POSTS, payload: { data: [], error: err.response }, })
     })
 }
-
 
 
 export const addAlbum = (post, id) => dispatch => {

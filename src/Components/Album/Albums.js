@@ -38,6 +38,8 @@ const Albums = (props) => {
   useEffect(() => {
     const id = localStorage.getItem('id')
     props.loadAlbums(id)
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
   console.log('Rendered albums --> ', props.albums)
 

@@ -1,19 +1,19 @@
 import React from 'react'
 import { Link, Route, Switch, BrowserRouter as Router } from 'react-router-dom'
-import { Button, Navbar } from 'reactstrap'
+import { Button } from 'reactstrap'
 import { connect } from 'react-redux'
 
 import PrivateRoute from './Components/PrivateRoute'
 import { logOut } from './Action/action'
 
-import Login from './Components/Login'
-import SignUp from './Components/SignUp'
-import Posts from './Components/Posts'
-import Albums from './Components/Albums'
-import Photos from './Components/Photos'
-import Photo from './Components/Photo'
-import Edit from './Components/Edit'
-import AddAlbum from './Components/AddAlbum'
+import Login from './Components/Form/Login'
+import SignUp from './Components/Form/SignUp'
+import Edit from './Components/Form/Edit'
+import Posts from './Components/Form/Posts'
+import AddAlbum from './Components/Form/AddAlbum'
+import Albums from './Components/Album/Albums'
+import Photos from './Components/Photo/Photos'
+import Photo from './Components/Photo/Photo'
 
 import './App.css'
 
@@ -72,7 +72,7 @@ function App(props) {
   )
 }
 
-const mapStateToProps = (state, ownProps) => {
+const mapStateToProps = (state) => {
   return {
     isLoggedIn: state.isLoggedIn,
     spotLight: state.spotLight

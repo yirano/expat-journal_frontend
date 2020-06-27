@@ -1,12 +1,9 @@
 import React, { useState, useEffect } from "react"
-import { Link } from 'react-router-dom'
 import { Form, Label, Input, Button } from 'reactstrap'
 import * as yup from 'yup'
 import Axios from 'axios'
 
 const SignUp = (props) => {
-
-  const [serverError, setServerError] = useState("")
 
   const [formState, setFormState] = useState({
     username: "",
@@ -29,6 +26,8 @@ const SignUp = (props) => {
     formSchema.isValid(formState).then(isFormValid => {
       setButtonDisabled(!isFormValid) // disabled= false if form is valid
     })
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [formState])
 
   const formSubmit = e => {
@@ -80,8 +79,7 @@ const SignUp = (props) => {
     <Form onSubmit={formSubmit}>
       <h1>Welcome to Expat Journal Registration Page!!</h1><br />
       <h5>Please register yourself to enjoy Expat Journal</h5><br />
-      
-      {serverError ? <p className="error">{serverError}</p> : null}
+
       <br />
       <Label htmlFor="username">
         <legend>User ID</legend>
