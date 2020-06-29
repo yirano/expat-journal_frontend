@@ -17,12 +17,9 @@ import Photo from './Components/Photo/Photo'
 
 import './App.css'
 
-
-
 function App(props) {
   const logOut = () => {
     props.logOut()
-    alert("Thanks for visiting Expat Journal!")
   }
 
   return (
@@ -37,7 +34,7 @@ function App(props) {
           </Link>
         }
 
-        {localStorage.key('token') !== null ?
+        {localStorage.getItem('token') !== null ?
           <Link to="/addalbum">
             <Button>New Album</Button>
           </Link>
@@ -58,11 +55,11 @@ function App(props) {
       <Switch>
         <Route exact path="/login" component={Login} />
         <Route path="/signup" component={SignUp} />
-        <Route path="/edit/:id" component={Edit} />
         <Route path="/albums/:id" component={Photos} />
         <Route path="/albums" component={Albums} />
         <Route exact path="/photo/:id" component={Photo} />
 
+        <PrivateRoute path="/edit/:id" component={Edit} />
         <PrivateRoute path="/album/:id/post" component={Posts} />
         <PrivateRoute exact path="/addalbum" component={AddAlbum} />
         <PrivateRoute exact path="/album/edit/:id" component={AddAlbum} />
