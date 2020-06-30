@@ -23,8 +23,8 @@ const PhotoCard = ({ image, height, width, style }) => {
 
   return (
     <Card style={{ width: "100%" }}>
-      <StyledImageContainer style={{ height: height }}>
-        <CardImg src={image.photo_url} alt="" style={{ minHeight: '100%' }} onMouseOver={scale} onMouseLeave={scale2} />
+      <StyledImageContainer style={{ height: height, justifyContent: 'center' }}>
+        <CardImg src={image.photo_url} alt="" style={{ minHeight: '100%', width: 'auto', minWidth: '100%' }} onMouseOver={scale} onMouseLeave={scale2} />
       </StyledImageContainer>
 
       <CardBody>
