@@ -20,11 +20,9 @@ const StyledCard = styled.div`
 const Photos = ({ images, loadPosts, isLoading, spotLight, deletePhoto }) => {
 
   const param = useParams().id
-  console.log(param)
 
   function remove(e) {
     alert("Are you sure want to delete this post")
-    console.log('Delete id ---> ', e.target.id)
     deletePhoto(e.target.id)
   }
 
@@ -34,8 +32,6 @@ const Photos = ({ images, loadPosts, isLoading, spotLight, deletePhoto }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
-  console.log('COMPONENT -> Photos -> images', images)
-  console.log('COMPONENT -> Photos -> isLoading', isLoading)
   const spotLightPhoto = id => {
     spotLight(id)
   }

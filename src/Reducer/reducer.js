@@ -34,7 +34,6 @@ export default (state = initialState, { type, payload }) => {
     case LOAD_ALBUMS:
       return { ...state, albumData: payload, error: '', spotLight: state.spotLight, isLoggedIn: true, isLoading: false }
     case EDIT_ALBUM:
-      console.log(payload)
       return { ...state, isEditingAlbum: payload }
     default:
       return state

@@ -36,7 +36,6 @@ const Posts = (props) => {
   const formSubmit = e => {
     e.preventDefault()
 
-    console.log(formState)
     props.addPost(formState, param)
     setFormState({
       photo_title: "",
@@ -63,15 +62,8 @@ const Posts = (props) => {
   }
   const inputChange = e => {
     e.persist()
-
-    const newFormData = {
-      ...formState,
-      [e.target.name]:
-        e.target.value
-    }
-
     validateChange(e)
-    setFormState(newFormData)
+    setFormState({...formState, [e.target.name]: e.target.value})
   }
 
   useEffect(() => {

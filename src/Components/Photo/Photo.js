@@ -30,7 +30,6 @@ const Photo = (props) => {
     <>
       <StyledCardContainer>
         <StyledCard>
-          {console.log('Photo --> ', props.image)}
           {props.image ?
             <PhotoCard image={props.image} />
             : null

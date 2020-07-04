@@ -15,7 +15,6 @@ export const EDIT_ALBUM = 'EDIT_ALBUM'
 export const logIn = (credentials) => dispatch => {
   axios.post('https://expat-journal2.herokuapp.com/api/auth/login', credentials)
     .then(res => {
-      console.log('Log in success --> ', res)
       localStorage.setItem('id', res.data.id)
       localStorage.setItem('token', res.data.token)
       dispatch({ type: DATA_LOADING, payload: false })
@@ -43,7 +42,6 @@ export const loadAlbums = (id) => dispatch => {
 export const loadPosts = (id) => dispatch => {
   axiosWithAuth().get(`stories/${id}/photos`)
     .then(res => {
-      console.log(res.data)
       dispatch({ type: LOAD_POSTS, payload: { data: res.data } })
     })
     .catch(err => {
@@ -56,7 +54,6 @@ export const loadPosts = (id) => dispatch => {
 export const addAlbum = (post, id) => dispatch => {
   axiosWithAuth().post(`/users/${id}/stories`, post)
     .then(res => {
-      console.log('New Album Created --> ', res.data)
       window.location.reload(true)
     })
     .catch(err => {
@@ -72,7 +69,6 @@ export const addPost = (post, id) => dispatch => {
 }
 
 export const editAlbum = (id, info) => dispatch => {
-  console.log('EDITALBUM --> ', id)
   axiosWithAuth().put(`/stories/${id}`, info)
     .then(res => {
       window.location.reload(true)
@@ -89,7 +85,6 @@ export const editPost = (id, post) => dispatch => {
 export const spotLight = (id) => dispatch => {
   axiosWithAuth().get(`/photos/${id}`)
     .then(res => {
-      // console.log('ACTION --> spotLight --> ', res)
       dispatch({ type: PHOTO_SPOTLIGHT, payload: res.data })
     })
     .catch(err => console.log('Spotlight error --> ', err.response))
@@ -98,7 +93,6 @@ export const spotLight = (id) => dispatch => {
 export const removeAlbum = id => dispatch => {
   axiosWithAuth().delete(`/stories/${id}`)
     .then(res => {
-      console.log('Album Delete Successful --> ', res)
       window.location.reload(true)
 
     })
@@ -106,10 +100,8 @@ export const removeAlbum = id => dispatch => {
 }
 
 export const deletePhoto = (id) => dispatch => {
-  // console.log('Delete Photo Action ID --> ', id)
   axiosWithAuth().delete(`/photos/${id}`)
     .then(res => {
-      console.log('Photo Delete successful --> ', res)
       window.location.reload(true)
     })
     .catch(err => console.log('Error deleting --> ', err.response))
